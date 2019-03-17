@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <PrivateRoute exact path="/" component={ Home } />
-        <Route path="/sign-in" component={ Auth } />
+        <Route path="/login" component={ Auth } />
       </BrowserRouter>
     );
   }
