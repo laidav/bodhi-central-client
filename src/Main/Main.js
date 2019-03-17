@@ -1,10 +1,14 @@
 import React from 'react';
 import './Main.scss';
+import { Link } from "react-router-dom";
 
-function Main () {
+import Dukkhas from "./Dukkhas/Dukkas"
+
+function Main ({match}) {
   return (
     <div>
-      Main page wrapper!
+      <Link to="/dukkhas">Dukkhas</Link>
+      <Route path={`${match.path}/dukkhas`} component={Dukkhas}/>
     </div>
   );
 }
