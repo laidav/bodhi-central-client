@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import Auth from "./Auth/Auth";
 import Home from "./Home/Home";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 import './App.scss';
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route exact path="/" component={ Home } />
+        <PrivateRoute exact path="/" component={ Home } />
         <Route path="/sign-in" component={ Auth } />
       </BrowserRouter>
     );
