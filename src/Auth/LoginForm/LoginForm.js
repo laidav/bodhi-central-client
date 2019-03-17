@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import authSrvc from "../../services/authSrvc"
+import { Redirect } from "react-router-dom";
 
 import './LoginForm.scss';
 
@@ -8,8 +10,9 @@ class LoginForm extends Component {
 
   state = {
     email: "",
-    password: ""
-  }
+    password: "",
+    error: false
+  };
 
   handleChange(e) {
     this.setState({
@@ -19,15 +22,40 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    const callback = (result) => {
+      if (result) {
+        this.setState(this.state);
+      } else {
+        this.setState({error: true});
+      }
+    };
+
+    authSrvc.signIn(this.state, callback);
   }
 
   render() {
+
+    const isAuthenticated = authSrvc.isAuthenticated;
+
+    if(isAuthenticated) {
+      return <Redirect to="/" />
+    }
+
+    let errorMsg;
+
+    if(this.state.error) {
+      errorMsg = <p>There was an error logging in</p>
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="login-email">Email:</label>
-        <input id="login-email" type="text" name="email" onChange={this.handleChange} />
+        <input id="login-email" type="text" name="email" onChange={this.handleChange} value={this.state.email} />
         <label htmlFor="login-password">Password</label>
-        <input id="login-password" type="text" name="password" onChange={this.handleChange} />
+        <input id="login-password" type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+        <button type="submit">Sign In!</button>
+        { errorMsg }
       </form>
     );
   }

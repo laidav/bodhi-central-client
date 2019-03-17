@@ -9,6 +9,6 @@ const authResource = {
       auth: { username, password }
     })
   }
-}
+};
 
 export default authResource
