@@ -31,7 +31,7 @@ class Dukkhas extends Component {
     return (
       <div>
         <div>Dukkhas!</div>
-        <List component={DukkhaListItem} uniqueKey="id" list={this.state.dukkhas} />
+        <List className="dukkhas__wrapper" component={DukkhaListItem} uniqueKey="id" list={this.state.dukkhas} />
       </div>
     );
   }
