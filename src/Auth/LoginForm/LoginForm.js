@@ -23,15 +23,11 @@ class LoginForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const callback = (result) => {
-      if (result) {
-        this.setState(this.state);
-      } else {
-        this.setState({error: true});
-      }
-    };
-
-    authSrvc.signIn(this.state, callback);
+    authSrvc.signIn(this.state).then((response) =>{
+      this.setState(this.state);
+    }, (error) => {
+      this.setState({error: true});
+    });
   }
 
   render() {

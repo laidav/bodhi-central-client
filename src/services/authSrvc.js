@@ -3,14 +3,18 @@ import axios from "axios";
 
 const authSrvc = {
   isAuthenticated: false,
-  signIn({ email, password }, cb) {
-    authResource.getToken(email, password).then((response) => {
-      this.isAuthenticated = true;
-      axios.defaults.headers.common['Authorization'] = response.token;
-      cb(true)
-    }, (error) => {
-      cb(false)
-    })
+  signIn({ email, password }) {
+    const promise = new Promise((resolve, reject) => {
+      authResource.getToken(email, password).then((response) => {
+        this.isAuthenticated = true;
+        axios.defaults.headers.common['Authorization'] = response.token;
+        resolve(response);
+      }, (error) => {
+        reject(error);
+      });
+    });
+
+    return promise
   },
   signout(cb) {
     this.isAuthenticated = false;
