@@ -17,7 +17,6 @@ class Dukkhas extends Component {
         loading: false
       });
     }, (error) => {
-      console.log(error);
       this.setState({ loading: false });
     });
   }
