@@ -1,6 +1,6 @@
 import React from 'react';
 import './Main.scss';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import PrivateRoute from "../common/PrivateRoute/PrivateRoute"
 import Dukkhas from "./Dukkhas/Dukkhas";
 import Home from "./Home/Home";
