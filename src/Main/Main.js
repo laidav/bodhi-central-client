@@ -10,11 +10,8 @@ function Main () {
   return (
     <div>
       <Navbar/>
-      <Switch>
-        <Route path="/home" component={ Home } />
-        <PrivateRoute path="/dukkhas" component={ Dukkhas }/>
-        <Redirect to="/home" />
-      </Switch>
+      <Route exact path="/" component={ Home } />
+      <PrivateRoute path="/dukkhas" component={ Dukkhas }/>
     </div>
   );
 }

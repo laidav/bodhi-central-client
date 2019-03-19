@@ -6,7 +6,7 @@ function Navbar () {
   return (
     <nav>
       <ul>
-        <li><NavLink activeClassName="active" to="/home">Home</NavLink></li>
+        <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
       </ul>
       <ul>
         <li><NavLink activeClassName="active" to="/dukkhas">Dukkhas</NavLink></li>
