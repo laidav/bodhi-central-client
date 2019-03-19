@@ -4,11 +4,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from "../common/PrivateRoute/PrivateRoute"
 import Dukkhas from "./Dukkhas/Dukkhas";
 import Home from "./Home/Home";
+import Navbar from "./Navbar/Navbar"
 
 function Main () {
   return (
     <div>
-      Main wrapper
+      <Navbar/>
       <Switch>
         <Route path="/home" component={ Home } />
         <PrivateRoute path="/dukkhas" component={ Dukkhas }/>
