@@ -39,7 +39,7 @@ class LoginForm extends Component {
     const isAuthenticated = authSrvc.isAuthenticated;
 
     if(isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to="/dukkhas" />
     }
 
     let errorMsg;

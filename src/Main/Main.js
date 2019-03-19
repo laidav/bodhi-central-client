@@ -1,14 +1,19 @@
 import React from 'react';
 import './Main.scss';
-import { Link } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import PrivateRoute from "../common/PrivateRoute/PrivateRoute"
+import Dukkhas from "./Dukkhas/Dukkhas";
+import Home from "./Home/Home";
 
-import Dukkhas from "./Dukkhas/Dukkas"
-
-function Main ({match}) {
+function Main () {
   return (
     <div>
-      <Link to="/dukkhas">Dukkhas</Link>
-      <Route path={`${match.path}/dukkhas`} component={Dukkhas}/>
+      Main wrapper
+      <Switch>
+        <Route path="/home" component={ Home } />
+        <PrivateRoute path="/dukkhas" component={ Dukkhas }/>
+        <Redirect to="/home" />
+      </Switch>
     </div>
   );
 }

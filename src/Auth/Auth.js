@@ -6,7 +6,7 @@ const Auth = () => (
   (
     <div>
       <h1>Login page!</h1>
-      <LoginForm/>
+      <LoginForm />
     </div>
   )
 );
