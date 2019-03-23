@@ -1,13 +1,13 @@
 import * as Constants from "../constantsSrvc";
 import axios from "axios";
 
-const dukkhaResource = {
-  getDukkhas() {
+const postResource = {
+  getPosts() {
     return axios({
       method: "get",
-      url: Constants.API_V1 + "/dukkhas",
+      url: Constants.API_V1 + "/post",
     })
   }
 };
 
-export default dukkhaResource
+export default postResource

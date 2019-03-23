@@ -8,9 +8,6 @@ function Navbar () {
       <ul>
         <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
       </ul>
-      <ul>
-        <li><NavLink activeClassName="active" to="/dukkhas">Dukkhas</NavLink></li>
-      </ul>
     </nav>
   );
 }

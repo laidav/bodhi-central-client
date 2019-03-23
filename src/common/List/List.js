@@ -1,12 +1,12 @@
 import React from 'react';
 
 const List = ({ component: Component, uniqueKey, list, className }) => {
-  const result = list.map((item) => {
-    return <Component key={item[uniqueKey]} item={item} />
+  const result = list.map((data) => {
+    return <Component key={ data[uniqueKey] } data={ data } />
   });
 
   return (
-    <div className={className}>
+    <div className={ className }>
       { result }
     </div>
   )
