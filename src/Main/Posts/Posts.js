@@ -27,10 +27,12 @@ class Posts extends Component {
       return <div>loading</div>
     }
 
+    const { posts } = this.state;
+
     return (
       <div>
         <div>Posts!</div>
-        <List className="posts__wrapper" component={ PostCard } uniqueKey="id" list={ this.state.posts } />
+        <List className="posts__wrapper" component={ PostCard } uniqueKey="id" list={ posts } />
       </div>
     );
   }

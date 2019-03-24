@@ -1,6 +1,6 @@
 import React from 'react';
 import './Main.scss';
-import PrivateRoute from "../common/PrivateRoute/PrivateRoute"
+import PrivateRoute from "../common/PrivateRoute/PrivateRoute";
 import Posts from "./Posts/Posts";
 import Navbar from "./Navbar/Navbar";
 import Post from "./Post/Post";
