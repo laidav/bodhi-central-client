@@ -2,6 +2,7 @@ import React from 'react';
 import List from "../../../common/List/List";
 import SubjectTag from "./SubjectTag/SubjectTag";
 import './PostCard.scss';
+import { NavLink } from "react-router-dom";
 
 
 const PostCard = ({ data }) => {
@@ -15,6 +16,7 @@ const PostCard = ({ data }) => {
       <p>Author: { data.author.username }</p>
       <p>Subjects</p>
       <List className="post-card__subject-tags" component={ SubjectTag } uniqueKey="id" list={ data.subjects } />
+      <NavLink to={`/post/${data.id}`}>Go to {data.title}</NavLink>
     </div>
   )
 };
