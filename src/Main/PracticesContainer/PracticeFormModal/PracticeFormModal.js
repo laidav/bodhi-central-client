@@ -38,7 +38,7 @@ class PracticeFormModal extends Component {
   render() {
 
     const { post, className, hidePracticeForm } = this.props;
-    const submitBtnText = post ? "Save Practice" : "Add Practice"
+    const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
     let errorMsg;
 
     if(this.state.error) {

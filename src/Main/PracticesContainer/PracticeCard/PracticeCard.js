@@ -9,11 +9,11 @@ function PracticeCard ({ data, listItemProps }) {
 
   return (
     <div>
-      <p>Teaching Point: { data.teaching_point }</p>
-      <p>Application: { data.application }</p>
-      <p>Created On: { data.created }</p>
-      <p>Origin Post: { post.title }</p>
-      <button onClick={ handleEditClick }>Edit Practice</button>
+        <p>Teaching Point: { data.teaching_point }</p>
+        <p>Application: { data.application }</p>
+        <p>Created On: { data.created }</p>
+        <p>Origin Post: { post.title }</p>
+        <button onClick={ handleEditClick }>Edit Practice</button>
     </div>
   );
 }
