@@ -18,11 +18,11 @@ class PracticesContainer extends Component {
   hidePracticeForm = this.hidePracticeForm.bind(this);
   handleAddPracticeClick = this.handleAddPracticeClick.bind(this);
 
-  componentWillMount() {
-    const params = {}
+  componentWillMount () {
+    const params = {};
 
-    if(this.props.postId) {
-      params.postId = this.props.postId
+    if(this.props.post) {
+      params.postId = this.props.post.id;
     }
 
     practiceResource.getPractices(params).then((response) => {
@@ -62,10 +62,7 @@ class PracticesContainer extends Component {
     const { practices, showPracticeForm, selectedPractice } = this.state;
     const { post } = this.props;
     const ctx = this;
-    const listItemProps = {
-      openPracticeForm: ctx.openPracticeForm,
-      post
-    };
+    const listItemProps = { openPracticeForm: ctx.openPracticeForm };
 
     return (
       <div>

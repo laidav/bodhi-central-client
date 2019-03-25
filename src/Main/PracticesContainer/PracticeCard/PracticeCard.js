@@ -2,7 +2,7 @@ import React from 'react';
 import './PracticeCard.scss';
 
 function PracticeCard ({ data, listItemProps }) {
-  const { post, openPracticeForm } = listItemProps;
+  const { openPracticeForm } = listItemProps;
 
   const handleEditClick = () =>
     openPracticeForm(data);
@@ -12,7 +12,7 @@ function PracticeCard ({ data, listItemProps }) {
         <p>Teaching Point: { data.teaching_point }</p>
         <p>Application: { data.application }</p>
         <p>Created On: { data.created }</p>
-        <p>Origin Post: { post.title }</p>
+        <p>Origin Post: { data.post.title }</p>
         <button onClick={ handleEditClick }>Edit Practice</button>
     </div>
   );
