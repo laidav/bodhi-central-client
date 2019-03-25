@@ -45,11 +45,11 @@ class LoginForm extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={ this.handleSubmit }>
         <label htmlFor="login-email">Email:</label>
-        <input id="login-email" type="text" name="email" onChange={this.handleChange} value={this.state.email} />
+        <input id="login-email" type="text" name="email" onChange={ this.handleChange } value={ this.state.email } />
         <label htmlFor="login-password">Password</label>
-        <input id="login-password" type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
+        <input id="login-password" type="password" name="password" onChange={ this.handleChange } value={ this.state.password }/>
         <button type="submit">Sign In!</button>
         { errorMsg }
       </form>
