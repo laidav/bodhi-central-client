@@ -24,6 +24,15 @@ class PracticeFormModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    if (this.props.selectedPractice) {
+      console.log(this.state, "submit edit post");
+
+    } else {
+      console.log(this.state, "submit add post");
+    }
+
+    this.props.hidePracticeForm();
   }
 
   render() {

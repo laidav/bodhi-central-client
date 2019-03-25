@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Post.scss";
 import postResource from "../../services/resources/postResource";
-import PracticesContainer from "./PracticesContainer/PracticesContainer"
+import PracticesContainer from "../PracticesContainer/PracticesContainer";
 
 
 class Post extends Component {
