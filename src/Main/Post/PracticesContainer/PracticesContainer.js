@@ -40,6 +40,7 @@ class PracticesContainer extends Component {
       showPracticeForm: true,
       selectedPractice
     });
+
   };
 
   handleAddPracticeClick() {
@@ -54,7 +55,6 @@ class PracticesContainer extends Component {
   };
 
   render() {
-
     if(this.state.loading) {
       return <div>loading</div>
     }
