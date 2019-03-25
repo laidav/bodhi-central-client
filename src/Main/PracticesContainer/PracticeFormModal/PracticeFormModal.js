@@ -11,7 +11,7 @@ class PracticeFormModal extends Component {
     const { selectedPractice } = this.props;
     return {
       teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
-      application:  selectedPractice ? selectedPractice.teaching_point : "",
+      application:  selectedPractice ? selectedPractice.application : "",
       error: false
     }
   }
