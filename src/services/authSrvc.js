@@ -27,7 +27,7 @@ const authSrvc = {
     const promise = new Promise((resolve, reject) => {
       if(token) {
         authResource.verifyToken(token).then(() => {
-          axios.defaults.headers.common['Authorization'] = "Basic " + btoa(token + ":");;
+          axios.defaults.headers.common['Authorization'] = "Basic " + btoa(token + ":");
           ctx.isAuthenticated = true;
           resolve(token);
         }, (error) => {
