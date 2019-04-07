@@ -1,0 +1,47 @@
+@import "../../styles/_variables.scss";
+
+.posts {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+
+  //Body
+  &__body {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: auto auto;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px solid black;
+  }
+
+  &__nav {
+    grid-row: 1/2;
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid black;
+
+    ul {
+      display: flex;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  
+  &__nav-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  &__content{
+    grid-row: 2/3;
+    overflow: auto;
+  }
+
+  //Sidebar
+  &__side-bar {
+    flex-basis: 300px;
+    height: 100%;
+    overflow: auto;
+  }
+}

@@ -30,9 +30,52 @@ class Posts extends Component {
     const { posts } = this.state;
 
     return (
-      <div>
-        <div>Posts!</div>
-        <List className="posts__wrapper" component={ PostCard } uniqueKey="id" list={ posts } />
+      <div className={ "posts" }>
+        <div className={ "posts__body" }>
+          <div className={ "posts__nav" }>
+            <ul>
+              <li className={ "posts__nav-item" } href="javascript:void(0)">Wisdom</li>
+              <li className={ "posts__nav-item" } href="javascript:void(0)">Ethics</li>
+              <li className={ "posts__nav-item" } href="javascript:void(0)">Meditation</li>
+            </ul>
+          </div>
+          <div className={ "posts__content" }>
+            <List className="posts__wrapper" component={ PostCard } uniqueKey="id" list={ posts } />
+          </div>
+        </div>
+        <div className={ "posts__side-bar" }>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+          <h1>practice</h1>
+        </div>
       </div>
     );
   }
