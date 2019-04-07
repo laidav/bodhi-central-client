@@ -10,7 +10,7 @@ class PostsContainer extends Component {
     loading: true
   }
 
-  componentWillMount() {
+  getPosts() {
     postResource.getPosts().then((response) => {
       this.setState({
         posts: response.data.posts,
@@ -19,6 +19,10 @@ class PostsContainer extends Component {
     }, (error) => {
       this.setState({ loading: false });
     });
+  }
+
+  componentWillMount() {
+    this.getPosts();
   }
 
   render() {
