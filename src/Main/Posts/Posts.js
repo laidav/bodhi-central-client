@@ -24,21 +24,21 @@ class Posts extends Component {
         <div className={ "posts__body" }>
           <div className={ "posts__nav" }>
             <ul>
-              <SubjectTab isActiveTab={ activeTab === Constants.subjects.WISDOM }
+              <SubjectTab isActive={ activeTab === Constants.subjects.WISDOM }
                           clickHandler={ this.selectSubject }
                           value={ Constants.subjects.WISDOM }>Wisdom</SubjectTab>
-              <SubjectTab isActiveTab={ activeTab === Constants.subjects.ETHICS }
+              <SubjectTab isActive={ activeTab === Constants.subjects.ETHICS }
                           clickHandler={ this.selectSubject }
                           value={ Constants.subjects.ETHICS }>Ethics</SubjectTab>
-              <SubjectTab isActiveTab={ activeTab === Constants.subjects.MEDITATION }
+              <SubjectTab isActive={ activeTab === Constants.subjects.MEDITATION }
                           clickHandler={ this.selectSubject }
                           value={ Constants.subjects.MEDITATION }>Meditation</SubjectTab>
             </ul>
           </div>
           <div className={ "posts__content" }>
-            { activeTab === Constants.subjects.WISDOM && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
-            { activeTab === Constants.subjects.ETHICS && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
-            { activeTab === Constants.subjects.MEDITATION && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
+            <PostsContainer isActive={ activeTab === Constants.subjects.WISDOM } subject={ Constants.subjects.WISDOM }/>
+            <PostsContainer isActive={ activeTab === Constants.subjects.ETHICS } subject={ Constants.subjects.ETHICS }/>
+            <PostsContainer isActive={ activeTab === Constants.subjects.MEDITATION } subject={ Constants.subjects.MEDITATION }/>
           </div>
         </div>
         <div className={ "posts__side-bar" }>

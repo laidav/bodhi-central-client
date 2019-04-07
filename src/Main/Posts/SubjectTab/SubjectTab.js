@@ -7,14 +7,13 @@ class SubjectTab extends Component {
 
   handleClick () {
     const { clickHandler, value } = this.props;
-    console.log(this.props);
     clickHandler(value)
   }
 
   render () {
-    const { children, isActiveTab } = this.props;
+    const { children, isActive } = this.props;
 
-    return <li className={ `subject-tab${ isActiveTab ? " subject-tab--active" : ""}` } onClick={ this.handleClick }>{ children }</li>
+    return <li className={ `subject-tab${ isActive ? " subject-tab--active" : ""}` } onClick={ this.handleClick }>{ children }</li>
   }
 }
 

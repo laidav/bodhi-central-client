@@ -7,10 +7,12 @@ import PostCard from "./../PostCard/PostCard"
 class PostsContainer extends Component {
   state = {
     posts: [],
-    loading: true
+    loading: false
   }
 
   getPosts() {
+    this.setState({ loading: true });
+
     postResource.getPosts().then((response) => {
       this.setState({
         posts: response.data.posts,
@@ -22,20 +24,30 @@ class PostsContainer extends Component {
   }
 
   componentWillMount() {
-    this.getPosts();
+    if (this.props.isActive) {
+      this.getPosts();
+    }
   }
 
   render() {
-
     const { loading, posts } = this.state;
+    const { isActive } = this.props;
 
     return (
-      <div className={ "posts-container" }>
+      <div className={ `posts-container${ isActive ? " posts-container--active": ""}` }>
         { loading && <div>Loading</div>}
         { !loading && <List className={ "posts__wrapper"} component={ PostCard } uniqueKey="id" list={ posts } />}
 
       </div>
     );
+  }
+
+  componentDidUpdate() {
+    const { posts, loading } = this.state;
+
+    if (this.props.isActive && !posts.length && !loading) {
+      this.getPosts();
+    }
   }
 }
 
