@@ -1,46 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import './Posts.scss';
-import postResource from "../../services/resources/postResource";
-import List from "../../common/List/List";
-import PostCard from "./PostCard/PostCard"
+import PostsContainer from "./PostsContainer/PostsContainer";
+import SubjectTab from "./SubjectTab/SubjectTab";
+import * as Constants from "../../services/constantsSrvc";
 
 class Posts extends Component {
   state = {
-    posts: [],
-    loading: true
-  }
+    activeTab: Constants.subjects.WISDOM
+  };
 
-  componentWillMount() {
-    postResource.getPosts().then((response) => {
-      this.setState({
-        posts: response.data.posts,
-        loading: false
-      });
-    }, (error) => {
-      this.setState({ loading: false });
-    });
-  }
+  selectSubject = this.selectSubject.bind(this);
+
+
+  selectSubject(subject) {
+    this.setState({ activeTab: subject })
+  };
 
   render() {
-
-    if(this.state.loading) {
-      return <div>loading</div>
-    }
-
-    const { posts } = this.state;
+    const { activeTab } = this.state;
 
     return (
       <div className={ "posts" }>
         <div className={ "posts__body" }>
           <div className={ "posts__nav" }>
             <ul>
-              <li className={ "posts__nav-item" } href="javascript:void(0)">Wisdom</li>
-              <li className={ "posts__nav-item" } href="javascript:void(0)">Ethics</li>
-              <li className={ "posts__nav-item" } href="javascript:void(0)">Meditation</li>
+              <SubjectTab isActiveTab={ activeTab === Constants.subjects.WISDOM }
+                          clickHandler={ this.selectSubject }
+                          value={ Constants.subjects.WISDOM }>Wisdom</SubjectTab>
+              <SubjectTab isActiveTab={ activeTab === Constants.subjects.ETHICS }
+                          clickHandler={ this.selectSubject }
+                          value={ Constants.subjects.ETHICS }>Ethics</SubjectTab>
+              <SubjectTab isActiveTab={ activeTab === Constants.subjects.MEDITATION }
+                          clickHandler={ this.selectSubject }
+                          value={ Constants.subjects.MEDITATION }>Meditation</SubjectTab>
             </ul>
           </div>
           <div className={ "posts__content" }>
-            <List className="posts__wrapper" component={ PostCard } uniqueKey="id" list={ posts } />
+            { activeTab === Constants.subjects.WISDOM && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
+            { activeTab === Constants.subjects.ETHICS && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
+            { activeTab === Constants.subjects.MEDITATION && <PostsContainer subject={ Constants.subjects.WISDOM }/> }
           </div>
         </div>
         <div className={ "posts__side-bar" }>
