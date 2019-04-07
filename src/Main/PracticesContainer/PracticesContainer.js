@@ -8,7 +8,7 @@ import PracticeCard from "./PracticeCard/PracticeCard";
 
 class PracticesContainer extends Component {
   state = {
-    practices: null,
+    practices: [],
     selectedPractice: null,
     showPracticeForm: false,
     loading: true
@@ -61,8 +61,8 @@ class PracticesContainer extends Component {
 
     const { practices, showPracticeForm, selectedPractice } = this.state;
     const { post } = this.props;
-    const ctx = this;
-    const listItemProps = { openPracticeForm: ctx.openPracticeForm };
+    const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
+    const listItemProps = { openPracticeForm };
 
     return (
       <div>
@@ -76,9 +76,9 @@ class PracticesContainer extends Component {
                 listItemProps={ listItemProps } />
         </div>
         }
-        <button onClick={ this.handleAddPracticeClick }> Add Practice </button>
+        <button onClick={ handleAddPracticeClick }> Add Practice </button>
         { showPracticeForm &&
-        <PracticeFormModal post={ post } hidePracticeForm={ this.hidePracticeForm } selectedPractice={ selectedPractice }/>
+        <PracticeFormModal post={ post } hidePracticeForm={ hidePracticeForm } selectedPractice={ selectedPractice }/>
         }
       </div>
     );

@@ -7,10 +7,12 @@ import Post from "./Post/Post";
 
 function Main () {
   return (
-    <div>
-      <Navbar/>
-      <PrivateRoute exact path="/" component={ Posts } />
-      <PrivateRoute path="/post/:id" component={ Post } />
+    <div className={ "main" }>
+      <Navbar className={ "main__nav" }/>
+      <main className={ "main__content"}>
+        <PrivateRoute exact path="/" component={ Posts } />
+        <PrivateRoute path="/post/:id" component={ Post } />
+      </main>
     </div>
   );
 }

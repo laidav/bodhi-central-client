@@ -2,9 +2,9 @@ import React from 'react';
 import './Navbar.scss';
 import { NavLink } from "react-router-dom";
 
-function Navbar () {
+function Navbar ({ className }) {
   return (
-    <nav>
+    <nav className={ className }>
       <ul>
         <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
       </ul>

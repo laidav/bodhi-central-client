@@ -1,0 +1,18 @@
+@import "../styles/_variables.scss";
+
+.main {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  &__nav {
+    grid-row: 1/2;
+  }
+
+  &__content {
+    grid-row: 2/3;
+    overflow: auto;
+  }
+}
