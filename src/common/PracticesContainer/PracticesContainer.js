@@ -67,18 +67,18 @@ class PracticesContainer extends Component {
     return (
       <div>
         { practices.length &&
-        <div>
-          <h1>Practices</h1>
-          <List className="practices-wrapper"
-                component={ PracticeCard }
-                uniqueKey="id"
-                list={ practices }
-                listItemProps={ listItemProps } />
-        </div>
+          <div>
+            <h1>Practices</h1>
+            <List className="practices-wrapper"
+                  component={ PracticeCard }
+                  uniqueKey="id"
+                  list={ practices }
+                  listItemProps={ listItemProps } />
+          </div>
         }
         <button onClick={ handleAddPracticeClick }> Add Practice </button>
         { showPracticeForm &&
-        <PracticeFormModal post={ post } hidePracticeForm={ hidePracticeForm } selectedPractice={ selectedPractice }/>
+          <PracticeFormModal post={ post } hidePracticeForm={ hidePracticeForm } selectedPractice={ selectedPractice }/>
         }
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Post.scss";
-import postResource from "../../services/resources/postResource";
-import PracticesContainer from "../PracticesContainer/PracticesContainer";
+import postResource from "services/resources/postResource";
+import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 
 
 class Post extends Component {
@@ -22,12 +22,11 @@ class Post extends Component {
   };
 
   render() {
+    const { post, loading } = this.state;
 
-    if(this.state.loading) {
+    if(loading) {
       return <div>loading</div>
     }
-
-    const { post } = this.state;
 
     return (
       <div>
