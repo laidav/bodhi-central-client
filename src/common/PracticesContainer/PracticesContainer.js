@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./PracticesContainer.scss";
 import practiceResource from "services/resources/practiceResource";
 import List from "common/List/List";
+import Modal from "react-modal";
 import PracticeFormModal from "./PracticeFormModal/PracticeFormModal"
 import PracticeCard from "./PracticeCard/PracticeCard";
 
+Modal.setAppElement("#root");
 
 class PracticesContainer extends Component {
   state = {
@@ -66,7 +68,7 @@ class PracticesContainer extends Component {
 
     return (
       <div>
-        { practices.length &&
+        { practices.length > 0 &&
           <div>
             <h1>Practices</h1>
             <List className="practices-wrapper"
@@ -77,9 +79,10 @@ class PracticesContainer extends Component {
           </div>
         }
         <button onClick={ handleAddPracticeClick }> Add Practice </button>
-        { showPracticeForm &&
+        <Modal isOpen={ showPracticeForm }
+               onRequestClose={ hidePracticeForm }>
           <PracticeFormModal post={ post } hidePracticeForm={ hidePracticeForm } selectedPractice={ selectedPractice }/>
-        }
+        </Modal>
       </div>
     );
   }
