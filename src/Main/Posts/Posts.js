@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './Posts.scss';
 import PostsContainer from "./PostsContainer/PostsContainer";
 import SubjectTab from "./SubjectTab/SubjectTab";
-import * as Constants from "../../services/constantsSrvc";
+import * as Constants from "services/constantsSrvc";
 
 class Posts extends Component {
   state = {

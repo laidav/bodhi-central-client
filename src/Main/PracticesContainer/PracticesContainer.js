@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./PracticesContainer.scss";
-import practiceResource from "../../services/resources/practiceResource";
-import List from "../../common/List/List";
+import practiceResource from "services/resources/practiceResource";
+import List from "common/List/List";
 import PracticeFormModal from "./PracticeFormModal/PracticeFormModal"
 import PracticeCard from "./PracticeCard/PracticeCard";
 
