@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './Posts.scss';
+import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import PostsContainer from "./PostsContainer/PostsContainer";
 import SubjectTab from "./SubjectTab/SubjectTab";
 import * as Constants from "services/constantsSrvc";
@@ -42,37 +43,7 @@ class Posts extends Component {
           </div>
         </div>
         <div className={ "posts__side-bar" }>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
-          <h1>practice</h1>
+          <PracticesContainer/>
         </div>
       </div>
     );
