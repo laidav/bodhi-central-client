@@ -10,10 +10,10 @@ class PostsContainer extends Component {
     loading: false
   }
 
-  getPosts() {
+  getPosts(params) {
     this.setState({ loading: true });
 
-    postResource.getPosts().then((response) => {
+    postResource.getPosts(params).then((response) => {
       this.setState({
         posts: response.data.posts,
         loading: false
@@ -25,7 +25,7 @@ class PostsContainer extends Component {
 
   componentWillMount() {
     if (this.props.isActive) {
-      this.getPosts();
+      this.getPosts({ subject_id: this.props.subject });
     }
   }
 
@@ -46,7 +46,7 @@ class PostsContainer extends Component {
     const { posts, loading } = this.state;
 
     if (this.props.isActive && !posts.length && !loading) {
-      this.getPosts();
+      this.getPosts({ subject_id: this.props.subject });
     }
   }
 }

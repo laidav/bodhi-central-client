@@ -3,10 +3,11 @@ import axios from "axios";
 
 const postResource = {
   url: Constants.API_V1 + "/post",
-  getPosts() {
+  getPosts(params) {
     return axios({
       method: "get",
       url: this.url,
+      params: params
     })
   },
   getSinglePost(postId) {
