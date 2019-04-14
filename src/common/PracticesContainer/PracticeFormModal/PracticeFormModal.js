@@ -10,16 +10,19 @@ class PracticeFormModal extends Component {
   initializeState() {
     const { selectedPractice } = this.props;
     return {
-      teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
-      application:  selectedPractice ? selectedPractice.application : "",
+      fields: {
+        teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
+        application:  selectedPractice ? selectedPractice.application : "",
+      },
       error: false
     }
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    const fields = this.state.fields;
+
+    fields[e.target.name] = e.target.value;
+    this.setState({fields});
   }
 
   handleSubmit(e) {
@@ -38,6 +41,7 @@ class PracticeFormModal extends Component {
   render() {
 
     const { post, className, hidePracticeForm } = this.props;
+    const { teaching_point, application } = this.state.fields
     const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
     let errorMsg;
 
@@ -50,9 +54,9 @@ class PracticeFormModal extends Component {
         { post && <p>Origin Post: { post.title }</p> }
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor="teaching-point">Teaching Point:</label>
-          <input id="teaching-point" type="text" name="teaching_point" onChange={ this.handleChange } value={ this.state.teaching_point } />
+          <input id="teaching-point" type="text" name="teaching_point" onChange={ this.handleChange } value={ teaching_point } />
           <label htmlFor="application">Application</label>
-          <textarea id="application" name="application" onChange={ this.handleChange } value={ this.state.application }/>
+          <textarea id="application" name="application" onChange={ this.handleChange } value={ application }/>
           <button type="submit">{ submitBtnText }</button>
           { errorMsg }
         </form>
