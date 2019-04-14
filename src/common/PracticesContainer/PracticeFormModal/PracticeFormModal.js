@@ -3,6 +3,7 @@ import "./PracticeFormModal.scss";
 import SubjectCheckboxMenu from "common/SubjectCheckboxMenu/SubjectCheckboxMenu";
 import { validationTypes as vt, validationErrorCodes as ve, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
+import { subjects as staticSubjects } from "services/constantsSrvc";
 
 class PracticeFormModal extends Component {
 
@@ -23,8 +24,9 @@ class PracticeFormModal extends Component {
     if (selectedPractice) {
       const { subjects } = selectedPractice;
 
-      for (let i = 0; i < subjects.length; i++) {
-        initialState.checkedSubjects.set(subjects[i], true);
+      for (let key in staticSubjects) {
+        const subject = staticSubjects[key];
+        initialState.checkedSubjects.set(subject, subjects.indexOf(subject) > -1);
       }
     }
 
