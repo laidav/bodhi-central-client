@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
+import { validationTypes as vt, validationErrorCodes as ve, validatorSrvc } from "services/validatorSrvc";
 
 class PracticeFormModal extends Component {
   handleChange = this.handleChange.bind(this);
@@ -14,7 +15,7 @@ class PracticeFormModal extends Component {
         teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
         application:  selectedPractice ? selectedPractice.application : "",
       },
-      error: false
+      errors: {}
     }
   }
 
@@ -28,26 +29,39 @@ class PracticeFormModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.props.selectedPractice) {
-      console.log(this.state, "submit edit post");
+    const { teaching_point, application } = this.state.fields;
 
-    } else {
-      console.log(this.state, "submit add post");
+    let errors = {
+      teaching_point: validatorSrvc.validate(teaching_point, vt.isRequired)
+    };
+
+    for (let key in errors) {
+      if(errors[key] === ve.success) {
+        delete errors[key]
+      }
     }
 
-    this.props.hidePracticeForm();
+    if(Object.keys(errors).length) {
+      this.setState({ errors: errors });
+    } else {
+      if (this.props.selectedPractice) {
+        console.log(this.state, "submit edit post");
+
+      } else {
+        console.log(this.state, "submit add post");
+      }
+
+      this.props.hidePracticeForm();
+      this.setState({ errors: {} });
+    }
   }
 
   render() {
 
     const { post, className, hidePracticeForm } = this.props;
-    const { teaching_point, application } = this.state.fields
+    const { teaching_point, application } = this.state.fields;
+    const { errors } = this.state;
     const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
-    let errorMsg;
-
-    if(this.state.error) {
-      errorMsg = <p>There was an error saving the practice</p>
-    }
 
     return (
       <div className={ className }>
@@ -55,10 +69,13 @@ class PracticeFormModal extends Component {
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor="teaching-point">Teaching Point:</label>
           <input id="teaching-point" type="text" name="teaching_point" onChange={ this.handleChange } value={ teaching_point } />
+          {
+            errors.teaching_point === ve.isRequired &&
+            <p className="form-error">Teaching point is required</p>
+          }
           <label htmlFor="application">Application</label>
           <textarea id="application" name="application" onChange={ this.handleChange } value={ application }/>
           <button type="submit">{ submitBtnText }</button>
-          { errorMsg }
         </form>
         <button onClick={ hidePracticeForm }>Cancel</button>
       </div>
