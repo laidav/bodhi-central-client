@@ -30,8 +30,6 @@ class PracticeFormModal extends Component {
         initialState.checkedSubjects.set(subjects[i], true);
       }
     }
-
-    console.log(initialState, "initialState");
     
     return initialState;
   }
@@ -47,16 +45,27 @@ class PracticeFormModal extends Component {
     const subjectId = e.target.name;
     const isChecked = e.target.checked;
 
-    this.setState(prevState => ({ checkedSubjects: prevState.checkedSubjects.set(parseInt(subjectId), isChecked) }));
+    this.setState(prevState => ({
+      checkedSubjects: prevState.checkedSubjects.set(parseInt(subjectId), isChecked)
+      })
+    );
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
     const { teaching_point } = this.state.fields;
+    let subjects = [];
+
+    for (const [key, value] of this.state.checkedSubjects) {
+      if(value) {
+        subjects.push(key);
+      }
+    }
 
     let errors = {
-      teaching_point: validatorSrvc.validate(teaching_point, vt.isRequired)
+      teaching_point: validatorSrvc.validate(teaching_point, vt.isRequired),
+      subjects: validatorSrvc.validate(subjects, vt.arrayNotEmpty)
     };
 
     for (let key in errors) {
@@ -70,22 +79,24 @@ class PracticeFormModal extends Component {
     } else {
       const { selectedPractice } = this.props;
 
-      const resource = selectedPractice ? this.getEditPracticeRequest() :
-        this.getAddPracticeRequest();
+      const resource = selectedPractice ? this.getEditPracticeRequest(subjects) :
+        this.getAddPracticeRequest(subjects);
 
       resource.then(() => {
         this.props.hidePracticeForm();
-        this.setState({ errors: {} });
       }).catch((error) => {
         console.log(error);
       });
     }
   }
 
-  getEditPracticeRequest() {
+  getEditPracticeRequest(subjects) {
     const { fields: data } = this.state;
     const { selectedPractice } = this.props;
-    const params = { practiceId: selectedPractice.id, data };
+    const params = {
+      practiceId: selectedPractice.id,
+      data: Object.assign({}, data, { subjects })
+    };
 
     if (selectedPractice.post) {
       params.data = Object.assign({}, params.data, { post_id: selectedPractice.post.id });
@@ -94,10 +105,12 @@ class PracticeFormModal extends Component {
     return practiceResource.editPractice(params)
   }
 
-  getAddPracticeRequest() {
+  getAddPracticeRequest(subjects) {
     const { fields: data } = this.state;
     const { post } = this.props;
-    const params = { data };
+    const params = {
+      data: Object.assign({}, data, { subjects })
+    };
 
     if (post) {
       params.data = Object.assign({}, params.data, { post_id: post });
@@ -109,7 +122,6 @@ class PracticeFormModal extends Component {
 
 
   render() {
-    console.log(this.state.checkedSubjects);
 
     const { post, className, hidePracticeForm } = this.props;
     const { teaching_point, application } = this.state.fields;
@@ -127,6 +139,10 @@ class PracticeFormModal extends Component {
             <p className="form-error">Teaching point is required</p>
           }
           <SubjectCheckboxMenu checkedSubjects={ checkedSubjects } handleSubjectChange={ this.handleSubjectChange }/>
+          {
+            errors.subjects === ve.arrayNotEmpty &&
+            <p className="form-error">Please select at least one subject</p>
+          }
           <label htmlFor="application">Application</label>
           <textarea id="application" name="application" onChange={ this.handleTextChange } value={ application }/>
           <button type="submit">{ submitBtnText }</button>

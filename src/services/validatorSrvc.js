@@ -1,10 +1,12 @@
 export const validationTypes = {
-  isRequired: "isRequired"
+  isRequired: "isRequired",
+  arrayNotEmpty: "arrayNotEmpty"
 };
 
 export const validationErrorCodes = {
   success: 200,
-  isRequired: 201
+  isRequired: 201,
+  arrayNotEmpty: 202
 };
 
 export class validatorSrvc {
@@ -21,5 +23,9 @@ export class validatorSrvc {
 
   static isRequired(value) {
     return !!value.trim();
+  }
+
+  static arrayNotEmpty(array) {
+    return array.length > 0;
   }
 }
