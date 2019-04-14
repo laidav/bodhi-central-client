@@ -3,9 +3,7 @@ import "./SubjectTab.scss";
 
 
 class SubjectTab extends Component {
-  handleClick = this.handleClick.bind(this);
-
-  handleClick () {
+  handleClick = () => {
     const { clickHandler, value } = this.props;
     clickHandler(value)
   }

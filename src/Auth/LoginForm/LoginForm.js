@@ -5,22 +5,19 @@ import { Redirect } from "react-router-dom";
 import './LoginForm.scss';
 
 class LoginForm extends Component {
-  handleChange = this.handleChange.bind(this);
-  handleSubmit = this.handleSubmit.bind(this);
-
   state = {
     email: "",
     password: "",
     error: false
   };
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     authSrvc.signIn(this.state).then((response) =>{
