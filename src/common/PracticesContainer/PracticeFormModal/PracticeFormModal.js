@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
 import { validationTypes as vt, validationErrorCodes as ve, validatorSrvc } from "services/validatorSrvc";
+import practiceResource from "services/resources/practiceResource";
 
 class PracticeFormModal extends Component {
   handleChange = this.handleChange.bind(this);
@@ -20,7 +21,7 @@ class PracticeFormModal extends Component {
   }
 
   handleChange(e) {
-    const fields = this.state.fields;
+    const { fields } = this.state;
 
     fields[e.target.name] = e.target.value;
     this.setState({fields});
@@ -29,7 +30,7 @@ class PracticeFormModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { teaching_point, application } = this.state.fields;
+    const { teaching_point } = this.state.fields;
 
     let errors = {
       teaching_point: validatorSrvc.validate(teaching_point, vt.isRequired)
@@ -44,17 +45,45 @@ class PracticeFormModal extends Component {
     if(Object.keys(errors).length) {
       this.setState({ errors: errors });
     } else {
-      if (this.props.selectedPractice) {
-        console.log(this.state, "submit edit post");
+      const { selectedPractice } = this.props;
 
-      } else {
-        console.log(this.state, "submit add post");
-      }
+      const resource = selectedPractice ? this.getEditPracticeRequest() :
+        this.getAddPracticeRequest();
 
-      this.props.hidePracticeForm();
-      this.setState({ errors: {} });
+      resource.then(() => {
+        this.props.hidePracticeForm();
+        this.setState({ errors: {} });
+      }).catch((error) => {
+        console.log(error);
+      });
     }
   }
+
+  getEditPracticeRequest() {
+    const { fields: data } = this.state;
+    const { selectedPractice } = this.props;
+    const params = { practiceId: selectedPractice.id, data };
+
+    if (selectedPractice.post) {
+      params.data = Object.assign({}, params.data, { post_id: selectedPractice.post.id });
+    }
+
+    return practiceResource.editPractice(params)
+  }
+
+  getAddPracticeRequest() {
+    const { fields: data } = this.state;
+    const { post } = this.props;
+    const params = { data };
+
+    if (post) {
+      params.data = Object.assign({}, params.data, { post_id: post });
+    }
+
+    return practiceResource.addPractice(params);
+  }
+
+
 
   render() {
 

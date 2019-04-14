@@ -12,7 +12,7 @@ function PracticeCard ({ data, listItemProps }) {
         <p>Teaching Point: { data.teaching_point }</p>
         <p>Application: { data.application }</p>
         <p>Created On: { data.created }</p>
-        <p>Origin Post: { data.post.title }</p>
+        { data.post && <p>Origin Post: { data.post.title }</p> }
         <button onClick={ handleEditClick }>Edit Practice</button>
     </div>
   );

@@ -10,7 +10,21 @@ const practiceResource = {
       params: {
         post_id: postId
       }
-    })
+    });
+  },
+  addPractice({ data }) {
+    return axios({
+      method: "post",
+      url: this.url,
+      data
+    });
+  },
+  editPractice({ practiceId, data }) {
+    return axios({
+      method: "put",
+      url: `${this.url}/${practiceId}`,
+      data
+    });
   }
 };
 
