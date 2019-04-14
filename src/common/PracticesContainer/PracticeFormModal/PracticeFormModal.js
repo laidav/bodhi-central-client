@@ -5,15 +5,12 @@ import { validationTypes as vt, validationErrorCodes as ve, validatorSrvc } from
 import practiceResource from "services/resources/practiceResource";
 
 class PracticeFormModal extends Component {
-  handleTextChange = this.handleTextChange.bind(this);
-  handleSubjectChange = this.handleSubjectChange.bind(this);
-  handleSubmit = this.handleSubmit.bind(this);
 
   state = this.initializeState();
 
   initializeState() {
     const { selectedPractice } = this.props;
-    
+
     const initialState = {
       fields: {
         teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
@@ -30,18 +27,18 @@ class PracticeFormModal extends Component {
         initialState.checkedSubjects.set(subjects[i], true);
       }
     }
-    
-    return initialState;
-  }
 
-  handleTextChange(e) {
+    return initialState;
+  };
+
+  handleTextChange = (e) => {
     const { fields } = this.state;
 
     fields[e.target.name] = e.target.value;
     this.setState({fields});
-  }
+  };
 
-  handleSubjectChange(e) {
+  handleSubjectChange = (e) => {
     const subjectId = e.target.name;
     const isChecked = e.target.checked;
 
@@ -49,9 +46,9 @@ class PracticeFormModal extends Component {
       checkedSubjects: prevState.checkedSubjects.set(parseInt(subjectId), isChecked)
       })
     );
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const { teaching_point } = this.state.fields;
@@ -88,7 +85,7 @@ class PracticeFormModal extends Component {
         console.log(error);
       });
     }
-  }
+  };
 
   getEditPracticeRequest(subjects) {
     const { fields: data } = this.state;
@@ -117,9 +114,7 @@ class PracticeFormModal extends Component {
     }
 
     return practiceResource.addPractice(params);
-  }
-
-
+  };
 
   render() {
 
@@ -150,7 +145,7 @@ class PracticeFormModal extends Component {
         <button onClick={ hidePracticeForm }>Cancel</button>
       </div>
     );
-  }
+  };
 }
 
 export default PracticeFormModal;
