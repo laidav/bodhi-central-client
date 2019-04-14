@@ -16,10 +16,6 @@ class PracticesContainer extends Component {
     loading: true
   };
 
-  openPracticeForm = this.openPracticeForm.bind(this);
-  hidePracticeForm = this.hidePracticeForm.bind(this);
-  handleAddPracticeClick = this.handleAddPracticeClick.bind(this);
-
   componentWillMount () {
     const params = {};
 
@@ -37,7 +33,7 @@ class PracticesContainer extends Component {
     });
   };
 
-  openPracticeForm(selectedPractice) {
+  openPracticeForm = (selectedPractice) => {
     this.setState({
       showPracticeForm: true,
       selectedPractice
@@ -45,11 +41,11 @@ class PracticesContainer extends Component {
 
   };
 
-  handleAddPracticeClick() {
+  handleAddPracticeClick = () => {
     this.openPracticeForm(null);
   }
 
-  hidePracticeForm() {
+  hidePracticeForm = () => {
     this.setState({
       showPracticeForm: false,
       selectedPractice: null
