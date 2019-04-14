@@ -10,11 +10,8 @@ class Posts extends Component {
     activeTab: Constants.subjects.WISDOM
   };
 
-  selectSubject = this.selectSubject.bind(this);
-
-
-  selectSubject(subject) {
-    this.setState({ activeTab: subject })
+  selectSubject = (subject) => {
+    this.setState({ activeTab: subject });
   };
 
   render() {
