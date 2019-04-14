@@ -113,7 +113,7 @@ class PracticeFormModal extends Component {
     };
 
     if (post) {
-      params.data = Object.assign({}, params.data, { post_id: post });
+      params.data = Object.assign({}, params.data, { post_id: post.id });
     }
 
     return practiceResource.addPractice(params);
