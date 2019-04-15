@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import postResource from "services/resources/postResource";
 import List from "common/List/List";
 import AdminPostCard from "./AdminPostCard/AdminPostCard";
+import { NavLink } from "react-router-dom";
 
 class AdminPosts extends Component {
   state = {
@@ -13,7 +14,7 @@ class AdminPosts extends Component {
     this.getPosts();
   }
 
-  getPosts(params = {}) {
+  getPosts(params) {
     this.setState({ loading: true });
 
     postResource.getPosts(params).then((response) => {
@@ -33,7 +34,10 @@ class AdminPosts extends Component {
         { loading && <div>Loading</div> }
         {
           !loading &&
-            <List className={ "admin-post-cards"} component={ AdminPostCard } list={ posts } uniqueKey={ "id" } />
+            <div>
+              <NavLink to={ "/admin/post/add" }>Add New Post</NavLink>
+              <List className={ "admin-post-cards"} component={ AdminPostCard } list={ posts } uniqueKey={ "id" } />
+            </div>
         }
       </div>
     );

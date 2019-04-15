@@ -1,0 +1,9 @@
+.main-nav {
+  ul {
+    display: flex;
+  }
+
+  &__item {
+    margin-left: 1rem;
+  }
+}
