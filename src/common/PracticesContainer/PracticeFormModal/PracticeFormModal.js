@@ -7,16 +7,14 @@ import { subjects as staticSubjects } from "services/constantsSrvc";
 
 class PracticeFormModal extends Component {
 
-  state = this.initializeState();
+  state = this.initState();
 
-  initializeState() {
+  initState() {
     const { selectedPractice } = this.props;
 
     const initialState = {
-      fields: {
-        teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
-        application:  selectedPractice ? selectedPractice.application : "",
-      },
+      teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
+      application:  selectedPractice ? selectedPractice.application : "",
       checkedSubjects: new Map(),
       errors: {}
     };
@@ -34,18 +32,16 @@ class PracticeFormModal extends Component {
   };
 
   handleTextChange = (e) => {
-    const { fields } = this.state;
-
-    fields[e.target.name] = e.target.value;
-    this.setState({fields});
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   handleSubjectChange = (e) => {
-    const subjectId = e.target.name;
-    const isChecked = e.target.checked;
-
     this.setState(prevState => ({
-      checkedSubjects: prevState.checkedSubjects.set(parseInt(subjectId), isChecked)
+      checkedSubjects: prevState.checkedSubjects.set(
+        parseInt(e.target.name),
+        e.target.checked)
       })
     );
   };
@@ -53,7 +49,8 @@ class PracticeFormModal extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { teaching_point } = this.state.fields;
+    const { teaching_point, application } = this.state;
+
     let subjects = [];
 
     for (const [key, value] of this.state.checkedSubjects) {
@@ -75,13 +72,17 @@ class PracticeFormModal extends Component {
 
     const errors = validatorSrvc.validateItems(validationItems);
 
-    if(Object.keys(errors).length) {
+    if (Object.keys(errors).length) {
       this.setState({ errors: errors });
     } else {
       const { selectedPractice } = this.props;
 
-      const resource = selectedPractice ? this.getEditPracticeRequest(subjects) :
-        this.getAddPracticeRequest(subjects);
+      const params = {
+        data: { teaching_point, application, subjects }
+      }
+
+      const resource = selectedPractice ? this.getEditPracticeRequest(params) :
+        this.getAddPracticeRequest(params);
 
       resource.then(() => {
         this.props.hidePracticeForm();
@@ -91,13 +92,10 @@ class PracticeFormModal extends Component {
     }
   };
 
-  getEditPracticeRequest(subjects) {
-    const { fields: data } = this.state;
+  getEditPracticeRequest(params) {
     const { selectedPractice } = this.props;
-    const params = {
-      practiceId: selectedPractice.id,
-      data: Object.assign({}, data, { subjects })
-    };
+
+    params.practiceId = selectedPractice.id;
 
     if (selectedPractice.post) {
       params.data = Object.assign({}, params.data, { post_id: selectedPractice.post.id });
@@ -106,12 +104,9 @@ class PracticeFormModal extends Component {
     return practiceResource.editPractice(params)
   }
 
-  getAddPracticeRequest(subjects) {
-    const { fields: data } = this.state;
+  getAddPracticeRequest(params) {
+
     const { post } = this.props;
-    const params = {
-      data: Object.assign({}, data, { subjects })
-    };
 
     if (post) {
       params.data = Object.assign({}, params.data, { post_id: post.id });
@@ -123,7 +118,7 @@ class PracticeFormModal extends Component {
   render() {
 
     const { post, className, hidePracticeForm } = this.props;
-    const { teaching_point, application } = this.state.fields;
+    const { teaching_point, application } = this.state;
     const { errors, checkedSubjects } = this.state;
     const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
 
