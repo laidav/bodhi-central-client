@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
 import SubjectCheckboxMenu from "common/SubjectCheckboxMenu/SubjectCheckboxMenu";
-import { validationTypes as vt, validationErrorCodes as ve, validatorSrvc } from "services/validatorSrvc";
+import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
 
@@ -19,14 +19,13 @@ class PracticeFormModal extends Component {
       errors: {}
     };
 
-    if (selectedPractice) {
-      const { subjects } = selectedPractice;
+    const subjects = selectedPractice ? selectedPractice.subjects : [];
 
-      for (let key in staticSubjects) {
-        const subject = staticSubjects[key];
-        initialState.checkedSubjects.set(subject, subjects.indexOf(subject) > -1);
-      }
+    for (let key in staticSubjects) {
+      const subject = staticSubjects[key];
+      initialState.checkedSubjects.set(subject, subjects.indexOf(subject) > -1);
     }
+
 
     return initialState;
   };
@@ -38,10 +37,12 @@ class PracticeFormModal extends Component {
   };
 
   handleSubjectChange = (e) => {
+    const { name, checked } = e.target;
+
     this.setState(prevState => ({
       checkedSubjects: prevState.checkedSubjects.set(
-        parseInt(e.target.name),
-        e.target.checked)
+        parseInt(name),
+        checked)
       })
     );
   };
