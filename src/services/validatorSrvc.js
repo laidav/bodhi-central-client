@@ -3,11 +3,6 @@ export const validationTypes = {
   arrayNotEmpty: "arrayNotEmpty"
 };
 
-export const validationErrorCodes = {
-  isRequired: 201,
-  arrayNotEmpty: 202
-};
-
 export class validatorSrvc {
 
   static validateItems(validationItems) {
@@ -30,7 +25,7 @@ export class validatorSrvc {
   static validate(value, validators) {
     for (let i = 0; i < validators.length; i++) {
       if(!this[validators[i]](value)) {
-        return validationErrorCodes[validators[i]];
+        return validationTypes[validators[i]];
       }
     }
 

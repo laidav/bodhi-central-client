@@ -134,12 +134,12 @@ class PracticeFormModal extends Component {
           <label htmlFor="teaching-point">Teaching Point:</label>
           <input id="teaching-point" type="text" name="teaching_point" onChange={ this.handleTextChange } value={ teaching_point } />
           {
-            errors.teaching_point === ve.isRequired &&
+            errors.teaching_point === vt.isRequired &&
             <p className="form-error">Teaching point is required</p>
           }
           <SubjectCheckboxMenu checkedSubjects={ checkedSubjects } handleSubjectChange={ this.handleSubjectChange }/>
           {
-            errors.subjects === ve.arrayNotEmpty &&
+            errors.subjects === vt.arrayNotEmpty &&
             <p className="form-error">Please select at least one subject</p>
           }
           <label htmlFor="application">Application</label>
