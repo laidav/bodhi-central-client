@@ -1,12 +1,9 @@
-import React from 'react';
-import List from "../../../common/List/List";
-import SubjectTag from "./SubjectTag/SubjectTag";
-import './PostCard.scss';
+import React from "react";
+import List from "common/List/List";
+import SubjectTag from "../../Posts/PostCard/SubjectTag/SubjectTag";
 import { NavLink } from "react-router-dom";
 
-
-const PostCard = ({ data }) => {
-
+const AdminPostCard = ({ data }) => {
   return (
     <div className="post-card" key={ data.id }>
       <p>Post Card</p>
@@ -16,9 +13,9 @@ const PostCard = ({ data }) => {
       <p>Author: { data.author.username }</p>
       <p>Subjects</p>
       <List className="post-card__subject-tags" component={ SubjectTag } uniqueKey="id" list={ data.subjects } />
-      <NavLink to={`/post/${ data.id }`}>Go to { data.title }</NavLink>
+      <NavLink to={`/admin/post/${ data.id }`}>Edit { data.title }</NavLink>
     </div>
   )
 };
 
-export default PostCard;
+export default AdminPostCard;

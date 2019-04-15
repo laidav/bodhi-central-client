@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import './PostsContainer.scss';
-import postResource from "../../../services/resources/postResource";
-import List from "../../../common/List/List";
-import PostCard from "./../PostCard/PostCard"
+import postResource from "services/resources/postResource";
+import List from "common/List/List";
+import PostCard from "../PostCard/PostCard"
 
 class PostsContainer extends Component {
   state = {
