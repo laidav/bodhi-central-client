@@ -118,8 +118,7 @@ class PracticeFormModal extends Component {
   render() {
 
     const { post, className, hidePracticeForm } = this.props;
-    const { teaching_point, application } = this.state;
-    const { errors, checkedSubjects } = this.state;
+    const { teaching_point, application, checkedSubjects, errors } = this.state;
     const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
 
     return (
