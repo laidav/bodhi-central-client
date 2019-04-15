@@ -4,7 +4,9 @@ import PrivateRoute from "../common/PrivateRoute/PrivateRoute";
 import Posts from "./Posts/Posts";
 import Navbar from "./Navbar/Navbar";
 import Post from "./Post/Post";
-import AdminPosts from "./AdminPosts/AdminPosts";
+import AdminPosts from "./Admin/AdminPosts/AdminPosts";
+import AdminPostForm from "./Admin/AdminPostForm/AdminPostForm";
+import { Switch } from "react-router-dom";
 
 function Main () {
   return (
@@ -16,6 +18,10 @@ function Main () {
         <PrivateRoute exact path={ "/" } component={ Posts } />
         <PrivateRoute path={ "/post/:id" } component={ Post } />
         <PrivateRoute exact path={ "/admin/post" } component={ AdminPosts } />
+        <Switch>
+          <PrivateRoute path={ "/admin/post/add" } component={ AdminPostForm } />
+          <PrivateRoute path={ "/admin/post/:id" } component={ AdminPostForm } />
+        </Switch>
       </main>
     </div>
   );

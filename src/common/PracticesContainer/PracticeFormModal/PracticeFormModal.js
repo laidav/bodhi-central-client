@@ -26,7 +26,6 @@ class PracticeFormModal extends Component {
       initialState.checkedSubjects.set(subject, subjects.indexOf(subject) > -1);
     }
 
-
     return initialState;
   };
 
