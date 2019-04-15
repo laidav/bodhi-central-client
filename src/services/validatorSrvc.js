@@ -4,21 +4,37 @@ export const validationTypes = {
 };
 
 export const validationErrorCodes = {
-  success: 200,
   isRequired: 201,
   arrayNotEmpty: 202
 };
 
 export class validatorSrvc {
 
-  static validate(value, ...args) {
-    for (let i = 0; i < args.length; i++) {
-      if(!this[args[i]](value)) {
-        return validationErrorCodes[args[i]];
+  static validateItems(validationItems) {
+    const errors = {};
+
+    for (let key in validationItems) {
+      if (validationItems.hasOwnProperty(key)) {
+        const item = validationItems[key];
+        const error = this.validate(item.value, item.validators);
+
+        if (error) {
+          errors[key] = error;
+        }
       }
     }
 
-    return validationErrorCodes.success
+    return errors;
+  }
+
+  static validate(value, validators) {
+    for (let i = 0; i < validators.length; i++) {
+      if(!this[validators[i]](value)) {
+        return validationErrorCodes[validators[i]];
+      }
+    }
+
+    return null
   };
 
   static isRequired(value) {

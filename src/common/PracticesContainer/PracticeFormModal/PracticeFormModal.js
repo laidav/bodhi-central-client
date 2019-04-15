@@ -62,16 +62,18 @@ class PracticeFormModal extends Component {
       }
     }
 
-    let errors = {
-      teaching_point: validatorSrvc.validate(teaching_point, vt.isRequired),
-      subjects: validatorSrvc.validate(subjects, vt.arrayNotEmpty)
+    const validationItems = {
+      teaching_point: {
+        value: teaching_point,
+        validators: [vt.isRequired]
+      },
+      subjects: {
+        value: subjects,
+        validators: [vt.arrayNotEmpty]
+      }
     };
 
-    for (let key in errors) {
-      if(errors[key] === ve.success) {
-        delete errors[key]
-      }
-    }
+    const errors = validatorSrvc.validateItems(validationItems);
 
     if(Object.keys(errors).length) {
       this.setState({ errors: errors });
