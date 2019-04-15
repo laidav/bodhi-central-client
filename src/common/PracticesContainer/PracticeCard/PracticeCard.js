@@ -8,7 +8,7 @@ function PracticeCard ({ data, listItemProps }) {
     openPracticeForm(data);
 
   return (
-    <div>
+    <div className={ "practice-card" }>
         <p>Teaching Point: { data.teaching_point }</p>
         <p>Application: { data.application }</p>
         <p>Created On: { data.created }</p>
