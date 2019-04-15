@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import postResource from "services/resources/postResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
+import { NavLink } from "react-router-dom";
 
 class AdminPostForm extends Component {
   state = {
@@ -39,8 +40,11 @@ class AdminPostForm extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
-      <div>hello</div>
+      <div>
+        <NavLink to={ "/admin/post" }>Back to Admin Posts</NavLink>
+      </div>
     )
   }
 }
