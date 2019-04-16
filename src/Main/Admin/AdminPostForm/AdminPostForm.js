@@ -6,22 +6,32 @@ import { NavLink, Redirect } from "react-router-dom";
 import {validationTypes as vt, validatorSrvc} from "services/validatorSrvc";
 
 class AdminPostForm extends Component {
-  state = {
-    title: "",
-    description: "",
-    link: "",
-    checkedSubjects: new Map(),
-    redirectBack: false,
-    errors: {},
-    loadingPost: false
-  };
+  state = this.initState();
+
+  initState() {
+    const initialState = {
+      title: "",
+      description: "",
+      link: "",
+      checkedSubjects: new Map(),
+      redirectBack: false,
+      errors: {},
+      loadingPost: false
+    };
+
+    for (let key in staticSubjects) {
+      const subject = staticSubjects[key];
+      initialState.checkedSubjects.set(subject, false);
+    }
+
+    return initialState
+  }
 
   componentWillMount() {
     const { id: postId } = this.props.match.params;
 
-    this.setState({ loadingPost: true })
-
     if (postId) {
+      this.setState({ loadingPost: true });
       postResource.getSinglePost(postId).then((response) => {
         const { title, description, link } = response.data;
 
@@ -30,9 +40,8 @@ class AdminPostForm extends Component {
         });
 
         this.setState((prevState) => {
-          for (let key in staticSubjects) {
-            const subject = staticSubjects[key];
-            prevState.checkedSubjects.set(subject, subjects.indexOf(subject) > -1);
+          for (let i = 0; i < subjects.length; i++) {
+            prevState.checkedSubjects.set(subjects[i], true);
           }
 
           return {
@@ -44,20 +53,8 @@ class AdminPostForm extends Component {
           }
         })
       });
-    } else {
-      this.setState((prevState) => {
-        for (let key in staticSubjects) {
-          const subject = staticSubjects[key];
-          prevState.checkedSubjects.set(subject, false);
-        }
-
-        return {
-          checkedSubjects: prevState.checkedSubjects,
-          loadingPost: false
-        }
-      })
     }
-  };
+  }
 
   handleTextChange = (e) => {
     this.setState({
@@ -75,7 +72,6 @@ class AdminPostForm extends Component {
       })
     );
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -134,11 +130,11 @@ class AdminPostForm extends Component {
   getEditPostRequest(params) {
     params.postId = this.props.match.params.id;
     return postResource.editPost(params);
-  };
+  }
 
   getAddPostRequest(params) {
     return postResource.addPost(params);
-  };
+  }
 
   render() {
 
@@ -182,7 +178,7 @@ class AdminPostForm extends Component {
         </form>
       </div>
     )
-  };
+  }
 }
 
 export default AdminPostForm;
