@@ -123,7 +123,7 @@ class AdminPostForm extends Component {
 
       const resource = postId ? this.getEditPostRequest(params) : this.getAddPostRequest(params);
 
-      resource.then((response) => {
+      resource.then(() => {
         this.setState({ redirectBack: true });
       }).catch((error) => {
         console.log(error);
@@ -134,7 +134,7 @@ class AdminPostForm extends Component {
   getEditPostRequest(params) {
     params.postId = this.props.match.params.id;
     return postResource.editPost(params);
-  }
+  };
 
   getAddPostRequest(params) {
     return postResource.addPost(params);
@@ -182,7 +182,7 @@ class AdminPostForm extends Component {
         </form>
       </div>
     )
-  }
+  };
 }
 
 export default AdminPostForm;
