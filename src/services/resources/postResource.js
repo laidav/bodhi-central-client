@@ -19,13 +19,15 @@ const postResource = {
   addPost({ data }) {
     return axios({
       method: "post",
-      url: this.url
+      url: this.url,
+      data
     });
   },
   editPost({ postId, data }) {
     return axios({
       method: "put",
-      url: `${this.url}/${ postId }`
+      url: `${this.url}/${ postId }`,
+      data
     });
   }
 };
