@@ -15,6 +15,18 @@ const postResource = {
       method: "get",
       url: `${this.url}/${postId}`
     })
+  },
+  addPost({ data }) {
+    return axios({
+      method: "post",
+      url: this.url
+    });
+  },
+  editPost({ postId, data }) {
+    return axios({
+      method: "put",
+      url: `${this.url}/${ postId }`
+    });
   }
 };
 

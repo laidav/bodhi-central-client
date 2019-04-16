@@ -73,7 +73,7 @@ class PracticeFormModal extends Component {
     const errors = validatorSrvc.validateItems(validationItems);
 
     if (Object.keys(errors).length) {
-      this.setState({ errors: errors });
+      this.setState({ errors });
     } else {
       const { selectedPractice } = this.props;
 
@@ -116,7 +116,7 @@ class PracticeFormModal extends Component {
   };
 
   render() {
-
+    const { handleSubmit, handleTextChange, handleSubjectChange } = this;
     const { post, className, hidePracticeForm } = this.props;
     const { teaching_point, application, checkedSubjects, errors } = this.state;
     const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
@@ -124,20 +124,20 @@ class PracticeFormModal extends Component {
     return (
       <div className={ className }>
         { post && <p>Origin Post: { post.title }</p> }
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={ handleSubmit }>
           <label htmlFor="teaching-point">Teaching Point:</label>
-          <input id="teaching-point" type="text" name="teaching_point" onChange={ this.handleTextChange } value={ teaching_point } />
+          <input id="teaching-point" type="text" name="teaching_point" onChange={ handleTextChange } value={ teaching_point } />
           {
             errors.teaching_point === vt.isRequired &&
             <p className="form-error">Teaching point is required</p>
           }
-          <SubjectCheckboxMenu checkedSubjects={ checkedSubjects } handleSubjectChange={ this.handleSubjectChange }/>
+          <SubjectCheckboxMenu checkedSubjects={ checkedSubjects } handleSubjectChange={ handleSubjectChange }/>
           {
             errors.subjects === vt.arrayNotEmpty &&
             <p className="form-error">Please select at least one subject</p>
           }
           <label htmlFor="application">Application</label>
-          <textarea id="application" name="application" onChange={ this.handleTextChange } value={ application }/>
+          <textarea id="application" name="application" onChange={ handleTextChange } value={ application }/>
           <button type="submit">{ submitBtnText }</button>
         </form>
         <button onClick={ hidePracticeForm }>Cancel</button>
