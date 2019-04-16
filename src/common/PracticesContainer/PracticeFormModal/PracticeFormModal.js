@@ -79,7 +79,7 @@ class PracticeFormModal extends Component {
 
       const params = {
         data: { teaching_point, application, subjects }
-      }
+      };
 
       const resource = selectedPractice ? this.getEditPracticeRequest(params) :
         this.getAddPracticeRequest(params);
