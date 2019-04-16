@@ -7,7 +7,8 @@ import PostCard from "../PostCard/PostCard"
 class PostsContainer extends Component {
   state = {
     posts: [],
-    loading: false
+    loading: false,
+    error: false
   }
 
   getPosts(params) {
@@ -19,7 +20,10 @@ class PostsContainer extends Component {
         loading: false
       });
     }, (error) => {
-      this.setState({ loading: false });
+      this.setState({
+        loading: false,
+        error: true
+      });
     });
   }
 
@@ -43,9 +47,9 @@ class PostsContainer extends Component {
   }
 
   componentDidUpdate() {
-    const { posts, loading } = this.state;
+    const { posts, loading, error } = this.state;
 
-    if (this.props.isActive && !posts.length && !loading) {
+    if (this.props.isActive && !posts.length && !loading && !error) {
       this.getPosts({ subject_id: this.props.subject });
     }
   }
