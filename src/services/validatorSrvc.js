@@ -4,7 +4,6 @@ export const validationTypes = {
 };
 
 export class validatorSrvc {
-
   static validateItems(validationItems) {
     const errors = {};
 
@@ -24,13 +23,13 @@ export class validatorSrvc {
 
   static validate(value, validators) {
     for (let i = 0; i < validators.length; i++) {
-      if(!this[validators[i]](value)) {
+      if (!this[validators[i]](value)) {
         return validationTypes[validators[i]];
       }
     }
 
-    return null
-  };
+    return null;
+  }
 
   static isRequired(value) {
     return !!value.trim();

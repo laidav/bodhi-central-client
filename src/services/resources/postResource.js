@@ -8,13 +8,13 @@ const postResource = {
       method: "get",
       url: this.url,
       params: params
-    })
+    });
   },
   getSinglePost(postId) {
     return axios({
       method: "get",
       url: `${this.url}/${postId}`
-    })
+    });
   },
   addPost({ data }) {
     return axios({
@@ -26,10 +26,10 @@ const postResource = {
   editPost({ postId, data }) {
     return axios({
       method: "put",
-      url: `${this.url}/${ postId }`,
+      url: `${this.url}/${postId}`,
       data
     });
   }
 };
 
-export default postResource
+export default postResource;

@@ -3,7 +3,7 @@ import "./PracticesContainer.scss";
 import practiceResource from "services/resources/practiceResource";
 import List from "common/List/List";
 import Modal from "react-modal";
-import PracticeFormModal from "./PracticeFormModal/PracticeFormModal"
+import PracticeFormModal from "./PracticeFormModal/PracticeFormModal";
 import PracticeCard from "./PracticeCard/PracticeCard";
 
 Modal.setAppElement("#root");
@@ -16,34 +16,36 @@ class PracticesContainer extends Component {
     loading: true
   };
 
-  componentWillMount () {
+  componentWillMount() {
     const params = {};
 
-    if(this.props.post) {
+    if (this.props.post) {
       params.postId = this.props.post.id;
     }
 
-    practiceResource.getPractices(params).then((response) => {
-      this.setState({
-        practices: response.data.practices,
-        loading: false
-      });
-    }, (error) => {
-      this.setState({ loading: false });
-    });
-  };
+    practiceResource.getPractices(params).then(
+      response => {
+        this.setState({
+          practices: response.data.practices,
+          loading: false
+        });
+      },
+      error => {
+        this.setState({ loading: false });
+      }
+    );
+  }
 
-  openPracticeForm = (selectedPractice) => {
+  openPracticeForm = selectedPractice => {
     this.setState({
       showPracticeForm: true,
       selectedPractice
     });
-
   };
 
   handleAddPracticeClick = () => {
     this.openPracticeForm(null);
-  }
+  };
 
   hidePracticeForm = () => {
     this.setState({
@@ -53,8 +55,8 @@ class PracticesContainer extends Component {
   };
 
   render() {
-    if(this.state.loading) {
-      return <div>loading</div>
+    if (this.state.loading) {
+      return <div>loading</div>;
     }
 
     const { practices, showPracticeForm, selectedPractice } = this.state;
@@ -64,20 +66,25 @@ class PracticesContainer extends Component {
 
     return (
       <div>
-        { practices.length > 0 &&
+        {practices.length > 0 && (
           <div>
             <h1>Practices</h1>
-            <List className="practices-wrapper"
-                  component={ PracticeCard }
-                  uniqueKey="id"
-                  list={ practices }
-                  listItemProps={ listItemProps } />
+            <List
+              className="practices-wrapper"
+              component={PracticeCard}
+              uniqueKey="id"
+              list={practices}
+              listItemProps={listItemProps}
+            />
           </div>
-        }
-        <button onClick={ handleAddPracticeClick }> Add Practice </button>
-        <Modal isOpen={ showPracticeForm }
-               onRequestClose={ hidePracticeForm }>
-          <PracticeFormModal post={ post } hidePracticeForm={ hidePracticeForm } selectedPractice={ selectedPractice }/>
+        )}
+        <button onClick={handleAddPracticeClick}> Add Practice </button>
+        <Modal isOpen={showPracticeForm} onRequestClose={hidePracticeForm}>
+          <PracticeFormModal
+            post={post}
+            hidePracticeForm={hidePracticeForm}
+            selectedPractice={selectedPractice}
+          />
         </Modal>
       </div>
     );

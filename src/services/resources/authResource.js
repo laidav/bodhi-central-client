@@ -18,4 +18,4 @@ const authResource = {
   }
 };
 
-export default authResource
+export default authResource;

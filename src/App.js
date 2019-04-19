@@ -1,36 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import authSrvc from "./services/authSrvc";
 
 import Auth from "./Auth/Auth";
 import Main from "./Main/Main";
 
-import './App.scss';
+import "./App.scss";
 
 class App extends Component {
   state = {
     loading: true
-  }
+  };
 
   componentWillMount() {
-    authSrvc.verifyToken().then(() => {
-      this.setState({ loading: false });
-    }, () => {
-      this.setState({ loading: false });
-    })
+    authSrvc.verifyToken().then(
+      () => {
+        this.setState({ loading: false });
+      },
+      () => {
+        this.setState({ loading: false });
+      }
+    );
   }
 
   render() {
-
-    if(this.state.loading) {
-      return <div>Loading</div>
+    if (this.state.loading) {
+      return <div>Loading</div>;
     }
 
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/login" component={ Auth } />
-          <Route path="/" component={ Main } />
+          <Route path="/login" component={Auth} />
+          <Route path="/" component={Main} />
         </Switch>
       </BrowserRouter>
     );

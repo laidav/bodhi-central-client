@@ -3,7 +3,7 @@ import postResource from "services/resources/postResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
 import SubjectCheckboxMenu from "common/SubjectCheckboxMenu/SubjectCheckboxMenu";
 import { NavLink, Redirect } from "react-router-dom";
-import {validationTypes as vt, validatorSrvc} from "services/validatorSrvc";
+import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 
 class AdminPostForm extends Component {
   state = this.initState();
@@ -24,7 +24,7 @@ class AdminPostForm extends Component {
       initialState.checkedSubjects.set(subject, false);
     }
 
-    return initialState
+    return initialState;
   }
 
   componentWillMount() {
@@ -32,14 +32,14 @@ class AdminPostForm extends Component {
 
     if (postId) {
       this.setState({ loadingPost: true });
-      postResource.getSinglePost(postId).then((response) => {
+      postResource.getSinglePost(postId).then(response => {
         const { title, description, link } = response.data;
 
-        const subjects = response.data.subjects.map((subject) => {
+        const subjects = response.data.subjects.map(subject => {
           return subject.id;
         });
 
-        this.setState((prevState) => {
+        this.setState(prevState => {
           for (let i = 0; i < subjects.length; i++) {
             prevState.checkedSubjects.set(subjects[i], true);
           }
@@ -50,30 +50,27 @@ class AdminPostForm extends Component {
             link,
             checkedSubjects: prevState.checkedSubjects,
             loadingPost: false
-          }
-        })
+          };
+        });
       });
     }
   }
 
-  handleTextChange = (e) => {
+  handleTextChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  handleSubjectChange = (e) => {
+  handleSubjectChange = e => {
     const { name, checked } = e.target;
 
     this.setState(prevState => ({
-        checkedSubjects: prevState.checkedSubjects.set(
-          parseInt(name),
-          checked)
-      })
-    );
+      checkedSubjects: prevState.checkedSubjects.set(parseInt(name), checked)
+    }));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     const { title, description, link } = this.state;
@@ -81,7 +78,7 @@ class AdminPostForm extends Component {
     let subjects = [];
 
     for (const [key, value] of this.state.checkedSubjects) {
-      if(value) {
+      if (value) {
         subjects.push(key);
       }
     }
@@ -103,7 +100,7 @@ class AdminPostForm extends Component {
 
     const errors = validatorSrvc.validateItems(validationItems);
 
-    if(Object.keys(errors).length) {
+    if (Object.keys(errors).length) {
       this.setState({ errors });
     } else {
       const { id: postId } = this.props.match.params;
@@ -117,13 +114,17 @@ class AdminPostForm extends Component {
         }
       };
 
-      const resource = postId ? this.getEditPostRequest(params) : this.getAddPostRequest(params);
+      const resource = postId
+        ? this.getEditPostRequest(params)
+        : this.getAddPostRequest(params);
 
-      resource.then(() => {
-        this.setState({ redirectBack: true });
-      }).catch((error) => {
-        console.log(error);
-      })
+      resource
+        .then(() => {
+          this.setState({ redirectBack: true });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   };
 
@@ -137,13 +138,12 @@ class AdminPostForm extends Component {
   }
 
   render() {
-
-    if(this.state.redirectBack) {
-      return <Redirect to={ "/admin/post" } />
+    if (this.state.redirectBack) {
+      return <Redirect to={"/admin/post"} />;
     }
 
-    if(this.state.loadingPost) {
-      return <div>loading post</div>
+    if (this.state.loadingPost) {
+      return <div>loading post</div>;
     }
 
     const { handleSubmit, handleTextChange, handleSubjectChange } = this;
@@ -152,32 +152,46 @@ class AdminPostForm extends Component {
 
     return (
       <div>
-        <NavLink to={ "/admin/post" }>Back to Admin Posts</NavLink>
-        <form onSubmit={ handleSubmit }>
+        <NavLink to={"/admin/post"}>Back to Admin Posts</NavLink>
+        <form onSubmit={handleSubmit}>
           <label>Title:</label>
-          <input type="text" onChange={ handleTextChange } name="title" value={ title } />
-          {
-            errors.title === vt.isRequired &&
+          <input
+            type="text"
+            onChange={handleTextChange}
+            name="title"
+            value={title}
+          />
+          {errors.title === vt.isRequired && (
             <p className="form-error">Title is required</p>
-          }
+          )}
           <label>Description:</label>
-          <input type="text" onChange={ handleTextChange } name="description" value={ description } />
-          {
-            errors.description === vt.isRequired &&
+          <input
+            type="text"
+            onChange={handleTextChange}
+            name="description"
+            value={description}
+          />
+          {errors.description === vt.isRequired && (
             <p className="form-error">Description is required</p>
-          }
+          )}
           <label>Link:</label>
-          <input type="text" onChange={ handleTextChange } name="link" value={ link }/>
-          <SubjectCheckboxMenu checkedSubjects={ checkedSubjects }
-                               handleSubjectChange={ handleSubjectChange } />
-          {
-            errors.subjects === vt.arrayNotEmpty &&
+          <input
+            type="text"
+            onChange={handleTextChange}
+            name="link"
+            value={link}
+          />
+          <SubjectCheckboxMenu
+            checkedSubjects={checkedSubjects}
+            handleSubjectChange={handleSubjectChange}
+          />
+          {errors.subjects === vt.arrayNotEmpty && (
             <p className="form-error">Please select at least one subject</p>
-          }
-          <button type="submit">{ submitBtnText }</button>
+          )}
+          <button type="submit">{submitBtnText}</button>
         </form>
       </div>
-    )
+    );
   }
 }
 

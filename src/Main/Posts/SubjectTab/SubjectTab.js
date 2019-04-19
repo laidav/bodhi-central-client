@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import "./SubjectTab.scss";
 
-
 class SubjectTab extends Component {
   handleClick = () => {
     const { clickHandler, value } = this.props;
-    clickHandler(value)
-  }
+    clickHandler(value);
+  };
 
-  render () {
+  render() {
     const { children, isActive } = this.props;
 
-    return <li className={ `subject-tab${ isActive ? " subject-tab--active" : ""}` } onClick={ this.handleClick }>{ children }</li>
+    return (
+      <li
+        className={`subject-tab${isActive ? " subject-tab--active" : ""}`}
+        onClick={this.handleClick}
+      >
+        {children}
+      </li>
+    );
   }
 }
 
-export default SubjectTab
+export default SubjectTab;

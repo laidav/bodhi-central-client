@@ -28,4 +28,4 @@ const practiceResource = {
   }
 };
 
-export default practiceResource
+export default practiceResource;

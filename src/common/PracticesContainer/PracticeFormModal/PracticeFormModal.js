@@ -6,15 +6,14 @@ import practiceResource from "services/resources/practiceResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
 
 class PracticeFormModal extends Component {
-
   state = this.initState();
 
   initState() {
     const { selectedPractice } = this.props;
 
     const initialState = {
-      teaching_point: selectedPractice ? selectedPractice.teaching_point: "",
-      application:  selectedPractice ? selectedPractice.application : "",
+      teaching_point: selectedPractice ? selectedPractice.teaching_point : "",
+      application: selectedPractice ? selectedPractice.application : "",
       checkedSubjects: new Map(),
       errors: {}
     };
@@ -27,26 +26,23 @@ class PracticeFormModal extends Component {
     }
 
     return initialState;
-  };
+  }
 
-  handleTextChange = (e) => {
+  handleTextChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  handleSubjectChange = (e) => {
+  handleSubjectChange = e => {
     const { name, checked } = e.target;
 
     this.setState(prevState => ({
-      checkedSubjects: prevState.checkedSubjects.set(
-        parseInt(name),
-        checked)
-      })
-    );
+      checkedSubjects: prevState.checkedSubjects.set(parseInt(name), checked)
+    }));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     const { teaching_point, application } = this.state;
@@ -54,7 +50,7 @@ class PracticeFormModal extends Component {
     let subjects = [];
 
     for (const [key, value] of this.state.checkedSubjects) {
-      if(value) {
+      if (value) {
         subjects.push(key);
       }
     }
@@ -81,14 +77,17 @@ class PracticeFormModal extends Component {
         data: { teaching_point, application, subjects }
       };
 
-      const resource = selectedPractice ? this.getEditPracticeRequest(params) :
-        this.getAddPracticeRequest(params);
+      const resource = selectedPractice
+        ? this.getEditPracticeRequest(params)
+        : this.getAddPracticeRequest(params);
 
-      resource.then(() => {
-        this.props.hidePracticeForm();
-      }).catch((error) => {
-        console.log(error);
-      });
+      resource
+        .then(() => {
+          this.props.hidePracticeForm();
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   };
 
@@ -98,14 +97,15 @@ class PracticeFormModal extends Component {
     params.practiceId = selectedPractice.id;
 
     if (selectedPractice.post) {
-      params.data = Object.assign({}, params.data, { post_id: selectedPractice.post.id });
+      params.data = Object.assign({}, params.data, {
+        post_id: selectedPractice.post.id
+      });
     }
 
-    return practiceResource.editPractice(params)
+    return practiceResource.editPractice(params);
   }
 
   getAddPracticeRequest(params) {
-
     const { post } = this.props;
 
     if (post) {
@@ -113,37 +113,51 @@ class PracticeFormModal extends Component {
     }
 
     return practiceResource.addPractice(params);
-  };
+  }
 
   render() {
     const { handleSubmit, handleTextChange, handleSubjectChange } = this;
     const { post, className, hidePracticeForm } = this.props;
     const { teaching_point, application, checkedSubjects, errors } = this.state;
-    const submitBtnText = this.props.selectedPractice ? "Save Practice" : "Add Practice";
+    const submitBtnText = this.props.selectedPractice
+      ? "Save Practice"
+      : "Add Practice";
 
     return (
-      <div className={ className }>
-        { post && <p>Origin Post: { post.title }</p> }
-        <form onSubmit={ handleSubmit }>
+      <div className={className}>
+        {post && <p>Origin Post: {post.title}</p>}
+        <form onSubmit={handleSubmit}>
           <label htmlFor="teaching-point">Teaching Point:</label>
-          <input id="teaching-point" type="text" name="teaching_point" onChange={ handleTextChange } value={ teaching_point } />
-          {
-            errors.teaching_point === vt.isRequired &&
+          <input
+            id="teaching-point"
+            type="text"
+            name="teaching_point"
+            onChange={handleTextChange}
+            value={teaching_point}
+          />
+          {errors.teaching_point === vt.isRequired && (
             <p className="form-error">Teaching point is required</p>
-          }
-          <SubjectCheckboxMenu checkedSubjects={ checkedSubjects } handleSubjectChange={ handleSubjectChange }/>
-          {
-            errors.subjects === vt.arrayNotEmpty &&
+          )}
+          <SubjectCheckboxMenu
+            checkedSubjects={checkedSubjects}
+            handleSubjectChange={handleSubjectChange}
+          />
+          {errors.subjects === vt.arrayNotEmpty && (
             <p className="form-error">Please select at least one subject</p>
-          }
+          )}
           <label htmlFor="application">Application</label>
-          <textarea id="application" name="application" onChange={ handleTextChange } value={ application }/>
-          <button type="submit">{ submitBtnText }</button>
+          <textarea
+            id="application"
+            name="application"
+            onChange={handleTextChange}
+            value={application}
+          />
+          <button type="submit">{submitBtnText}</button>
         </form>
-        <button onClick={ hidePracticeForm }>Cancel</button>
+        <button onClick={hidePracticeForm}>Cancel</button>
       </div>
     );
-  };
+  }
 }
 
 export default PracticeFormModal;

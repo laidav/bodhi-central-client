@@ -1,19 +1,18 @@
-import React from 'react';
-import './PracticeCard.scss';
+import React from "react";
+import "./PracticeCard.scss";
 
-function PracticeCard ({ data, listItemProps }) {
+function PracticeCard({ data, listItemProps }) {
   const { openPracticeForm } = listItemProps;
 
-  const handleEditClick = () =>
-    openPracticeForm(data);
+  const handleEditClick = () => openPracticeForm(data);
 
   return (
-    <div className={ "practice-card" }>
-        <p>Teaching Point: { data.teaching_point }</p>
-        <p>Application: { data.application }</p>
-        <p>Created On: { data.created }</p>
-        { data.post && <p>Origin Post: { data.post.title }</p> }
-        <button onClick={ handleEditClick }>Edit Practice</button>
+    <div className={"practice-card"}>
+      <p>Teaching Point: {data.teaching_point}</p>
+      <p>Application: {data.application}</p>
+      <p>Created On: {data.created}</p>
+      {data.post && <p>Origin Post: {data.post.title}</p>}
+      <button onClick={handleEditClick}>Edit Practice</button>
     </div>
   );
 }

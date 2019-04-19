@@ -1,30 +1,33 @@
 import React, { Component } from "react";
-import './PostsContainer.scss';
+import "./PostsContainer.scss";
 import postResource from "services/resources/postResource";
 import List from "common/List/List";
-import PostCard from "../PostCard/PostCard"
+import PostCard from "../PostCard/PostCard";
 
 class PostsContainer extends Component {
   state = {
     posts: [],
     loading: false,
     error: false
-  }
+  };
 
   getPosts(params) {
     this.setState({ loading: true });
 
-    postResource.getPosts(params).then((response) => {
-      this.setState({
-        posts: response.data.posts,
-        loading: false
-      });
-    }, (error) => {
-      this.setState({
-        loading: false,
-        error: true
-      });
-    });
+    postResource.getPosts(params).then(
+      response => {
+        this.setState({
+          posts: response.data.posts,
+          loading: false
+        });
+      },
+      error => {
+        this.setState({
+          loading: false,
+          error: true
+        });
+      }
+    );
   }
 
   componentWillMount() {
@@ -38,10 +41,20 @@ class PostsContainer extends Component {
     const { isActive } = this.props;
 
     return (
-      <div className={ `posts-container${ isActive ? " posts-container--active": ""}` }>
-        { loading && <div>Loading</div>}
-        { !loading && <List className={ "posts__wrapper"} component={ PostCard } uniqueKey="id" list={ posts } />}
-
+      <div
+        className={`posts-container${
+          isActive ? " posts-container--active" : ""
+        }`}
+      >
+        {loading && <div>Loading</div>}
+        {!loading && (
+          <List
+            className={"posts__wrapper"}
+            component={PostCard}
+            uniqueKey="id"
+            list={posts}
+          />
+        )}
       </div>
     );
   }
