@@ -1,0 +1,25 @@
+@import "styles/_variables.scss";
+
+@mixin sm-screen {
+  @media only screen and (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin md-screen {
+  @media only screen and (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin lg-screen {
+  @media only screen and (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin xl-screen {
+  @media only screen and (min-width: $xl) {
+    @content;
+  }
+}

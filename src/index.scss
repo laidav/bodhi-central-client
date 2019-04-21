@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import "styles/mixins.scss";
 
 @font-face {
   font-family: "Poppins Light";
@@ -27,6 +27,7 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
 }
 
 code {
@@ -38,4 +39,25 @@ ul {
   padding-left: 0;
   list-style-type: none;
   margin: 0;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  @include sm-screen {
+    width: $sm-container;
+  }
+
+  @include md-screen {
+    width: $md-container;
+  }
+
+  @include lg-screen {
+    width: $lg-container;
+  }
+
+  @include xl-screen {
+    width: $xl-container;
+  }
 }

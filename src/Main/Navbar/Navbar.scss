@@ -1,6 +1,21 @@
+@import "styles/_mixins.scss";
+
 .main-nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &__logo {
+    font-family: $poppins-semi-bold;
+    font-size: 27px;
+    color: $primary-clr;
+    text-decoration: none;
+  }
+
   ul {
     display: flex;
+    width: 33%;
+    margin-left: auto;
   }
 
   &__item {
