@@ -44,4 +44,12 @@
       grid-column: 2/3;
     }
   }
+
+  &__image-inner {
+    width: 100%;
+    padding-bottom: 70%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }

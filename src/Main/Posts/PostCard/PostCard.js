@@ -12,20 +12,21 @@ const PostCard = ({ data: post }) => {
       <div className="post-card__body">
         <div className={"post-card__description"}>{post.description}</div>
         <div className={"post-card__image"}>
-          <img src={buddhistPath} title={"path"} alt={"path"} />
+          <div
+            className={"post-card__image-inner"}
+            style={{ backgroundImage: `url(${buddhistPath})` }}
+          />
         </div>
       </div>
-      <a href={post.link} target="_blank" rel="noopener noreferrer">
-        Source: {post.link}
-      </a>
-      <p>Author: {post.author.username}</p>
-      <p>Subjects</p>
       <List
         className="post-card__subject-tags"
         component={SubjectTag}
         uniqueKey="id"
         list={post.subjects}
       />
+      <a href={post.link} target="_blank" rel="noopener noreferrer">
+        Source: {post.link}
+      </a>
       <NavLink to={`/post/${post.id}`}>Go to {post.title}</NavLink>
     </div>
   );
