@@ -14,7 +14,7 @@ function Main() {
       <div className={"main__nav"}>
         <Navbar />
       </div>
-      <main className={"main__content"}>
+      <main className={"main__content container"}>
         <PrivateRoute exact path={"/"} component={Posts} />
         <PrivateRoute path={"/post/:id"} component={Post} />
         <PrivateRoute exact path={"/admin/post"} component={AdminPosts} />

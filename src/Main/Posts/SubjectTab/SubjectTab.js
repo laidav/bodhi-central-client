@@ -15,7 +15,7 @@ class SubjectTab extends Component {
         className={`subject-tab${isActive ? " subject-tab--active" : ""}`}
         onClick={this.handleClick}
       >
-        {children}
+        <span className="subject-tab__label">{children}</span>
       </li>
     );
   }

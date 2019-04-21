@@ -16,7 +16,6 @@
   &__nav {
     grid-row: 1/2;
     display: flex;
-    border-bottom: 1px solid black;
 
     ul {
       display: flex;
@@ -24,13 +23,13 @@
       cursor: pointer;
     }
   }
-  
+
   &__nav-item {
     flex: 1;
     text-align: center;
   }
 
-  &__content{
+  &__content {
     grid-row: 2/3;
     overflow: auto;
   }
