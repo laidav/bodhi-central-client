@@ -46,18 +46,22 @@ class Posts extends Component {
             </ul>
           </div>
           <div className={"posts__content"}>
-            <PostsContainer
-              isActive={activeTab === Constants.subjects.WISDOM}
-              subject={Constants.subjects.WISDOM}
-            />
-            <PostsContainer
-              isActive={activeTab === Constants.subjects.ETHICS}
-              subject={Constants.subjects.ETHICS}
-            />
-            <PostsContainer
-              isActive={activeTab === Constants.subjects.MEDITATION}
-              subject={Constants.subjects.MEDITATION}
-            />
+            <div className={"posts__content-inner"}>
+              <div className={"posts__content-top-border"} />
+              <div className={"posts__content-top-border-hider"} />
+              <PostsContainer
+                isActive={activeTab === Constants.subjects.WISDOM}
+                subject={Constants.subjects.WISDOM}
+              />
+              <PostsContainer
+                isActive={activeTab === Constants.subjects.ETHICS}
+                subject={Constants.subjects.ETHICS}
+              />
+              <PostsContainer
+                isActive={activeTab === Constants.subjects.MEDITATION}
+                subject={Constants.subjects.MEDITATION}
+              />
+            </div>
           </div>
         </div>
         <div className={"posts__side-bar"}>
