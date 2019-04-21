@@ -1,5 +1,47 @@
-@import "styles/_variables.scss";
+@import "styles/_mixins.scss";
 
 .post-card {
-  border-bottom: 1px solid $primary-border-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  background-color: $white;
+
+  &__title {
+    font-family: $poppins-semi-bold;
+    font-size: 1.125rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  &__body {
+    display: grid;
+
+    @include md-screen {
+      grid-template-columns: auto 175px;
+    }
+
+    @include lg-screen {
+      grid-template-columns: auto 250px;
+    }
+  }
+
+  &__description {
+    padding-bottom: 1rem;
+
+    @include md-screen {
+      grid-column: 1/2;
+      padding-right: 2rem;
+      padding-bottom: 0;
+    }
+  }
+
+  &__image {
+    img {
+      width: 100%;
+    }
+
+    @include md-screen {
+      grid-column: 2/3;
+    }
+  }
 }
