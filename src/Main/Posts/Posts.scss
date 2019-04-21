@@ -46,7 +46,7 @@
 
   &__content-top-border {
     height: 1px;
-    background-color: $primary-border-clr;
+    background-color: $primary-text-clr;
     height: 1px;
     position: absolute;
     top: 0px;
@@ -65,7 +65,7 @@
 
   //Sidebar
   &__side-bar {
-    flex-basis: 300px;
+    max-width: 300px;
     height: 100%;
     overflow: auto;
   }
