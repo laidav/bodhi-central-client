@@ -1,6 +1,6 @@
 import React from "react";
-import List from "../../../common/List/List";
-import SubjectTag from "./SubjectTag/SubjectTag";
+import List from "common/List/List";
+import SubjectTag from "common/SubjectTag/SubjectTag";
 import "./PostCard.scss";
 import { NavLink } from "react-router-dom";
 import buddhistPath from "images/buddhist-path.jpg";
@@ -24,10 +24,16 @@ const PostCard = ({ data: post }) => {
         uniqueKey="id"
         list={post.subjects}
       />
-      <a href={post.link} target="_blank" rel="noopener noreferrer">
+      <a
+        className={"post-card__source ellipsis"}
+        href={post.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Source: {post.link}
       </a>
-      <NavLink to={`/post/${post.id}`}>Go to {post.title}</NavLink>
+      <br />
+      {/* <NavLink to={`/post/${post.id}`}>Go to {post.title}</NavLink> */}
     </div>
   );
 };

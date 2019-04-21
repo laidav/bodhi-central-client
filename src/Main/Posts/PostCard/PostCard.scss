@@ -52,4 +52,10 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+
+  &__source {
+    display: block;
+    max-width: 100%;
+    color: $gray-text-clr;
+  }
 }

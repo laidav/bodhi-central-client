@@ -1,0 +1,26 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  @include sm-screen {
+    width: $sm-container;
+  }
+
+  @include md-screen {
+    width: $md-container;
+  }
+
+  @include lg-screen {
+    width: $lg-container;
+  }
+
+  @include xl-screen {
+    width: $xl-container;
+  }
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

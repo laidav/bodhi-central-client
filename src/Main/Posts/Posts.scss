@@ -12,8 +12,11 @@
     grid-template-rows: 51px auto;
     height: 100%;
     overflow: hidden;
-    border-right: 1px solid $primary-border-clr;
     padding: 0 2rem;
+
+    @include md-screen {
+      border-right: 1px solid $primary-border-clr;
+    }
   }
 
   &__nav {
@@ -56,7 +59,7 @@
     &-hider {
       height: 1px;
       background-color: $primary-bg-clr;
-      height: 20px;
+      height: 5px;
       position: relative;
       top: 0px;
       width: 100%;
@@ -66,7 +69,19 @@
 
   //Sidebar
   &__side-bar {
-    max-width: 300px;
+    display: none;
+
+    @include md-screen {
+      display: block;
+      min-width: 200px;
+      max-width: 200px;
+    }
+
+    @include lg-screen {
+      min-width: 300px;
+      max-width: 300px;
+    }
+
     height: 100%;
     overflow: auto;
   }

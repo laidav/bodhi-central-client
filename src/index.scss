@@ -1,4 +1,5 @@
 @import "styles/mixins.scss";
+@import "styles/utils.scss";
 
 @font-face {
   font-family: "Poppins Light";
@@ -49,25 +50,4 @@ ul {
   padding-left: 0;
   list-style-type: none;
   margin: 0;
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
-
-  @include sm-screen {
-    width: $sm-container;
-  }
-
-  @include md-screen {
-    width: $md-container;
-  }
-
-  @include lg-screen {
-    width: $lg-container;
-  }
-
-  @include xl-screen {
-    width: $xl-container;
-  }
 }
