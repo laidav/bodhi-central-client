@@ -1,11 +1,30 @@
 @import "styles/variables.scss";
 
+@font-face {
+  font-family: "Poppins Light";
+  src: url("styles/fonts/Poppins-Light.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("styles/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Semi Bold";
+  src: url("styles/fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("styles/fonts/Poppins-Bold.ttf");
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $poppins-light, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
