@@ -1,6 +1,6 @@
 import React from "react";
 import List from "common/List/List";
-import SubjectTag from "Main/Posts/PostCard/SubjectTag/SubjectTag";
+import SubjectTag from "common/SubjectTag/SubjectTag";
 import { NavLink } from "react-router-dom";
 
 const AdminPostCard = ({ data }) => {
