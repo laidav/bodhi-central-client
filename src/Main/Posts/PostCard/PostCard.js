@@ -24,6 +24,7 @@ const PostCard = ({ data: post }) => {
         uniqueKey="id"
         list={post.subjects}
       />
+      <div className="post-card__create-date">Created On: {post.created}</div>
       <a
         className={"post-card__source ellipsis"}
         href={post.link}
@@ -32,7 +33,6 @@ const PostCard = ({ data: post }) => {
       >
         Source: {post.link}
       </a>
-      <br />
       {/* <NavLink to={`/post/${post.id}`}>Go to {post.title}</NavLink> */}
     </div>
   );

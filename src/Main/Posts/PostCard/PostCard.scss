@@ -5,6 +5,7 @@
   border-radius: 5px;
   padding: 1rem 2rem;
   background-color: $white;
+  margin-bottom: 1rem;
 
   &__title {
     font-family: $poppins-semi-bold;
@@ -24,6 +25,10 @@
     @include lg-screen {
       grid-template-columns: auto 250px;
     }
+  }
+
+  &__create-date {
+    color: $gray-text-clr;
   }
 
   &__description {
