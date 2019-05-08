@@ -1,17 +1,25 @@
 import React from "react";
 import "./PracticeCard.scss";
+import bcDhammaWheel from "assets/bc-dhamma-wheel.svg";
+import mockUser from "assets/bc-mock-user.svg";
 
-function PracticeCard({ data, listItemProps }) {
+function PracticeCard({ data: practice, listItemProps }) {
   const { openPracticeForm } = listItemProps;
 
-  const handleEditClick = () => openPracticeForm(data);
+  const handleEditClick = () => openPracticeForm(practice);
 
   return (
     <div className={"practice-card"}>
-      <p>Teaching Point: {data.teaching_point}</p>
-      <p>Application: {data.application}</p>
-      <p>Created On: {data.created}</p>
-      {data.post && <p>Origin Post: {data.post.title}</p>}
+      <div className={"practice-card__teaching-point"}>
+        <img src={bcDhammaWheel} alt="dhamma-wheel" />
+        <p>{practice.teaching_point}</p>
+      </div>
+      <div className={"practice-card__application"}>
+        <img src={mockUser} alt="mockUser" />
+        <p>{practice.application}</p>
+      </div>
+      <p>Created On: {practice.created}</p>
+      {practice.post && <p>Origin Post: {practice.post.title}</p>}
       <button onClick={handleEditClick}>Edit Practice</button>
     </div>
   );
