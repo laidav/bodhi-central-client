@@ -1,0 +1,15 @@
+@import "styles/_variables.scss";
+
+.subject-tag {
+  background-color: $primary-bg-clr;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid $primary-border-clr;
+  border-radius: 5px;
+  font-family: $poppins-medium;
+  font-size: 0.875rem;
+  color: $primary-text-clr;
+
+  &:not(:first-child) {
+    margin-left: 0.5rem;
+  }
+}
