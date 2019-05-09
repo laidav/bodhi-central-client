@@ -9,7 +9,7 @@ function PracticeCard({ data: practice, listItemProps }) {
   const handleEditClick = () => openPracticeForm(practice);
 
   return (
-    <div className={"practice-card"}>
+    <div className={"practice-card border"}>
       <div className={"practice-card__teaching-point"}>
         <img src={bcDhammaWheel} alt="dhamma-wheel" />
         <p>{practice.teaching_point}</p>

@@ -24,3 +24,8 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.border {
+  border: 1px solid $primary-border-clr;
+  border-radius: 5px;
+}

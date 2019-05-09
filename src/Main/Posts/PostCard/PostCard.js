@@ -7,7 +7,7 @@ import buddhistPath from "images/buddhist-path.jpg";
 
 const PostCard = ({ data: post }) => {
   return (
-    <div className="post-card" key={post.id}>
+    <div className="post-card border" key={post.id}>
       <h5 className={"post-card__title"}>{post.title}</h5>
       <div className="post-card__body">
         <div className={"post-card__description"}>{post.description}</div>

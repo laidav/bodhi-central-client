@@ -13,10 +13,6 @@
     height: 100%;
     overflow: hidden;
     padding: 0 2rem;
-
-    @include md-screen {
-      border-right: 1px solid $primary-border-clr;
-    }
   }
 
   &__nav {

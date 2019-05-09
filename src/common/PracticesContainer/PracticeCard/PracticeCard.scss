@@ -1,5 +1,41 @@
-@import "styles/_variables.scss";
+@import "styles/_mixins.scss";
+$icon-size: 36px;
 
 .practice-card {
-  border-bottom: 1px solid $primary-border-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: 5px;
+  background-color: $white;
+  padding: 1rem;
+
+  &__teaching-point {
+    display: flex;
+
+    img {
+      height: $icon-size;
+      width: $icon-size;
+    }
+
+    p {
+      margin: 0;
+      font-family: $poppins-medium;
+      color: $primary-text-clr;
+      padding-left: 1rem;
+    }
+  }
+
+  &__application {
+    display: flex;
+
+    img {
+      height: $icon-size;
+      width: $icon-size;
+    }
+
+    p {
+      margin: 0;
+      font-family: $poppins-medium;
+      color: $gray-text-clr;
+      padding-left: 1rem;
+    }
+  }
 }
