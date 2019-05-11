@@ -67,15 +67,10 @@
   &__side-bar {
     display: none;
 
-    @include md-screen {
-      display: block;
-      min-width: 200px;
-      max-width: 200px;
-    }
-
     @include lg-screen {
-      min-width: 300px;
-      max-width: 300px;
+      display: block;
+      min-width: 350px;
+      max-width: 350px;
     }
 
     height: 100%;

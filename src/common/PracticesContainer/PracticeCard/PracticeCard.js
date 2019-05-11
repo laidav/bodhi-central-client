@@ -2,6 +2,8 @@ import React from "react";
 import "./PracticeCard.scss";
 import bcDhammaWheel from "assets/bc-dhamma-wheel.svg";
 import mockUser from "assets/bc-mock-user.svg";
+import SubjectTag from "common/SubjectTag/SubjectTag";
+import List from "common/List/List";
 
 function PracticeCard({ data: practice, listItemProps }) {
   const { openPracticeForm } = listItemProps;
@@ -18,6 +20,12 @@ function PracticeCard({ data: practice, listItemProps }) {
         <img src={mockUser} alt="mockUser" />
         <p>{practice.application}</p>
       </div>
+      <List
+        className="practice-card__subject-tags"
+        component={SubjectTag}
+        uniqueKey="id"
+        list={practice.subjects}
+      />
       <p>Created On: {practice.created}</p>
       {practice.post && <p>Origin Post: {practice.post.title}</p>}
       <button onClick={handleEditClick}>Edit Practice</button>

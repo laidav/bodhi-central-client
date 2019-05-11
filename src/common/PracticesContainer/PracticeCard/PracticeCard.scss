@@ -6,13 +6,16 @@ $icon-size: 36px;
   border-radius: 5px;
   background-color: $white;
   padding: 1rem;
+  margin-bottom: 1rem;
 
-  &__teaching-point {
+  &__teaching-point,
+  &__application {
     display: flex;
+    margin-bottom: 1rem;
 
     img {
       height: $icon-size;
-      width: $icon-size;
+      flex-basis: $icon-size;
     }
 
     p {
@@ -20,22 +23,21 @@ $icon-size: 36px;
       font-family: $poppins-medium;
       color: $primary-text-clr;
       padding-left: 1rem;
+      font-size: 0.75rem;
     }
   }
 
   &__application {
-    display: flex;
-
-    img {
-      height: $icon-size;
-      width: $icon-size;
-    }
-
     p {
-      margin: 0;
-      font-family: $poppins-medium;
       color: $gray-text-clr;
-      padding-left: 1rem;
+    }
+  }
+
+  &__subject-tags {
+    padding-left: 3rem;
+
+    .subject-tag {
+      font-size: 0.75rem;
     }
   }
 }
