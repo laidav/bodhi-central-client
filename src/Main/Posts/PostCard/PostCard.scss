@@ -27,6 +27,7 @@
 
   &__create-date {
     color: $gray-text-clr;
+    margin-bottom: 0.5rem;
   }
 
   &__description {
@@ -64,6 +65,8 @@
   }
 
   &__subject-tags {
-    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0.5rem;
   }
 }

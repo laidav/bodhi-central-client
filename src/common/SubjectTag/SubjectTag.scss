@@ -8,8 +8,6 @@
   font-family: $poppins-medium;
   font-size: 0.875rem;
   color: $primary-text-clr;
-
-  &:not(:first-child) {
-    margin-left: 0.5rem;
-  }
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
