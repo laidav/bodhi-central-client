@@ -26,8 +26,8 @@ function PracticeCard({ data: practice, listItemProps }) {
         uniqueKey="id"
         list={practice.subjects}
       />
-      <p>Created On: {practice.created}</p>
       {practice.post && <p>Origin Post: {practice.post.title}</p>}
+      <p>Created On: {practice.created}</p>
       <button onClick={handleEditClick}>Edit Practice</button>
     </div>
   );
