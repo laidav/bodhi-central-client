@@ -20,15 +20,29 @@ function PracticeCard({ data: practice, listItemProps }) {
         <img src={mockUser} alt="mockUser" />
         <p>{practice.application}</p>
       </div>
-      <List
-        className="practice-card__subject-tags"
-        component={SubjectTag}
-        uniqueKey="id"
-        list={practice.subjects}
-      />
-      {practice.post && <p>Origin Post: {practice.post.title}</p>}
-      <p>Created On: {practice.created}</p>
-      <button onClick={handleEditClick}>Edit Practice</button>
+      <div className={"practice-card__bottom-content"}>
+        <List
+          className="practice-card__subject-tags"
+          component={SubjectTag}
+          uniqueKey="id"
+          list={practice.subjects}
+        />
+        {practice.post && (
+          <div className={"practice-card__post"}>
+            Post: {practice.post.title}
+          </div>
+        )}
+      </div>
+      <div className={"practice-card__footer"}>
+        {/* <div className={"practice-card__created-date"}>{practice.created}</div> */}
+        <div className={"practice-card__created-date"}>April 10, 2019</div>
+        <button
+          className={"practice-card__edit btn-secondary"}
+          onClick={handleEditClick}
+        >
+          View/Edit
+        </button>
+      </div>
     </div>
   );
 }

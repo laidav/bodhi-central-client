@@ -33,11 +33,30 @@ $icon-size: 36px;
     }
   }
 
-  &__subject-tags {
+  &__bottom-content {
     padding-left: 3rem;
+  }
+
+  &__subject-tags {
+    margin-bottom: 1rem;
 
     .subject-tag {
       font-size: 0.75rem;
     }
+  }
+
+  &__post {
+    font-size: 0.75rem;
+    color: $gray-text-clr;
+    margin-bottom: 1rem;
+  }
+
+  &__created-date {
+    font-size: 0.75rem;
+    color: $gray-text-clr;
+  }
+
+  &__footer {
+    padding-left: 3rem;
   }
 }
