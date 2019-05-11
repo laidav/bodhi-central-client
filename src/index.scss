@@ -46,6 +46,15 @@ h6 {
   margin: 0;
 }
 
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 ul {
   padding-left: 0;
   list-style-type: none;
