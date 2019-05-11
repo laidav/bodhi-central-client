@@ -31,9 +31,7 @@ class PostsContainer extends Component {
   }
 
   componentWillMount() {
-    if (this.props.isActive) {
-      this.getPosts({ subject_id: this.props.subject });
-    }
+    this.getPosts({ subject_id: this.props.subject });
   }
 
   render() {
@@ -57,14 +55,6 @@ class PostsContainer extends Component {
         )}
       </div>
     );
-  }
-
-  componentDidUpdate() {
-    const { posts, loading, error } = this.state;
-
-    if (this.props.isActive && !posts.length && !loading && !error) {
-      this.getPosts({ subject_id: this.props.subject });
-    }
   }
 }
 
