@@ -5,6 +5,10 @@
   background-color: $white;
   margin-bottom: 1rem;
 
+  &__link {
+    color: $primary-text-clr;
+  }
+
   &__title {
     font-family: $poppins-semi-bold;
     font-size: 1.125rem;

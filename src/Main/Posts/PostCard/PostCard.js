@@ -10,16 +10,18 @@ import { dateFormats } from "services/constantsSrvc";
 const PostCard = ({ data: post }) => {
   return (
     <div className="post-card border" key={post.id}>
-      <h5 className={"post-card__title"}>{post.title}</h5>
-      <div className="post-card__body">
-        <div className={"post-card__description"}>{post.description}</div>
-        <div className={"post-card__image"}>
-          <div
-            className={"post-card__image-inner"}
-            style={{ backgroundImage: `url(${buddhistPath})` }}
-          />
+      <NavLink className={"post-card__link"} to={`/post/${post.id}`}>
+        <h5 className={"post-card__title"}>{post.title}</h5>
+        <div className="post-card__body">
+          <div className={"post-card__description"}>{post.description}</div>
+          <div className={"post-card__image"}>
+            <div
+              className={"post-card__image-inner"}
+              style={{ backgroundImage: `url(${buddhistPath})` }}
+            />
+          </div>
         </div>
-      </div>
+      </NavLink>
       <List
         className="post-card__subject-tags"
         component={SubjectTag}
