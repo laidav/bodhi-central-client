@@ -18,7 +18,11 @@ class PracticeFormModal extends Component {
       errors: {}
     };
 
-    const subjects = selectedPractice ? selectedPractice.subjects : [];
+    const subjects = selectedPractice
+      ? selectedPractice.subjects.map(subject => {
+          return subject.id;
+        })
+      : [];
 
     for (let key in staticSubjects) {
       const subject = staticSubjects[key];

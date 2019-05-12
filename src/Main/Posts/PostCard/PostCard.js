@@ -3,7 +3,7 @@ import List from "common/List/List";
 import SubjectTag from "common/SubjectTag/SubjectTag";
 import "./PostCard.scss";
 import { NavLink } from "react-router-dom";
-import buddhistPath from "images/buddhist-path.jpg";
+import buddhistPath from "assets/buddhist-path.jpg";
 
 const PostCard = ({ data: post }) => {
   return (

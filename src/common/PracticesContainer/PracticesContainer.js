@@ -5,6 +5,7 @@ import List from "common/List/List";
 import Modal from "react-modal";
 import PracticeFormModal from "./PracticeFormModal/PracticeFormModal";
 import PracticeCard from "./PracticeCard/PracticeCard";
+import addButton from "assets/bc-add-button.svg";
 
 Modal.setAppElement("#root");
 
@@ -65,20 +66,30 @@ class PracticesContainer extends Component {
     const listItemProps = { openPracticeForm };
 
     return (
-      <div>
+      <div className={"practices-container"}>
+        <div className={"practices-container__header"}>
+          <h4 className={"practices-container__title"}>Recent Practices</h4>
+          <img
+            className={"practices-container__add-practice"}
+            src={addButton}
+            alt={"add practice"}
+            onClick={handleAddPracticeClick}
+          />
+        </div>
         {practices.length > 0 && (
-          <div>
-            <h1>Practices</h1>
-            <List
-              className="practices-wrapper"
-              component={PracticeCard}
-              uniqueKey="id"
-              list={practices}
-              listItemProps={listItemProps}
-            />
+          <div className={"practices-container__content"}>
+            <div className={"practices-container__content-inner"}>
+              <div className={"posts__content-top-border"} />
+              <div className={"posts__content-top-border-hider"} />
+              <List
+                component={PracticeCard}
+                uniqueKey="id"
+                list={practices}
+                listItemProps={listItemProps}
+              />
+            </div>
           </div>
         )}
-        <button onClick={handleAddPracticeClick}> Add Practice </button>
         <Modal isOpen={showPracticeForm} onRequestClose={hidePracticeForm}>
           <PracticeFormModal
             post={post}

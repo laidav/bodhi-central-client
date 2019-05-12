@@ -1,0 +1,56 @@
+@import "styles/_mixins.scss";
+$add-practice-icon-size: 37px;
+.practices-container {
+  display: grid;
+  grid-template-rows: 51px auto;
+  height: 100%;
+  overflow: hidden;
+
+  &__header {
+    display: flex;
+    grid-row: 1/2;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-family: $poppins-light;
+    font-weight: normal;
+  }
+
+  &__add-practice {
+    margin-left: auto;
+    height: $add-practice-icon-size;
+    width: $add-practice-icon-size;
+    cursor: pointer;
+  }
+  &__content {
+    grid-row: 2/3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__content-inner {
+    overflow: auto;
+    height: 100%;
+  }
+
+  &__content-top-border {
+    height: 1px;
+    background-color: $primary-text-clr;
+    height: 1px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+
+    &-hider {
+      height: 1px;
+      background-color: $primary-bg-clr;
+      height: 5px;
+      position: relative;
+      top: 0px;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+}
