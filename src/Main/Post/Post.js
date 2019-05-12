@@ -42,7 +42,7 @@ class Post extends Component {
           <p>Author: {post.author.username}</p>
           <p>Created on: {post.created}</p>
         </div>
-        {post && <PracticesContainer post={post} />}
+        {post && <PracticesContainer postFromSinglePost={post} />}
       </div>
     );
   }

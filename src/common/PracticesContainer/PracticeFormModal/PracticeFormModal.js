@@ -121,14 +121,23 @@ class PracticeFormModal extends Component {
 
   render() {
     const { handleSubmit, handleTextChange, handleSubjectChange } = this;
-    const { hidePracticeForm, selectedPractice, title } = this.props;
+    const {
+      hidePracticeForm,
+      selectedPractice,
+      action,
+      postFromSinglePost
+    } = this.props;
     const { teaching_point, application, checkedSubjects, errors } = this.state;
-    const submitBtnText = this.props.selectedPractice
-      ? "Save Practice"
-      : "Add Practice";
+    const title = action === "Edit" ? "Edit Practice" : "Add Practice";
+    const submitBtnText = action === "Edit" ? "Save Practice" : "Add Practice";
 
-    //TODO: refactor edit and add action state for this component
-    const post = selectedPractice ? selectedPractice.post : null;
+    let originPost;
+
+    if (selectedPractice && selectedPractice.post) {
+      originPost = selectedPractice.post;
+    } else if (postFromSinglePost) {
+      originPost = postFromSinglePost;
+    }
 
     return (
       <div className={"practice-form-modal"}>
@@ -189,8 +198,10 @@ class PracticeFormModal extends Component {
             </div>
           </div>
           <div className={"practice-form-modal__footer"}>
-            {post && (
-              <p className={"practice-form-modal__post"}>Post: {post.title}</p>
+            {originPost && (
+              <p className={"practice-form-modal__post"}>
+                Post: {originPost.title}
+              </p>
             )}
             <div className={"practice-form-modal__action-btns"}>
               <button

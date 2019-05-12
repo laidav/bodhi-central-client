@@ -61,7 +61,7 @@ class PracticesContainer extends Component {
     }
 
     const { practices, showPracticeForm, selectedPractice } = this.state;
-    const { post } = this.props;
+    const { postFromSinglePost } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
     const listItemProps = { openPracticeForm };
     const modalStyles = {
@@ -107,10 +107,10 @@ class PracticesContainer extends Component {
           style={modalStyles}
         >
           <PracticeFormModal
-            post={post}
+            postFromSinglePost={postFromSinglePost}
             hidePracticeForm={hidePracticeForm}
             selectedPractice={selectedPractice}
-            title={selectedPractice ? "Edit Practice" : "Add Practice"}
+            action={selectedPractice ? "Edit" : "Add"}
           />
         </Modal>
       </div>
