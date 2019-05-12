@@ -111,6 +111,7 @@ class PracticesContainer extends Component {
             post={post}
             hidePracticeForm={hidePracticeForm}
             selectedPractice={selectedPractice}
+            title={selectedPractice ? "Edit Practice" : "Add Practice"}
           />
         </Modal>
       </div>

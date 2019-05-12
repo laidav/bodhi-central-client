@@ -121,67 +121,79 @@ class PracticeFormModal extends Component {
 
   render() {
     const { handleSubmit, handleTextChange, handleSubjectChange } = this;
-    const { post, className, hidePracticeForm } = this.props;
+    const { hidePracticeForm, selectedPractice, title } = this.props;
     const { teaching_point, application, checkedSubjects, errors } = this.state;
     const submitBtnText = this.props.selectedPractice
       ? "Save Practice"
       : "Add Practice";
 
+    //TODO: refactor edit and add action state for this component
+    const post = selectedPractice ? selectedPractice.post : null;
+
     return (
-      <div className={className}>
-        {post && <p>Origin Post: {post.title}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className={"control-group"}>
-            <label className={"sub-heading"} htmlFor="teaching-point">
-              Teaching Point:
-            </label>
-            <textarea
-              id="teaching-point"
-              className={"control"}
-              name="teaching_point"
-              onChange={handleTextChange}
-              value={teaching_point}
-            />
-            <p
-              className={`form-error ${
-                errors.teaching_point === vt.isRequired
-                  ? "form-error--visible"
-                  : ""
-              }`}
-            >
-              Teaching point is required
-            </p>
+      <div className={"practice-form-modal"}>
+        <h2 className={"practice-form-modal__title"}>{title}</h2>
+        <form className={"practice-form-modal__form"} onSubmit={handleSubmit}>
+          <div className={"practice-form-modal__notes"}>
+            <div className={"control-group"}>
+              <label className={"sub-heading"} htmlFor="teaching-point">
+                Teaching Point:
+              </label>
+              <textarea
+                id="teaching-point"
+                className={"control"}
+                name="teaching_point"
+                onChange={handleTextChange}
+                value={teaching_point}
+              />
+              <p
+                className={`form-error ${
+                  errors.teaching_point === vt.isRequired
+                    ? "form-error--visible"
+                    : ""
+                }`}
+              >
+                Teaching point is required
+              </p>
+            </div>
+            <div className={"control-group"}>
+              <label className={"sub-heading"} htmlFor="application">
+                Application
+              </label>
+              <textarea
+                id="application"
+                className={"control"}
+                name="application"
+                onChange={handleTextChange}
+                value={application}
+              />
+              <p className={"form-error"}>&nbsp</p>
+            </div>
           </div>
-          <div className={"control-group"}>
-            <label className={"sub-heading"} htmlFor="application">
-              Application
-            </label>
-            <textarea
-              id="application"
-              className={"control"}
-              name="application"
-              onChange={handleTextChange}
-              value={application}
-            />
+          <div className={"practice-form-modal__subjects"}>
+            <div className={"control-group"}>
+              <label className={"sub-heading"}>Subjects</label>
+              <SubjectCheckboxMenu
+                checkedSubjects={checkedSubjects}
+                handleSubjectChange={handleSubjectChange}
+              />
+              <p
+                className={`form-error ${
+                  errors.subjects === vt.arrayNotEmpty
+                    ? "form-error--visible"
+                    : ""
+                }`}
+              >
+                Please select at least one subject
+              </p>
+            </div>
           </div>
-          <div className={"control-group"}>
-            <SubjectCheckboxMenu
-              checkedSubjects={checkedSubjects}
-              handleSubjectChange={handleSubjectChange}
-            />
-            <p
-              className={`form-error ${
-                errors.subjects === vt.arrayNotEmpty
-                  ? "form-error--visible"
-                  : ""
-              }`}
-            >
-              Please select at least one subject
-            </p>
+          <div className={"practice-form-modal__footer"}>
+            {post && <p>Origin Post: {post.title}</p>}
+            <button onClick={hidePracticeForm}>Cancel</button>
+            <button type="submit">{submitBtnText}</button>
           </div>
-          <button type="submit">{submitBtnText}</button>
         </form>
-        <button onClick={hidePracticeForm}>Cancel</button>
       </div>
     );
   }
