@@ -142,9 +142,15 @@ class PracticeFormModal extends Component {
               onChange={handleTextChange}
               value={teaching_point}
             />
-            {errors.teaching_point === vt.isRequired && (
-              <p className="form-error">Teaching point is required</p>
-            )}
+            <p
+              className={`form-error ${
+                errors.teaching_point === vt.isRequired
+                  ? "form-error--visible"
+                  : ""
+              }`}
+            >
+              Teaching point is required
+            </p>
           </div>
           <div className={"control-group"}>
             <label className={"sub-heading"} htmlFor="application">
@@ -158,15 +164,21 @@ class PracticeFormModal extends Component {
               value={application}
             />
           </div>
-          <SubjectCheckboxMenu
-            checkedSubjects={checkedSubjects}
-            handleSubjectChange={handleSubjectChange}
-          />
-          {errors.subjects === vt.arrayNotEmpty && (
-            <span className="form-error">
+          <div className={"control-group"}>
+            <SubjectCheckboxMenu
+              checkedSubjects={checkedSubjects}
+              handleSubjectChange={handleSubjectChange}
+            />
+            <p
+              className={`form-error ${
+                errors.subjects === vt.arrayNotEmpty
+                  ? "form-error--visible"
+                  : ""
+              }`}
+            >
               Please select at least one subject
-            </span>
-          )}
+            </p>
+          </div>
           <button type="submit">{submitBtnText}</button>
         </form>
         <button onClick={hidePracticeForm}>Cancel</button>

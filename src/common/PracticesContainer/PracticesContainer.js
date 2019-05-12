@@ -64,6 +64,18 @@ class PracticesContainer extends Component {
     const { post } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
     const listItemProps = { openPracticeForm };
+    const modalStyles = {
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        height: "70%",
+        width: "70%"
+      }
+    };
 
     return (
       <div className={"practices-container"}>
@@ -90,7 +102,11 @@ class PracticesContainer extends Component {
             </div>
           </div>
         )}
-        <Modal isOpen={showPracticeForm} onRequestClose={hidePracticeForm}>
+        <Modal
+          isOpen={showPracticeForm}
+          onRequestClose={hidePracticeForm}
+          style={modalStyles}
+        >
           <PracticeFormModal
             post={post}
             hidePracticeForm={hidePracticeForm}
