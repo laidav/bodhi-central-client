@@ -4,6 +4,8 @@ import SubjectTag from "common/SubjectTag/SubjectTag";
 import "./PostCard.scss";
 import { NavLink } from "react-router-dom";
 import buddhistPath from "assets/buddhist-path.jpg";
+import moment from "moment";
+import { dateFormats } from "services/constantsSrvc";
 
 const PostCard = ({ data: post }) => {
   return (
@@ -24,7 +26,9 @@ const PostCard = ({ data: post }) => {
         uniqueKey="id"
         list={post.subjects}
       />
-      <div className="post-card__create-date">Created On: {post.created}</div>
+      <div className="post-card__create-date">
+        Created On: {moment(post.created).format(dateFormats.short)}
+      </div>
       <a
         className={"post-card__source ellipsis"}
         href={post.link}

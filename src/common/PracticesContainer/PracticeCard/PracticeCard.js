@@ -4,6 +4,8 @@ import bcDhammaWheel from "assets/bc-dhamma-wheel.svg";
 import mockUser from "assets/bc-mock-user.svg";
 import SubjectTag from "common/SubjectTag/SubjectTag";
 import List from "common/List/List";
+import moment from "moment";
+import { dateFormats } from "services/constantsSrvc";
 
 function PracticeCard({ data: practice, listItemProps }) {
   const { openPracticeForm } = listItemProps;
@@ -34,8 +36,9 @@ function PracticeCard({ data: practice, listItemProps }) {
         )}
       </div>
       <div className={"practice-card__footer"}>
-        {/* <div className={"practice-card__created-date"}>{practice.created}</div> */}
-        <div className={"practice-card__created-date"}>April 10, 2019</div>
+        <div className={"practice-card__created-date"}>
+          {moment(practice.created).format(dateFormats.short)}
+        </div>
         <button
           className={"practice-card__edit btn-secondary"}
           onClick={handleEditClick}

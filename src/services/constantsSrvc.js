@@ -1,5 +1,9 @@
 export const API_V1 = "/api/v1.0";
 
+export const dateFormats = {
+  short: "MMMM DD, YYYY"
+};
+
 export const subjects = {
   WISDOM: 11,
   RIGHT_VIEW: 4,
