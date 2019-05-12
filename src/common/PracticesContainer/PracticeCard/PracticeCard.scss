@@ -8,6 +8,13 @@ $icon-size: 36px;
   padding: 1rem;
   margin-bottom: 1rem;
 
+  &:hover {
+    .practice-card__edit {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
   &__teaching-point,
   &__application {
     display: flex;
@@ -56,7 +63,17 @@ $icon-size: 36px;
     color: $gray-text-clr;
   }
 
+  &__edit {
+    visibility: hidden;
+    font-size: 0.75rem;
+    margin-left: 4rem;
+    opacity: 0;
+    transition: $fade;
+  }
+
   &__footer {
+    display: flex;
+    align-items: center;
     padding-left: 3rem;
   }
 }

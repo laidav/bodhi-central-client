@@ -89,4 +89,11 @@ ul {
 .btn-secondary {
   border-radius: 5px;
   background-color: $secondary-clr;
+  color: $white;
+  font-family: $poppins-medium;
+  padding: 0.25rem 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
 }
