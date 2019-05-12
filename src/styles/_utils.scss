@@ -29,3 +29,46 @@
   border: 1px solid $primary-border-clr;
   border-radius: 5px;
 }
+
+.btn-primary {
+  border-radius: 5px;
+  background-color: $primary-clr;
+}
+
+.btn-secondary {
+  border-radius: 5px;
+  background-color: $secondary-clr;
+  color: $white;
+  font-family: $poppins-medium;
+  padding: 0.25rem 0.5rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.sub-heading {
+  font-family: $poppins-bold;
+  font-size: $medium;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  .control {
+    width: 100%;
+    resize: none;
+  }
+
+  .form-error {
+    font-size: $medium;
+    color: $error-red;
+    text-align: right;
+    margin: 0;
+  }
+}

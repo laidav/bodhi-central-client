@@ -85,24 +85,10 @@ ul {
   background: #555;
 }
 
-.btn-primary {
-  border-radius: 5px;
-  background-color: $primary-clr;
-}
-
-.btn-secondary {
-  border-radius: 5px;
-  background-color: $secondary-clr;
-  color: $white;
-  font-family: $poppins-medium;
-  padding: 0.25rem 0.5rem;
-
-  &:focus {
-    outline: none;
+.ReactModal {
+  &__Overlay {
+    &--after-open {
+      z-index: $z-index1;
+    }
   }
-}
-
-.sub-heading {
-  font-family: $poppins-bold;
-  font-size: $medium;
 }

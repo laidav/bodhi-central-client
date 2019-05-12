@@ -131,35 +131,42 @@ class PracticeFormModal extends Component {
       <div className={className}>
         {post && <p>Origin Post: {post.title}</p>}
         <form onSubmit={handleSubmit}>
-          <label className={"sub-heading"} htmlFor="teaching-point">
-            Teaching Point:
-          </label>
-          <input
-            id="teaching-point"
-            type="text"
-            name="teaching_point"
-            onChange={handleTextChange}
-            value={teaching_point}
-          />
-          {errors.teaching_point === vt.isRequired && (
-            <p className="form-error">Teaching point is required</p>
-          )}
+          <div className={"control-group"}>
+            <label className={"sub-heading"} htmlFor="teaching-point">
+              Teaching Point:
+            </label>
+            <textarea
+              id="teaching-point"
+              className={"control"}
+              name="teaching_point"
+              onChange={handleTextChange}
+              value={teaching_point}
+            />
+            {errors.teaching_point === vt.isRequired && (
+              <p className="form-error">Teaching point is required</p>
+            )}
+          </div>
+          <div className={"control-group"}>
+            <label className={"sub-heading"} htmlFor="application">
+              Application
+            </label>
+            <textarea
+              id="application"
+              className={"control"}
+              name="application"
+              onChange={handleTextChange}
+              value={application}
+            />
+          </div>
           <SubjectCheckboxMenu
             checkedSubjects={checkedSubjects}
             handleSubjectChange={handleSubjectChange}
           />
           {errors.subjects === vt.arrayNotEmpty && (
-            <p className="form-error">Please select at least one subject</p>
+            <span className="form-error">
+              Please select at least one subject
+            </span>
           )}
-          <label className={"sub-heading"} htmlFor="application">
-            Application
-          </label>
-          <textarea
-            id="application"
-            name="application"
-            onChange={handleTextChange}
-            value={application}
-          />
           <button type="submit">{submitBtnText}</button>
         </form>
         <button onClick={hidePracticeForm}>Cancel</button>
