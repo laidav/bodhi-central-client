@@ -1,4 +1,4 @@
-@import "styles/_variables.scss";
+@import "styles/_mixins.scss";
 
 .subject-tag {
   background-color: $primary-bg-clr;
@@ -6,7 +6,7 @@
   border: 1px solid $primary-border-clr;
   border-radius: 5px;
   font-family: $poppins-medium;
-  font-size: 0.875rem;
+  font-size: $medium;
   color: $primary-text-clr;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;

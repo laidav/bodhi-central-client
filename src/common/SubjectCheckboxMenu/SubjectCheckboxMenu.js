@@ -6,7 +6,7 @@ import SubjectCheckbox from "./SubjectCheckbox/SubjectCheckbox";
 const SubjectCheckboxMenu = ({ checkedSubjects, handleSubjectChange }) => {
   return (
     <div className={"subject-checkbox-menu"}>
-      <h2>Subjects</h2>
+      <label className={"sub-heading"}>Subjects</label>
       <List
         component={SubjectCheckbox}
         uniqueKey="id"

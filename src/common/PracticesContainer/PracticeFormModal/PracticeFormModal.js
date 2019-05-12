@@ -131,7 +131,9 @@ class PracticeFormModal extends Component {
       <div className={className}>
         {post && <p>Origin Post: {post.title}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="teaching-point">Teaching Point:</label>
+          <label className={"sub-heading"} htmlFor="teaching-point">
+            Teaching Point:
+          </label>
           <input
             id="teaching-point"
             type="text"
@@ -149,7 +151,9 @@ class PracticeFormModal extends Component {
           {errors.subjects === vt.arrayNotEmpty && (
             <p className="form-error">Please select at least one subject</p>
           )}
-          <label htmlFor="application">Application</label>
+          <label className={"sub-heading"} htmlFor="application">
+            Application
+          </label>
           <textarea
             id="application"
             name="application"

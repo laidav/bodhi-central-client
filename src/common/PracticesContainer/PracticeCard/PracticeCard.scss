@@ -30,7 +30,7 @@ $icon-size: 36px;
       font-family: $poppins-medium;
       color: $primary-text-clr;
       padding-left: 1rem;
-      font-size: 0.75rem;
+      font-size: $small;
     }
   }
 
@@ -46,26 +46,28 @@ $icon-size: 36px;
 
   &__subject-tags {
     margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
 
     .subject-tag {
-      font-size: 0.75rem;
+      font-size: $small;
     }
   }
 
   &__post {
-    font-size: 0.75rem;
+    font-size: $small;
     color: $gray-text-clr;
     margin-bottom: 1rem;
   }
 
   &__created-date {
-    font-size: 0.75rem;
+    font-size: $small;
     color: $gray-text-clr;
   }
 
   &__edit {
     visibility: hidden;
-    font-size: 0.75rem;
+    font-size: $small;
     margin-left: 4rem;
     opacity: 0;
     transition: $fade;
