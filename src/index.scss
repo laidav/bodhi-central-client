@@ -85,10 +85,21 @@ ul {
   background: #555;
 }
 
+//React Modal overrides
 .ReactModal {
   &__Overlay {
     &--after-open {
       z-index: $z-index1;
+    }
+  }
+
+  &__Content {
+    &--after-open {
+      max-height: 70%;
+
+      @include lg-screen {
+        max-height: none;
+      }
     }
   }
 }
