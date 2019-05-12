@@ -30,21 +30,26 @@
   border-radius: 5px;
 }
 
-.btn-primary {
+.btn {
   border-radius: 5px;
-  background-color: $primary-clr;
-}
-
-.btn-secondary {
-  border-radius: 5px;
-  background-color: $secondary-clr;
-  color: $white;
   font-family: $poppins-medium;
-  padding: 0.25rem 0.5rem;
+  font-size: $medium;
+  padding: 0.5rem 0.75rem;
 
   &:focus {
     outline: none;
   }
+}
+
+.btn-primary {
+  border-radius: 5px;
+  background-color: $primary-clr;
+  color: $white;
+}
+
+.btn-secondary {
+  background-color: $secondary-clr;
+  color: $white;
 }
 
 .sub-heading {

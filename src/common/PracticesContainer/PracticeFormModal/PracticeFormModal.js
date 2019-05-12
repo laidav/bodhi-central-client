@@ -189,9 +189,20 @@ class PracticeFormModal extends Component {
             </div>
           </div>
           <div className={"practice-form-modal__footer"}>
-            {post && <p>Origin Post: {post.title}</p>}
-            <button onClick={hidePracticeForm}>Cancel</button>
-            <button type="submit">{submitBtnText}</button>
+            {post && (
+              <p className={"practice-form-modal__post"}>Post: {post.title}</p>
+            )}
+            <div className={"practice-form-modal__action-btns"}>
+              <button
+                className={"btn btn-secondary"}
+                onClick={hidePracticeForm}
+              >
+                Cancel
+              </button>
+              <button className={"btn btn-primary"} type="submit">
+                {submitBtnText}
+              </button>
+            </div>
           </div>
         </form>
       </div>

@@ -72,7 +72,6 @@ class PracticesContainer extends Component {
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        height: "70%",
         width: "70%"
       }
     };

@@ -40,7 +40,7 @@ function PracticeCard({ data: practice, listItemProps }) {
           {moment(practice.created).format(dateFormats.short)}
         </div>
         <button
-          className={"practice-card__edit btn-secondary"}
+          className={"practice-card__edit btn btn-secondary"}
           onClick={handleEditClick}
         >
           View/Edit
