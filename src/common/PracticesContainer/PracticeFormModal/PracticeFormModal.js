@@ -75,19 +75,20 @@ class PracticeFormModal extends Component {
     if (Object.keys(errors).length) {
       this.setState({ errors });
     } else {
-      const { selectedPractice } = this.props;
+      const { action, hidePracticeForm } = this.props;
 
       const params = {
         data: { teaching_point, application, subjects }
       };
 
-      const resource = selectedPractice
-        ? this.getEditPracticeRequest(params)
-        : this.getAddPracticeRequest(params);
+      const resource =
+        action === "Edit"
+          ? this.getEditPracticeRequest(params)
+          : this.getAddPracticeRequest(params);
 
       resource
         .then(() => {
-          this.props.hidePracticeForm();
+          hidePracticeForm();
         })
         .catch(error => {
           console.log(error);
