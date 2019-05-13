@@ -111,10 +111,12 @@ class PracticeFormModal extends Component {
   }
 
   getAddPracticeRequest(params) {
-    const { post } = this.props;
+    const { postFromSinglePost } = this.props;
 
-    if (post) {
-      params.data = Object.assign({}, params.data, { post_id: post.id });
+    if (postFromSinglePost) {
+      params.data = Object.assign({}, params.data, {
+        post_id: postFromSinglePost.id
+      });
     }
 
     return practiceResource.addPractice(params);
@@ -134,10 +136,10 @@ class PracticeFormModal extends Component {
 
     let originPost;
 
-    if (selectedPractice && selectedPractice.post) {
+    if (action === "Edit") {
       originPost = selectedPractice.post;
-    } else if (postFromSinglePost) {
-      originPost = postFromSinglePost;
+    } else {
+      originPost = postFromSinglePost || null;
     }
 
     return (
