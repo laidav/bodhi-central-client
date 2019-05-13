@@ -4,6 +4,10 @@ export const dateFormats = {
   short: "MMMM DD, YYYY"
 };
 
+export const reactModal = {
+  overlayBg: "rgba(0, 0, 0, 0.7)"
+};
+
 export const subjects = {
   WISDOM: 11,
   RIGHT_VIEW: 4,

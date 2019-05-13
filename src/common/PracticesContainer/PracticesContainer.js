@@ -6,7 +6,9 @@ import Modal from "react-modal";
 import PracticeFormModal from "./PracticeFormModal/PracticeFormModal";
 import PracticeCard from "./PracticeCard/PracticeCard";
 import addButton from "assets/bc-add-button.svg";
+import { reactModal } from "services/constantsSrvc";
 
+Modal.defaultStyles.overlay.backgroundColor = reactModal.overlayBg;
 Modal.setAppElement("#root");
 
 class PracticesContainer extends Component {
