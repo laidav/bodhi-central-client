@@ -20,6 +20,7 @@ export const subjects = {
 };
 
 export const subjectsList = [
+  { id: 12, first_child_id: 11, right_sibling_id: null, name: "Buddha" },
   {
     id: 1,
     first_child_id: null,
@@ -50,6 +51,5 @@ export const subjectsList = [
   { id: 8, first_child_id: null, right_sibling_id: 6, name: "Right Speech" },
   { id: 9, first_child_id: 7, right_sibling_id: null, name: "Meditation" },
   { id: 10, first_child_id: 8, right_sibling_id: 9, name: "Ethics" },
-  { id: 11, first_child_id: 4, right_sibling_id: 10, name: "Wisdom" },
-  { id: 12, first_child_id: 11, right_sibling_id: null, name: "Buddha" }
+  { id: 11, first_child_id: 4, right_sibling_id: 10, name: "Wisdom" }
 ];

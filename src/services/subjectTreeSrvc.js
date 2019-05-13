@@ -1,0 +1,21 @@
+import { subjectsList } from "services/constantsSrvc";
+import SubjectNode from "models/SubjectNode";
+
+class SubjectTree {
+  constructor(subjectsList) {
+    const nodeMapper = new Map();
+
+    for (let i = 0; i < subjectsList.length; i++) {
+      nodeMapper.set(subjectsList[i].id, new SubjectNode(subjectsList[i]));
+    }
+
+    nodeMapper.forEach((node, key, map) => {
+      node.firstChild = nodeMapper.get(node.firstChildId) || null;
+      node.rightSibling = nodeMapper.get(node.rightSiblingId) || null;
+    });
+
+    this.root = nodeMapper.get(12);
+  }
+}
+
+export default new SubjectTree(subjectsList);
