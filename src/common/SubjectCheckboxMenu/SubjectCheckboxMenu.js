@@ -7,6 +7,7 @@ import SubjectTree from "services/subjectTreeSrvc";
 
 const SubjectCheckboxMenu = ({ checkedSubjects, handleSubjectChange }) => {
   console.log(SubjectTree);
+  console.log(SubjectTree.getChildren(SubjectTree.root));
 
   return (
     <div className={"subject-checkbox-menu border"}>

@@ -18,6 +18,23 @@ class SubjectTree {
 
     this.root = nodeMapper.get(12);
   }
+
+  getChildren(node) {
+    const children = [];
+
+    if (node.firstChild !== null) {
+      children.push(node.firstChild);
+
+      let currentNode = node.firstChild.rightSibling;
+
+      while (currentNode !== null) {
+        children.push(currentNode);
+        currentNode = currentNode.rightSibling;
+      }
+    }
+
+    return children;
+  }
 }
 
 export default new SubjectTree(subjectsList);
