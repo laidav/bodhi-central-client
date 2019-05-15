@@ -9,10 +9,12 @@ class SubjectTree {
       nodeMapper.set(subjectsList[i].id, new SubjectNode(subjectsList[i]));
     }
 
-    nodeMapper.forEach((node, key, map) => {
-      node.firstChild = nodeMapper.get(node.firstChildId) || null;
-      node.rightSibling = nodeMapper.get(node.rightSiblingId) || null;
-    });
+    for (let i = 0; i < subjectsList.length; i++) {
+      let node = nodeMapper.get(subjectsList[i].id);
+      node.firstChild = nodeMapper.get(subjectsList[i].first_child_id) || null;
+      node.rightSibling =
+        nodeMapper.get(subjectsList[i].right_sibling_id) || null;
+    }
 
     this.root = nodeMapper.get(12);
   }

@@ -1,9 +1,7 @@
 export default class SubjectNode {
-  constructor(subject) {
-    this.id = subject.id;
-    this.name = subject.name;
-    this.firstChildId = subject.first_child_id;
-    this.rightSiblingId = subject.right_sibling_id;
+  constructor({ id, name }) {
+    this.id = id;
+    this.name = name;
     this.firstChild = null;
     this.rightSibling = null;
   }
