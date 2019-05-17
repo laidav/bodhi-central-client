@@ -6,7 +6,6 @@ class SubjectNodeCheckbox extends Component {
   render() {
     const { data: subjectNode, listItemProps } = this.props;
     const { handleSubjectChange, checkedSubjects } = listItemProps;
-    console.log(subjectNode.name);
 
     return (
       <div>
