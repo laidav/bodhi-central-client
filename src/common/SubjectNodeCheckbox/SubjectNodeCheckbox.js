@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import List from "common/List/List";
+import { compareMaps } from "services/helpersSrvc";
 
 class SubjectNodeCheckbox extends Component {
+  shouldComponentUpdate(nextProps) {
+    return !compareMaps(this.props.checkedSubjects, nextProps.checkedSubjects);
+  }
+
   render() {
     const {
       data: subjectNode,
