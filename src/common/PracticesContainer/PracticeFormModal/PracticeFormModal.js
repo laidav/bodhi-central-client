@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
-import SubjectCheckboxMenu from "common/SubjectCheckboxMenu/SubjectCheckboxMenu";
+import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
+import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
@@ -185,9 +186,9 @@ class PracticeFormModal extends Component {
           <div className={"practice-form-modal__subjects"}>
             <div className={"control-group"}>
               <label className={"sub-heading"}>Subjects</label>
-              <SubjectCheckboxMenu
-                checkedSubjects={checkedSubjects}
-                handleSubjectChange={handleSubjectChange}
+              <SubjectNodeCheckbox
+                data={subjectTreeSrvc.root}
+                listItemProps={{ checkedSubjects, handleSubjectChange }}
               />
               <p
                 className={`form-error ${

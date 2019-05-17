@@ -1,5 +1,5 @@
 import React from "react";
-
+//TODO refactor List component
 const List = ({
   component: Component,
   uniqueKey,
