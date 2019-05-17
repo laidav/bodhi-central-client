@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import postResource from "services/resources/postResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
-import SubjectCheckboxMenu from "common/SubjectCheckboxMenu/SubjectCheckboxMenu";
+import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import { NavLink, Redirect } from "react-router-dom";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
+import subjectTreeSrvc from "services/subjectTreeSrvc";
 
 class AdminPostForm extends Component {
   state = this.initState();
@@ -181,9 +182,9 @@ class AdminPostForm extends Component {
             name="link"
             value={link}
           />
-          <SubjectCheckboxMenu
-            checkedSubjects={checkedSubjects}
-            handleSubjectChange={handleSubjectChange}
+          <SubjectNodeCheckbox
+            data={subjectTreeSrvc.root}
+            listItemProps={{ checkedSubjects, handleSubjectChange }}
           />
           {errors.subjects === vt.arrayNotEmpty && (
             <p className="form-error">Please select at least one subject</p>
