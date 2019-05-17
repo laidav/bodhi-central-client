@@ -66,9 +66,12 @@ class AdminPostForm extends Component {
   handleSubjectChange = e => {
     const { name, checked } = e.target;
 
-    this.setState(prevState => ({
-      checkedSubjects: prevState.checkedSubjects.set(parseInt(name), checked)
-    }));
+    this.setState(prevState => {
+      const checkedSubjects = new Map(prevState.checkedSubjects);
+      checkedSubjects.set(parseInt(name), checked);
+
+      return { checkedSubjects };
+    });
   };
 
   handleSubmit = e => {
