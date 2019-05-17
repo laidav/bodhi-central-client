@@ -188,7 +188,8 @@ class PracticeFormModal extends Component {
               <label className={"sub-heading"}>Subjects</label>
               <SubjectNodeCheckbox
                 data={subjectTreeSrvc.root}
-                listItemProps={{ checkedSubjects, handleSubjectChange }}
+                checkedSubjects={checkedSubjects}
+                handleSubjectChange={handleSubjectChange}
               />
               <p
                 className={`form-error ${

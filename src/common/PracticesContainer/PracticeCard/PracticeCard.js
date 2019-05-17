@@ -7,9 +7,7 @@ import List from "common/List/List";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
 
-function PracticeCard({ data: practice, listItemProps }) {
-  const { openPracticeForm } = listItemProps;
-
+function PracticeCard({ data: practice, openPracticeForm }) {
   const handleEditClick = () => openPracticeForm(practice);
 
   return (

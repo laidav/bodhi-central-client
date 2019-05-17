@@ -1,5 +1,5 @@
 import React from "react";
-//TODO refactor List component
+
 const List = ({
   component: Component,
   uniqueKey,
@@ -8,13 +8,7 @@ const List = ({
   ...props
 }) => {
   const result = list.map(data => {
-    return (
-      <Component
-        key={data[uniqueKey]}
-        data={data}
-        listItemProps={listItemProps}
-      />
-    );
+    return <Component key={data[uniqueKey]} data={data} {...listItemProps} />;
   });
 
   return <div {...props}>{result}</div>;

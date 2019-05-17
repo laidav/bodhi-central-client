@@ -184,7 +184,8 @@ class AdminPostForm extends Component {
           />
           <SubjectNodeCheckbox
             data={subjectTreeSrvc.root}
-            listItemProps={{ checkedSubjects, handleSubjectChange }}
+            checkedSubjects={checkedSubjects}
+            handleSubjectChange={handleSubjectChange}
           />
           {errors.subjects === vt.arrayNotEmpty && (
             <p className="form-error">Please select at least one subject</p>

@@ -4,8 +4,11 @@ import List from "common/List/List";
 
 class SubjectNodeCheckbox extends Component {
   render() {
-    const { data: subjectNode, listItemProps } = this.props;
-    const { handleSubjectChange, checkedSubjects } = listItemProps;
+    const {
+      data: subjectNode,
+      handleSubjectChange,
+      checkedSubjects
+    } = this.props;
 
     return (
       <div>

@@ -65,7 +65,6 @@ class PracticesContainer extends Component {
     const { practices, showPracticeForm, selectedPractice } = this.state;
     const { postFromSinglePost } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
-    const listItemProps = { openPracticeForm };
     const modalStyles = {
       content: {
         top: "50%",
@@ -98,7 +97,7 @@ class PracticesContainer extends Component {
                 component={PracticeCard}
                 uniqueKey="id"
                 list={practices}
-                listItemProps={listItemProps}
+                listItemProps={{ openPracticeForm }}
               />
             </div>
           </div>
