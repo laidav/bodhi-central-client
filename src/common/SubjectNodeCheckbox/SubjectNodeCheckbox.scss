@@ -1,0 +1,18 @@
+@import "styles/_mixins.scss";
+
+.subject-node-checkbox {
+  padding-left: 20px;
+
+  &--depth-0 {
+    padding-left: 0;
+
+    & > label,
+    & > input {
+      display: none;
+    }
+  }
+
+  &--depth-1 {
+    padding-left: 0;
+  }
+}

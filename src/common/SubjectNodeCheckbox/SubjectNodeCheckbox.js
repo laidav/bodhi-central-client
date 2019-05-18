@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import List from "common/List/List";
 import { compareMaps } from "services/helpersSrvc";
+import "./SubjectNodeCheckbox.scss";
 
 class SubjectNodeCheckbox extends Component {
   shouldComponentUpdate(nextProps) {
@@ -16,10 +17,12 @@ class SubjectNodeCheckbox extends Component {
     } = this.props;
 
     return (
-      <div>
-        <label>
-          {subjectNode.name} depth: {subjectTreeSrvc.getDepth(subjectNode)}
-        </label>
+      <div
+        className={`subject-node-checkbox subject-node-checkbox--depth-${subjectTreeSrvc.getDepth(
+          subjectNode
+        )}`}
+      >
+        <label>{subjectNode.name}</label>
         <input
           type="checkbox"
           onChange={handleSubjectChange}
