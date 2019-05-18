@@ -46,7 +46,7 @@ class Post extends Component {
                 <iframe
                   src={getYoutubeEmbedUrl(post.link)}
                   title="video"
-                  frameborder="0"
+                  frameBorder="0"
                 />
               </div>
               <div className={"post__description"}>{post.description}</div>
