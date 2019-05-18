@@ -1,18 +1,26 @@
 @import "styles/_mixins.scss";
 
 .posts {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
   height: 100%;
-  overflow: hidden;
+
+  @include lg-screen {
+    grid-template-columns: auto 350px;
+    grid-template-rows: 100%;
+  }
 
   //Body
   &__body {
-    flex-grow: 1;
     display: grid;
     grid-template-rows: 51px auto;
-    height: 100%;
     overflow: hidden;
     padding: 0 2rem;
+    max-height: 100%;
+
+    @include lg-screen {
+      grid-column: 1/2;
+    }
   }
 
   &__nav {
@@ -35,7 +43,7 @@
   &__content {
     grid-row: 2/3;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
   }
 
   &__content-inner {
@@ -68,11 +76,9 @@
 
     @include lg-screen {
       display: block;
-      min-width: 350px;
-      max-width: 350px;
+      height: 100%;
+      overflow: auto;
+      grid-column: 2/3;
     }
-
-    height: 100%;
-    overflow: auto;
   }
 }

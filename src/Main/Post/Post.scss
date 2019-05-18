@@ -1,6 +1,24 @@
 @import "styles/_mixins.scss";
 
 .post {
+  display: grid;
+  grid-template-columns: auto;
+
+  @include lg-screen {
+    grid-template-columns: auto 350px;
+    grid-template-rows: 100%;
+    height: 100%;
+  }
+
+  &__body {
+    @include lg-screen {
+      padding: 3.5rem 2rem 0 2rem;
+      height: 100%;
+      overflow: auto;
+      grid-column: 1/2;
+    }
+  }
+
   &__card {
     background-color: $white;
     padding: 1rem 1.5rem;
@@ -21,6 +39,14 @@
   &__create-date {
     color: $gray-text-clr;
     margin-bottom: 0.5rem;
+  }
+
+  &__side-bar {
+    @include lg-screen {
+      height: 100%;
+      overflow: auto;
+      grid-column: 2/3;
+    }
   }
 
   &__source {
