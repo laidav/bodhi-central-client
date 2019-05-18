@@ -23,8 +23,8 @@ class PracticesContainer extends Component {
   componentWillMount() {
     const params = {};
 
-    if (this.props.post) {
-      params.postId = this.props.post.id;
+    if (this.props.postFromSinglePost) {
+      params.postId = this.props.postFromSinglePost.id;
     }
 
     practiceResource.getPractices(params).then(
