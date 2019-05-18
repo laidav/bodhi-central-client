@@ -12,6 +12,8 @@
   }
 
   &__body {
+    padding: 1rem 0 0 0;
+
     @include lg-screen {
       padding: 3.5rem 2rem;
       height: 100%;
