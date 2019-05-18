@@ -1,7 +1,7 @@
 @import "styles/_mixins.scss";
 
 .post-card {
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   background-color: $white;
   margin-bottom: 1rem;
 
@@ -56,7 +56,7 @@
 
   &__image-inner {
     width: 100%;
-    padding-bottom: 70%;
+    padding-bottom: 66%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

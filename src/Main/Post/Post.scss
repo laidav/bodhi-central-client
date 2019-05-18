@@ -1,0 +1,37 @@
+@import "styles/_mixins.scss";
+
+.post {
+  &__card {
+    background-color: $white;
+    padding: 1rem 1.5rem;
+    color: $primary-text-clr;
+  }
+
+  &__title {
+    font-family: $poppins-semi-bold;
+    font-size: 1.125rem;
+    margin: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  &__description {
+    padding-bottom: 1rem;
+  }
+
+  &__create-date {
+    color: $gray-text-clr;
+    margin-bottom: 0.5rem;
+  }
+
+  &__source {
+    display: block;
+    max-width: 100%;
+    color: $gray-text-clr;
+  }
+
+  &__subject-tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0.5rem;
+  }
+}

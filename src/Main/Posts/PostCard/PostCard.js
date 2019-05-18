@@ -39,7 +39,6 @@ const PostCard = ({ data: post }) => {
       >
         Source: {post.link}
       </a>
-      {/* <NavLink to={`/post/${post.id}`}>Go to {post.title}</NavLink> */}
     </div>
   );
 };
