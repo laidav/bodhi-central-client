@@ -22,13 +22,17 @@ class SubjectNodeCheckbox extends Component {
           subjectNode
         )}`}
       >
-        <label>{subjectNode.name}</label>
-        <input
-          type="checkbox"
-          onChange={handleSubjectChange}
-          checked={checkedSubjects.get(subjectNode.id)}
-          name={subjectNode.id}
-        />
+        <label className={"checkbox"}>
+          <input
+            type="checkbox"
+            onChange={handleSubjectChange}
+            checked={checkedSubjects.get(subjectNode.id)}
+            name={subjectNode.id}
+          />
+          <span className={"checkmark"} />
+          {subjectNode.name}
+        </label>
+
         <List
           component={SubjectNodeCheckbox}
           uniqueKey={"id"}

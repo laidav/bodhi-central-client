@@ -17,12 +17,8 @@
 
   &__notes {
     textarea {
-      height: 150px;
+      height: 146px;
       padding: 0.5rem;
-
-      @include lg-screen {
-        height: 114px;
-      }
     }
 
     @include lg-screen {
