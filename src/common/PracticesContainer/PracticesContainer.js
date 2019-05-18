@@ -7,6 +7,7 @@ import PracticeFormModal from "./PracticeFormModal/PracticeFormModal";
 import PracticeCard from "./PracticeCard/PracticeCard";
 import addButton from "assets/bc-add-button.svg";
 import { reactModal } from "services/constantsSrvc";
+import { Switch, Route } from "react-router-dom";
 
 Modal.defaultStyles.overlay.backgroundColor = reactModal.overlayBg;
 Modal.setAppElement("#root");
@@ -80,7 +81,19 @@ class PracticesContainer extends Component {
     return (
       <div className={"practices-container"}>
         <div className={"practices-container__header"}>
-          <h4 className={"practices-container__title"}>Recent Practices</h4>
+          <h4 className={"practices-container__title"}>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => <span>Recent Practices</span>}
+              />
+              <Route
+                path="/post"
+                render={() => <span>Practices from this post</span>}
+              />
+            </Switch>
+          </h4>
           <img
             className={"practices-container__add-practice"}
             src={addButton}
