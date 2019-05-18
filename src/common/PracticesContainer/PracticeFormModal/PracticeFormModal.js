@@ -174,7 +174,7 @@ class PracticeFormModal extends Component {
             </div>
             <div className={"control-group"}>
               <label className={"sub-heading"} htmlFor="application">
-                Application
+                Application:
               </label>
               <textarea
                 id="application"
