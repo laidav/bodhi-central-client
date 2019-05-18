@@ -6,6 +6,7 @@ import List from "common/List/List";
 import SubjectTag from "common/SubjectTag/SubjectTag";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
+import { getYoutubeEmbedUrl } from "services/helpersSrvc";
 
 class Post extends Component {
   state = {
@@ -39,9 +40,14 @@ class Post extends Component {
         <div className={"post__body"}>
           <div className="post__card border">
             <h5 className={"post__title"}>{post.title}</h5>
-            <div className="post__body">
-              <div className={"post__image"}>
-                <iframe />
+            <div className="post__card-body">
+              <div className={"post__media"}>
+                <div className={"post__media-aspect-ratio"} />
+                <iframe
+                  src={getYoutubeEmbedUrl(post.link)}
+                  title="video"
+                  frameborder="0"
+                />
               </div>
               <div className={"post__description"}>{post.description}</div>
             </div>
