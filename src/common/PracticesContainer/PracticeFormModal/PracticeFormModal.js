@@ -5,6 +5,7 @@ import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
+import { NavLink } from "react-router-dom";
 
 class PracticeFormModal extends Component {
   state = this.initState();
@@ -207,9 +208,12 @@ class PracticeFormModal extends Component {
           </div>
           <div className={"practice-form-modal__footer"}>
             {originPost && (
-              <p className={"practice-form-modal__post"}>
+              <NavLink
+                className={"practice-form-modal__post"}
+                to={`/post/${originPost.id}`}
+              >
                 Post: {originPost.title}
-              </p>
+              </NavLink>
             )}
             <div className={"practice-form-modal__action-btns"}>
               <button

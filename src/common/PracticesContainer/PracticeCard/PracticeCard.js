@@ -6,6 +6,7 @@ import SubjectTag from "common/SubjectTag/SubjectTag";
 import List from "common/List/List";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
+import { NavLink } from "react-router-dom";
 
 function PracticeCard({ data: practice, openPracticeForm }) {
   const handleEditClick = () => openPracticeForm(practice);
@@ -28,9 +29,12 @@ function PracticeCard({ data: practice, openPracticeForm }) {
           list={practice.subjects}
         />
         {practice.post && (
-          <div className={"practice-card__post"}>
+          <NavLink
+            className={"practice-card__post"}
+            to={`/post/${practice.post.id}`}
+          >
             Post: {practice.post.title}
-          </div>
+          </NavLink>
         )}
       </div>
       <div className={"practice-card__footer"}>

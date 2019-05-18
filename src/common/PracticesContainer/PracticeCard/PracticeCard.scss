@@ -55,6 +55,7 @@ $icon-size: 36px;
   }
 
   &__post {
+    display: block;
     font-size: $small;
     color: $gray-text-clr;
     margin-bottom: 1rem;
