@@ -17,6 +17,7 @@ class SubjectTree {
     }
 
     this.root = nodeMapper.get(12);
+    this.nodeMapper = nodeMapper;
   }
 
   getChildren(node) {
@@ -67,21 +68,32 @@ class SubjectTree {
 
     searcher.searchDone = true;
 
-    return searcher.results;
+    return searcher.searchResults;
   }
 
-  getDepth(node) {
+  getDepth(refNode) {
     const depthSearch = {
       compare: node => {
-        if (node !== null) {
-          console.log(node.name);
+        if (node === null) {
+          depthSearch.ancestors.pop();
+          return;
+        }
+
+        if (node === refNode) {
+          depthSearch.searchResults = depthSearch.ancestors.length;
+          depthSearch.searchDone = true;
+        }
+
+        if (node.firstChild) {
+          depthSearch.ancestors.push(node);
         }
       },
+      ancestors: [],
       searchDone: false,
       searchResults: null
     };
 
-    return this.dfsTraversal(depthSearch, node);
+    return this.dfsTraversal(depthSearch, this.root);
   }
 }
 

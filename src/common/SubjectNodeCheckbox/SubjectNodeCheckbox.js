@@ -17,7 +17,9 @@ class SubjectNodeCheckbox extends Component {
 
     return (
       <div>
-        <label>{subjectNode.name}</label>
+        <label>
+          {subjectNode.name} depth: {subjectTreeSrvc.getDepth(subjectNode)}
+        </label>
         <input
           type="checkbox"
           onChange={handleSubjectChange}
