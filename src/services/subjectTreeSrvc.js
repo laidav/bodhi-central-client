@@ -35,6 +35,54 @@ class SubjectTree {
 
     return children;
   }
+
+  dfsTraversal(searcher, startNode) {
+    const _depthTraversalRecursive = node => {
+      _checkSiblingsRecursive(node.firstChild);
+    };
+
+    const _checkSiblingsRecursive = node => {
+      searcher.compare(node);
+
+      if (searcher.searchDone) {
+        return searcher.results;
+      }
+
+      if (node === null) {
+        return;
+      }
+
+      if (node.firstChild) {
+        _depthTraversalRecursive(node);
+      }
+
+      node = node.rightSibling;
+
+      _checkSiblingsRecursive(node);
+    };
+
+    searcher.compare(startNode);
+
+    _depthTraversalRecursive(startNode);
+
+    searcher.searchDone = true;
+
+    return searcher.results;
+  }
+
+  getDepth(node) {
+    const depthSearch = {
+      compare: node => {
+        if (node !== null) {
+          console.log(node.name);
+        }
+      },
+      searchDone: false,
+      searchResults: null
+    };
+
+    return this.dfsTraversal(depthSearch, node);
+  }
 }
 
 export default new SubjectTree(subjectsList);

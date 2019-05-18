@@ -146,6 +146,8 @@ class PracticeFormModal extends Component {
       originPost = postFromSinglePost || null;
     }
 
+    const result = subjectTreeSrvc.getDepth(subjectTreeSrvc.root);
+
     return (
       <div className={"practice-form-modal"}>
         <h2 className={"practice-form-modal__title"}>{title}</h2>
