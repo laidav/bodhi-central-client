@@ -51,25 +51,6 @@
     height: 100%;
   }
 
-  &__content-top-border {
-    height: 1px;
-    background-color: $primary-text-clr;
-    height: 1px;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-
-    &-hider {
-      height: 1px;
-      background-color: $primary-bg-clr;
-      height: 5px;
-      position: relative;
-      top: 0px;
-      width: 100%;
-      z-index: 1;
-    }
-  }
-
   //Sidebar
   &__side-bar {
     display: none;

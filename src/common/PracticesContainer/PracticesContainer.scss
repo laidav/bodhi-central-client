@@ -24,6 +24,7 @@ $add-practice-icon-size: 37px;
     width: $add-practice-icon-size;
     cursor: pointer;
   }
+
   &__content {
     grid-row: 2/3;
     position: relative;
@@ -33,24 +34,5 @@ $add-practice-icon-size: 37px;
   &__content-inner {
     overflow: auto;
     height: 100%;
-  }
-
-  &__content-top-border {
-    height: 1px;
-    background-color: $primary-text-clr;
-    height: 1px;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-
-    &-hider {
-      height: 1px;
-      background-color: $primary-bg-clr;
-      height: 5px;
-      position: relative;
-      top: 0px;
-      width: 100%;
-      z-index: 1;
-    }
   }
 }

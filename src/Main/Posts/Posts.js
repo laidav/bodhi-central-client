@@ -47,8 +47,8 @@ class Posts extends Component {
           </div>
           <div className={"posts__content"}>
             <div className={"posts__content-inner"}>
-              <div className={"posts__content-top-border"} />
-              <div className={"posts__content-top-border-hider"} />
+              <div className={"transition-border"} />
+              <div className={"transition-border-hider"} />
               <PostsContainer
                 isActive={activeTab === Constants.subjects.WISDOM}
                 subject={Constants.subjects.WISDOM}

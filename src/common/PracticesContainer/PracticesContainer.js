@@ -127,8 +127,8 @@ class PracticesContainer extends Component {
         {practices.length > 0 && (
           <div className={"practices-container__content"}>
             <div className={"practices-container__content-inner"}>
-              <div className={"posts__content-top-border"} />
-              <div className={"posts__content-top-border-hider"} />
+              <div className={"transition-border"} />
+              <div className={"transition-border-hider"} />
               <List
                 className={`practices-container__practice-cards ${
                   onPracticeExplorer
