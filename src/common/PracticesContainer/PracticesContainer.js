@@ -86,8 +86,9 @@ class PracticesContainer extends Component {
     }
 
     const { practices, showPracticeForm, selectedPractice } = this.state;
-    const { postFromSinglePost } = this.props;
+    const { postFromSinglePost, match } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
+    const onPracticeExplorer = match && match.path === "/practices";
     const modalStyles = {
       content: {
         top: "50%",
@@ -129,6 +130,11 @@ class PracticesContainer extends Component {
               <div className={"posts__content-top-border"} />
               <div className={"posts__content-top-border-hider"} />
               <List
+                className={`practices-container__practice-cards ${
+                  onPracticeExplorer
+                    ? "practices-container__practice-cards--grid"
+                    : ""
+                }`}
                 component={PracticeCard}
                 uniqueKey="id"
                 list={practices}

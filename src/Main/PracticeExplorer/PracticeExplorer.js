@@ -31,16 +31,21 @@ class PracticeExplorer extends Component {
 
   render() {
     const { checkedSubjects } = this.state;
+    const { match } = this.props;
     const { handleSubjectChange } = this;
 
     return (
-      <div>
-        <SubjectNodeCheckbox
-          data={subjectTreeSrvc.root}
-          checkedSubjects={checkedSubjects}
-          handleSubjectChange={handleSubjectChange}
-        />
-        <PracticesContainer checkedSubjects={checkedSubjects} />
+      <div className={"practice-explorer"}>
+        <div className={"practice-explorer__side-bar"}>
+          <SubjectNodeCheckbox
+            data={subjectTreeSrvc.root}
+            checkedSubjects={checkedSubjects}
+            handleSubjectChange={handleSubjectChange}
+          />
+        </div>
+        <div className={"practice-explorer__content"}>
+          <PracticesContainer match={match} checkedSubjects={checkedSubjects} />
+        </div>
       </div>
     );
   }

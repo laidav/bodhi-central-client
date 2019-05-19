@@ -1,0 +1,25 @@
+@import "styles/_mixins.scss";
+
+.practice-explorer {
+  @include md-screen {
+    display: grid;
+    grid-template-columns: 300px auto;
+    height: 100%;
+  }
+
+  &__side-bar {
+    @include md-screen {
+      grid-column: 1/2;
+      max-height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &__content {
+    @include md-screen {
+      grid-column: 2/3;
+      max-height: 100%;
+      overflow: hidden;
+    }
+  }
+}
