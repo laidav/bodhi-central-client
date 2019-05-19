@@ -3,12 +3,13 @@ import axios from "axios";
 
 const practiceResource = {
   url: Constants.API_V1 + "/practice",
-  getPractices({ postId }) {
+  getPractices({ postId, subjects }) {
     return axios({
       method: "get",
       url: this.url,
       params: {
-        post_id: postId
+        post_id: postId,
+        subject_id: subjects
       }
     });
   },
