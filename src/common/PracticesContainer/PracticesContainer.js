@@ -27,17 +27,7 @@ class PracticesContainer extends Component {
       params.postId = this.props.postFromSinglePost.id;
     }
 
-    practiceResource.getPractices(params).then(
-      response => {
-        this.setState({
-          practices: response.data.practices,
-          loading: false
-        });
-      },
-      error => {
-        this.setState({ loading: false });
-      }
-    );
+    this.getPractices(params);
   }
 
   openPracticeForm = selectedPractice => {
@@ -56,6 +46,20 @@ class PracticesContainer extends Component {
       showPracticeForm: false,
       selectedPractice: null
     });
+  };
+
+  getPractices = params => {
+    practiceResource.getPractices(params).then(
+      response => {
+        this.setState({
+          practices: response.data.practices,
+          loading: false
+        });
+      },
+      error => {
+        this.setState({ loading: false });
+      }
+    );
   };
 
   render() {

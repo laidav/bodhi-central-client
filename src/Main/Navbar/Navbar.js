@@ -14,6 +14,11 @@ function Navbar() {
             Admin Posts
           </NavLink>
         </li>
+        <li className={"main-nav__item"}>
+          <NavLink activeClassName="active" to="/practices">
+            Your Practices
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

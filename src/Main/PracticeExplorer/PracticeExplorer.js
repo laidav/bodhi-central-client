@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./PracticeExplorer.scss";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
+import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 
 class PracticeExplorer extends Component {
   state = {
@@ -23,11 +24,14 @@ class PracticeExplorer extends Component {
     const { checkedSubjects } = this.state;
     const { handleSubjectChange } = this;
     return (
-      <SubjectNodeCheckbox
-        data={subjectTreeSrvc.root}
-        checkedSubjects={checkedSubjects}
-        handleSubjectChange={handleSubjectChange}
-      />
+      <div>
+        <SubjectNodeCheckbox
+          data={subjectTreeSrvc.root}
+          checkedSubjects={checkedSubjects}
+          handleSubjectChange={handleSubjectChange}
+        />
+        <PracticesContainer checkedSubjects={checkedSubjects} />
+      </div>
     );
   }
 }
