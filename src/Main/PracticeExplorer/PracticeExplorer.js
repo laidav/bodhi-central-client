@@ -37,11 +37,17 @@ class PracticeExplorer extends Component {
     return (
       <div className={"practice-explorer"}>
         <div className={"practice-explorer__side-bar"}>
-          <SubjectNodeCheckbox
-            data={subjectTreeSrvc.root}
-            checkedSubjects={checkedSubjects}
-            handleSubjectChange={handleSubjectChange}
-          />
+          <h1 className={"practice-explorer__title page-title"}>
+            Your practice
+          </h1>
+          <div className={"practice-explorer__filters control-group border"}>
+            <label className={"sub-heading"}>Subjects</label>
+            <SubjectNodeCheckbox
+              data={subjectTreeSrvc.root}
+              checkedSubjects={checkedSubjects}
+              handleSubjectChange={handleSubjectChange}
+            />
+          </div>
         </div>
         <div className={"practice-explorer__content"}>
           <PracticesContainer match={match} checkedSubjects={checkedSubjects} />

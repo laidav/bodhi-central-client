@@ -15,8 +15,11 @@
     display: grid;
     grid-template-rows: 51px auto;
     overflow: hidden;
-    padding: 0 2rem;
     max-height: 100%;
+
+    @include md-screen {
+      padding: 0 2rem;
+    }
 
     @include lg-screen {
       grid-column: 1/2;
