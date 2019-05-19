@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./PracticeExplorer.scss";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
-import { subjects as staticSubjects } from "services/constantsSrvc";
 
 class PracticeExplorer extends Component {
   state = {
