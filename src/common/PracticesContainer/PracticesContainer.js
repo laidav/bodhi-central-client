@@ -8,6 +8,7 @@ import PracticeCard from "./PracticeCard/PracticeCard";
 import addButton from "assets/bc-add-button.svg";
 import { reactModal } from "services/constantsSrvc";
 import { Switch, Route } from "react-router-dom";
+import { compareMaps } from "services/helpersSrvc";
 
 Modal.defaultStyles.overlay.backgroundColor = reactModal.overlayBg;
 Modal.setAppElement("#root");
@@ -17,7 +18,7 @@ class PracticesContainer extends Component {
     practices: [],
     selectedPractice: null,
     showPracticeForm: false,
-    loading: true
+    loading: false
   };
 
   componentWillMount() {
@@ -49,6 +50,8 @@ class PracticesContainer extends Component {
   };
 
   getPractices = params => {
+    this.setState({ loading: true });
+
     practiceResource.getPractices(params).then(
       response => {
         this.setState({
@@ -61,6 +64,21 @@ class PracticesContainer extends Component {
       }
     );
   };
+
+  componentDidUpdate(prevProps) {
+    const { checkedSubjects } = this.props;
+
+    if (
+      checkedSubjects &&
+      !compareMaps(checkedSubjects, prevProps.checkedSubjects)
+    ) {
+      const subjects = Array.from(checkedSubjects)
+        .filter(([subjectId, checked]) => checked)
+        .map(item => item[0]);
+
+      this.getPractices({ subjects });
+    }
+  }
 
   render() {
     if (this.state.loading) {
