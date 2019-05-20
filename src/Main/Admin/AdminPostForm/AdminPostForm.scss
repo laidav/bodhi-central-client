@@ -1,0 +1,9 @@
+@import "styles/_mixins.scss";
+
+.admin-post-form {
+  &__form {
+    color: $primary-text-clr;
+    background-color: $white;
+    padding: 1rem;
+  }
+}

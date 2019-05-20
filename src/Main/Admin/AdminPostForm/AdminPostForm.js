@@ -5,6 +5,7 @@ import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox"
 import { NavLink, Redirect } from "react-router-dom";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
+import "./AdminPostForm.scss";
 
 class AdminPostForm extends Component {
   state = this.initState();
@@ -155,45 +156,81 @@ class AdminPostForm extends Component {
     const { title, description, link, checkedSubjects, errors } = this.state;
 
     return (
-      <div>
-        <NavLink to={"/admin/post"}>Back to Admin Posts</NavLink>
-        <form onSubmit={handleSubmit}>
-          <label>Title:</label>
-          <input
-            type="text"
-            onChange={handleTextChange}
-            name="title"
-            value={title}
-          />
-          {errors.title === vt.isRequired && (
-            <p className="form-error">Title is required</p>
-          )}
-          <label>Description:</label>
-          <input
-            type="text"
-            onChange={handleTextChange}
-            name="description"
-            value={description}
-          />
-          {errors.description === vt.isRequired && (
-            <p className="form-error">Description is required</p>
-          )}
-          <label>Link:</label>
-          <input
-            type="text"
-            onChange={handleTextChange}
-            name="link"
-            value={link}
-          />
-          <SubjectNodeCheckbox
-            data={subjectTreeSrvc.root}
-            checkedSubjects={checkedSubjects}
-            handleSubjectChange={handleSubjectChange}
-          />
-          {errors.subjects === vt.arrayNotEmpty && (
-            <p className="form-error">Please select at least one subject</p>
-          )}
-          <button type="submit">{submitBtnText}</button>
+      <div className={"admin-post-form"}>
+        <form
+          className={"admin-post-form__form border"}
+          onSubmit={handleSubmit}
+        >
+          <div className={"control-group"}>
+            <label className={"sub-heading"}>Title:</label>
+            <input
+              className={"control"}
+              type="text"
+              onChange={handleTextChange}
+              name="title"
+              value={title}
+            />
+            <p
+              className={`form-error ${
+                errors.title === vt.isRequired ? "form-error--visible" : ""
+              }`}
+            >
+              Title is required
+            </p>
+          </div>
+          <div className={"control-group"}>
+            <label className={"sub-heading"}>Description:</label>
+            <textarea
+              className={"control"}
+              onChange={handleTextChange}
+              name="description"
+              value={description}
+            />
+            <p
+              className={`form-error ${
+                errors.description === vt.isRequired
+                  ? "form-error--visible"
+                  : ""
+              }`}
+            >
+              Description is required
+            </p>
+          </div>
+          <div className={"control-group"}>
+            <label className={"sub-heading"}>Link:</label>
+            <input
+              className={"control"}
+              type="text"
+              onChange={handleTextChange}
+              name="link"
+              value={link}
+            />
+          </div>
+
+          <div className={"control-group"}>
+            <label className={"sub-heading"}>Subjects:</label>
+            <SubjectNodeCheckbox
+              data={subjectTreeSrvc.root}
+              checkedSubjects={checkedSubjects}
+              handleSubjectChange={handleSubjectChange}
+            />
+            <p
+              className={`form-error ${
+                errors.subjects === vt.arrayNotEmpty
+                  ? "form-error--visible"
+                  : ""
+              }`}
+            >
+              Please select at least one subject
+            </p>
+          </div>
+
+          <NavLink className={"btn btn-secondary"} to={"/admin/post"}>
+            Cancel
+          </NavLink>
+          <button className={"btn btn-primary"} type="submit">
+            {submitBtnText}
+          </button>
         </form>
       </div>
     );

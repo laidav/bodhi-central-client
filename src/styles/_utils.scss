@@ -74,6 +74,15 @@
     font-size: $base;
   }
 
+  textarea,
+  input {
+    padding: 0.25rem 0.5rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   .form-error {
     font-size: $medium;
     color: $error-red;
