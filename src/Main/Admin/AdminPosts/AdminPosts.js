@@ -49,15 +49,17 @@ class AdminPosts extends Component {
               </NavLink>
             </div>
             <div className={"admin-posts__post-cards"}>
-              <div className={"transition-border"} />
-              <div className={"transition-border-hider"} />
-              <List
-                className={"admin-posts__post-cards-inner"}
-                component={PostCard}
-                list={posts}
-                listItemProps={{ match }}
-                uniqueKey={"id"}
-              />
+              <div className={"admin-posts__post-cards-inner"}>
+                <div className={"transition-border"} />
+                <div className={"transition-border-hider"} />
+                <List
+                  className={"admin-posts__post-cards-grid"}
+                  component={PostCard}
+                  list={posts}
+                  listItemProps={{ match }}
+                  uniqueKey={"id"}
+                />
+              </div>
             </div>
           </div>
         )}

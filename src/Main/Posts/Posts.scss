@@ -11,6 +11,8 @@
   }
 
   //Body
+
+  // TODO: refactor how we are setting up the hidden border on scroll for consistency
   &__body {
     display: grid;
     grid-template-rows: 51px auto;

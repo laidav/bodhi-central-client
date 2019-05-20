@@ -4,16 +4,17 @@
   height: 100%;
 
   &__inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 100%;
     overflow: hidden;
+    height: 100%;
   }
 
   &__top-bar {
-    height: 51px;
+    grid-row: 1/2;
     display: flex;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
   }
 
   &__add-post {
@@ -23,12 +24,17 @@
   }
 
   &__post-cards {
-    height: 100%;
-    overflow: auto;
+    grid-row: 2/3;
     position: relative;
+    overflow: auto;
   }
 
   &__post-cards-inner {
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  &__post-cards-grid {
     @include md-screen {
       display: grid;
       grid-template-columns: 49% 49%;
