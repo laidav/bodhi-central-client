@@ -16,6 +16,7 @@ class Posts extends Component {
 
   render() {
     const { activeTab } = this.state;
+    const { match } = this.props;
 
     return (
       <div className={"posts"}>
@@ -52,14 +53,17 @@ class Posts extends Component {
               <PostsContainer
                 isActive={activeTab === Constants.subjects.WISDOM}
                 subject={Constants.subjects.WISDOM}
+                match={{ match }}
               />
               <PostsContainer
                 isActive={activeTab === Constants.subjects.ETHICS}
                 subject={Constants.subjects.ETHICS}
+                match={{ match }}
               />
               <PostsContainer
                 isActive={activeTab === Constants.subjects.MEDITATION}
                 subject={Constants.subjects.MEDITATION}
+                match={{ match }}
               />
             </div>
           </div>

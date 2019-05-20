@@ -2,26 +2,14 @@ import React from "react";
 import List from "common/List/List";
 import SubjectTag from "common/SubjectTag/SubjectTag";
 import "./PostCard.scss";
-import { NavLink } from "react-router-dom";
-import buddhistPath from "assets/buddhist-path.jpg";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
+import PostCardLink from "./PostCardLink/PostCardLink";
 
-const PostCard = ({ data: post }) => {
+const PostCard = ({ data: post, match }) => {
   return (
     <div className="post-card border" key={post.id}>
-      <NavLink className={"post-card__link"} to={`/post/${post.id}`}>
-        <h5 className={"post-card__title"}>{post.title}</h5>
-        <div className="post-card__body">
-          <div className={"post-card__description"}>{post.description}</div>
-          <div className={"post-card__image"}>
-            <div
-              className={"post-card__image-inner"}
-              style={{ backgroundImage: `url(${buddhistPath})` }}
-            />
-          </div>
-        </div>
-      </NavLink>
+      <PostCardLink post={post} match={match} />
       <List
         className="post-card__subject-tags"
         component={SubjectTag}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./PostsContainer.scss";
 import postResource from "services/resources/postResource";
 import List from "common/List/List";
-import PostCard from "../PostCard/PostCard";
+import PostCard from "common/PostCard/PostCard";
 
 class PostsContainer extends Component {
   state = {
@@ -36,7 +36,7 @@ class PostsContainer extends Component {
 
   render() {
     const { loading, posts } = this.state;
-    const { isActive } = this.props;
+    const { isActive, match } = this.props;
 
     return (
       <div
@@ -51,6 +51,7 @@ class PostsContainer extends Component {
             component={PostCard}
             uniqueKey="id"
             list={posts}
+            listItemProps={match}
           />
         )}
       </div>
