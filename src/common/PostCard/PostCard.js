@@ -20,22 +20,24 @@ const PostCard = ({ data: post, match }) => {
       <div className="post-card__create-date">
         Created On: {moment(post.created).format(dateFormats.short)}
       </div>
-      <a
-        className={"post-card__source ellipsis"}
-        href={post.link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Source: {post.link}
-      </a>
-      {match.path === "/admin/post" ? (
-        <NavLink
-          className={"post-card__edit-post btn btn-secondary"}
-          to={`/admin/post/${post.id}`}
+      <div className={"post-card__footer"}>
+        <a
+          className={"post-card__source ellipsis"}
+          href={post.link}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Edit Post
-        </NavLink>
-      ) : null}
+          Source: {post.link}
+        </a>
+        {match.path === "/admin/post" ? (
+          <NavLink
+            className={"post-card__edit-post btn btn-secondary"}
+            to={`/admin/post/${post.id}`}
+          >
+            Edit Post
+          </NavLink>
+        ) : null}
+      </div>
     </div>
   );
 };

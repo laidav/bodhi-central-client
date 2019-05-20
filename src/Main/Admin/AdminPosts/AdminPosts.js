@@ -39,20 +39,26 @@ class AdminPosts extends Component {
       <div className={"admin-posts"}>
         {loading && <div>Loading</div>}
         {!loading && (
-          <div>
-            <NavLink
-              className={"admin-posts__add-post btn btn-primary"}
-              to={"/admin/post/add"}
-            >
-              Add New Post
-            </NavLink>
-            <List
-              className={"admin-posts__post-cards"}
-              component={PostCard}
-              list={posts}
-              listItemProps={{ match }}
-              uniqueKey={"id"}
-            />
+          <div className={"admin-posts__inner"}>
+            <div className={"admin-posts__top-bar"}>
+              <NavLink
+                className={"admin-posts__add-post btn btn-primary"}
+                to={"/admin/post/add"}
+              >
+                Add New Post
+              </NavLink>
+            </div>
+            <div className={"admin-posts__post-cards"}>
+              <div className={"transition-border"} />
+              <div className={"transition-border-hider"} />
+              <List
+                className={"admin-posts__post-cards-inner"}
+                component={PostCard}
+                list={posts}
+                listItemProps={{ match }}
+                uniqueKey={"id"}
+              />
+            </div>
           </div>
         )}
       </div>

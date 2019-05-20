@@ -1,7 +1,6 @@
 @import "styles/_mixins.scss";
 
 .post-card {
-  position: relative;
   padding: 1rem 1.5rem;
   background-color: $white;
   margin-bottom: 1rem;
@@ -47,9 +46,7 @@
   }
 
   &__edit-post {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
+    margin-left: auto;
   }
 
   &__image {
@@ -80,5 +77,10 @@
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 0.5rem;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
   }
 }
