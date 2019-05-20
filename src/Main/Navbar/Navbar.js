@@ -10,12 +10,20 @@ function Navbar() {
       </NavLink>
       <ul>
         <li className={"main-nav__item"}>
-          <NavLink activeClassName="active" to="/admin/post">
+          <NavLink
+            className={"sub-heading"}
+            activeClassName="active"
+            to="/admin/post"
+          >
             Admin Posts
           </NavLink>
         </li>
         <li className={"main-nav__item"}>
-          <NavLink activeClassName="active" to="/practices">
+          <NavLink
+            className={"sub-heading"}
+            activeClassName="active"
+            to="/practices"
+          >
             Your Practices
           </NavLink>
         </li>

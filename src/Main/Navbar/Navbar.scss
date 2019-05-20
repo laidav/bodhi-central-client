@@ -21,5 +21,8 @@
 
   &__item {
     margin-left: 1rem;
+    a {
+      color: $primary-text-clr;
+    }
   }
 }
