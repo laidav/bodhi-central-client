@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import postResource from "services/resources/postResource";
 import List from "common/List/List";
-import AdminPostCard from "./AdminPostCard/AdminPostCard";
 import PostCard from "common/PostCard/PostCard";
 import { NavLink } from "react-router-dom";
 
