@@ -35,13 +35,13 @@ class AdminPosts extends Component {
     const { match } = this.props;
 
     return (
-      <div>
+      <div className={"admin-posts"}>
         {loading && <div>Loading</div>}
         {!loading && (
           <div>
             <NavLink to={"/admin/post/add"}>Add New Post</NavLink>
             <List
-              className={"admin-post-cards"}
+              className={"admin-posts__post-cards"}
               component={PostCard}
               list={posts}
               listItemProps={{ match }}

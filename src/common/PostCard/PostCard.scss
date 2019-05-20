@@ -1,6 +1,7 @@
 @import "styles/_mixins.scss";
 
 .post-card {
+  position: relative;
   padding: 1rem 1.5rem;
   background-color: $white;
   margin-bottom: 1rem;
@@ -42,6 +43,12 @@
       padding-right: 2rem;
       padding-bottom: 0;
     }
+  }
+
+  &__edit-post {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
   }
 
   &__image {

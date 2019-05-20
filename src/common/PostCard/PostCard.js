@@ -5,6 +5,7 @@ import "./PostCard.scss";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
 import PostCardLink from "./PostCardLink/PostCardLink";
+import { NavLink } from "react-router-dom";
 
 const PostCard = ({ data: post, match }) => {
   return (
@@ -27,6 +28,14 @@ const PostCard = ({ data: post, match }) => {
       >
         Source: {post.link}
       </a>
+      {match.path === "/admin/post" ? (
+        <NavLink
+          className={"post-card__edit-post btn btn-secondary"}
+          to={`/admin/post/${post.id}`}
+        >
+          Edit Post
+        </NavLink>
+      ) : null}
     </div>
   );
 };
