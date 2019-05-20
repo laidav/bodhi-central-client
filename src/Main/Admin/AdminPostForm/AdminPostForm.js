@@ -153,10 +153,12 @@ class AdminPostForm extends Component {
 
     const { handleSubmit, handleTextChange, handleSubjectChange } = this;
     const submitBtnText = this.props.match.params.id ? "Save Post" : "Add Post";
+    const pageTitle = this.props.match.params.id ? "Edit Post" : "Add Post";
     const { title, description, link, checkedSubjects, errors } = this.state;
 
     return (
       <div className={"admin-post-form"}>
+        <h1 className={"page-title"}>{pageTitle}</h1>
         <form
           className={"admin-post-form__form border"}
           onSubmit={handleSubmit}
@@ -182,7 +184,7 @@ class AdminPostForm extends Component {
             <div className={"control-group"}>
               <label className={"sub-heading"}>Description:</label>
               <textarea
-                className={"control"}
+                className={"admin-post-form__description control"}
                 onChange={handleTextChange}
                 name="description"
                 value={description}

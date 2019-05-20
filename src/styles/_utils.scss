@@ -1,9 +1,11 @@
 .container {
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
 
   @include sm-screen {
     width: $sm-container;
+    padding: 0;
   }
 
   @include md-screen {
@@ -35,6 +37,7 @@
   font-family: $poppins-medium;
   font-size: $medium;
   padding: 0.5rem 0.75rem;
+  transition: background-color 0.125s ease-out;
 
   &:focus {
     outline: none;
@@ -45,11 +48,19 @@
   border-radius: 5px;
   background-color: $primary-clr;
   color: $white;
+
+  &:hover {
+    background-color: $primary-clr-dark;
+  }
 }
 
 .btn-secondary {
   background-color: $secondary-clr;
   color: $white;
+
+  &:hover {
+    background-color: $secondary-clr-dark;
+  }
 }
 
 .sub-heading {
@@ -118,4 +129,5 @@
 .page-title {
   font-size: $large;
   font-family: $poppins-bold;
+  padding: 0.75rem 0;
 }

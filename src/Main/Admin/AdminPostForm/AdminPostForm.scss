@@ -1,6 +1,10 @@
 @import "styles/_mixins.scss";
 
 .admin-post-form {
+  &__description {
+    height: 192px;
+  }
+
   &__form {
     color: $primary-text-clr;
     background-color: $white;
@@ -22,6 +26,16 @@
     @include md-screen {
       grid-column: 2/3;
       padding-left: 1rem;
+    }
+  }
+
+  &__footer {
+    justify-self: end;
+    grid-column: 1/3;
+    margin-top: 0.5rem;
+
+    .btn {
+      margin-left: 0.5rem;
     }
   }
 }

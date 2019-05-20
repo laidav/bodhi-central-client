@@ -41,6 +41,7 @@ class AdminPosts extends Component {
         {!loading && (
           <div className={"admin-posts__inner"}>
             <div className={"admin-posts__top-bar"}>
+              <h1 className={"page-title"}>Manage Posts</h1>
               <NavLink
                 className={"admin-posts__add-post btn btn-primary"}
                 to={"/admin/post/add"}

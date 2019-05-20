@@ -14,11 +14,10 @@
   &__top-bar {
     grid-row: 1/2;
     display: flex;
-    margin: 1rem 0;
   }
 
   &__add-post {
-    margin-left: auto;
+    margin: 0.75rem 0 0.75rem auto;
     display: flex;
     align-items: center;
   }
