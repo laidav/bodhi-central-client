@@ -3,6 +3,7 @@ import postResource from "services/resources/postResource";
 import List from "common/List/List";
 import PostCard from "common/PostCard/PostCard";
 import { NavLink } from "react-router-dom";
+import "./AdminPosts.scss";
 
 class AdminPosts extends Component {
   state = {
@@ -39,7 +40,12 @@ class AdminPosts extends Component {
         {loading && <div>Loading</div>}
         {!loading && (
           <div>
-            <NavLink to={"/admin/post/add"}>Add New Post</NavLink>
+            <NavLink
+              className={"admin-posts__add-post btn btn-primary"}
+              to={"/admin/post/add"}
+            >
+              Add New Post
+            </NavLink>
             <List
               className={"admin-posts__post-cards"}
               component={PostCard}
