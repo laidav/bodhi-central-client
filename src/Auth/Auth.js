@@ -3,8 +3,8 @@ import "./Auth.scss";
 import LoginForm from "./LoginForm/LoginForm";
 
 const Auth = () => (
-  <div>
-    <h1>Login page!</h1>
+  <div className={"container"}>
+    <h1 className={"page-title"}>Welcome to BodhiCentral!</h1>
     <LoginForm />
   </div>
 );

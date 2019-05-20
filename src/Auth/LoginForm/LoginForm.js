@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import authSrvc from "../../services/authSrvc";
 import { Redirect } from "react-router-dom";
+import "./LoginForm.scss";
 
 import "./LoginForm.scss";
 
@@ -44,24 +45,39 @@ class LoginForm extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="login-email">Email:</label>
-        <input
-          id="login-email"
-          type="text"
-          name="email"
-          onChange={this.handleChange}
-          value={this.state.email}
-        />
-        <label htmlFor="login-password">Password</label>
-        <input
-          id="login-password"
-          type="password"
-          name="password"
-          onChange={this.handleChange}
-          value={this.state.password}
-        />
-        <button type="submit">Sign In!</button>
+      <form className={"login-form border"} onSubmit={this.handleSubmit}>
+        <div className={"control-group"}>
+          <label className={"sub-heading"} htmlFor="login-email">
+            Email:
+          </label>
+          <input
+            className={"control"}
+            id="login-email"
+            type="text"
+            name="email"
+            onChange={this.handleChange}
+            value={this.state.email}
+          />
+          <p className={"form-error"}>&nbsp;</p>
+        </div>
+        <div className={"control-group"}>
+          <label className={"sub-heading"} htmlFor="login-password">
+            Password
+          </label>
+          <input
+            className={"control"}
+            id="login-password"
+            type="password"
+            name="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+          <p className={"form-error"}>&nbsp;</p>
+        </div>
+
+        <button className={"btn btn-primary"} type="submit">
+          Sign In!
+        </button>
         {errorMsg}
       </form>
     );

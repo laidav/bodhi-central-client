@@ -1,0 +1,23 @@
+@import "styles/_mixins.scss";
+
+.login-form {
+  padding: 1rem;
+  background-color: $white;
+
+  @include md-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+
+  .control {
+    @include md-screen {
+      width: 400px;
+      max-width: 400px;
+    }
+  }
+}
