@@ -17,7 +17,7 @@
 
   &__notes {
     textarea {
-      height: 146px;
+      height: 154px;
     }
 
     @include lg-screen {
@@ -28,7 +28,7 @@
   &__subjects {
     @include lg-screen {
       grid-column: 2/3;
-      padding-left: 2rem;
+      padding-left: 1rem;
     }
 
     .form-error {

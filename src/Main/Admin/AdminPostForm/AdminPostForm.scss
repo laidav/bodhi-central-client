@@ -5,5 +5,23 @@
     color: $primary-text-clr;
     background-color: $white;
     padding: 1rem;
+
+    @include md-screen {
+      display: grid;
+      grid-template-columns: auto 350px;
+    }
+  }
+
+  &__text-fields {
+    @include md-screen {
+      grid-column: 1/2;
+    }
+  }
+
+  &__subjects {
+    @include md-screen {
+      grid-column: 2/3;
+      padding-left: 1rem;
+    }
   }
 }

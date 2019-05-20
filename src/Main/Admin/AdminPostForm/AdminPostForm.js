@@ -161,76 +161,81 @@ class AdminPostForm extends Component {
           className={"admin-post-form__form border"}
           onSubmit={handleSubmit}
         >
-          <div className={"control-group"}>
-            <label className={"sub-heading"}>Title:</label>
-            <input
-              className={"control"}
-              type="text"
-              onChange={handleTextChange}
-              name="title"
-              value={title}
-            />
-            <p
-              className={`form-error ${
-                errors.title === vt.isRequired ? "form-error--visible" : ""
-              }`}
-            >
-              Title is required
-            </p>
+          <div className={"admin-post-form__text-fields"}>
+            <div className={"control-group"}>
+              <label className={"sub-heading"}>Title:</label>
+              <input
+                className={"control"}
+                type="text"
+                onChange={handleTextChange}
+                name="title"
+                value={title}
+              />
+              <p
+                className={`form-error ${
+                  errors.title === vt.isRequired ? "form-error--visible" : ""
+                }`}
+              >
+                Title is required
+              </p>
+            </div>
+            <div className={"control-group"}>
+              <label className={"sub-heading"}>Description:</label>
+              <textarea
+                className={"control"}
+                onChange={handleTextChange}
+                name="description"
+                value={description}
+              />
+              <p
+                className={`form-error ${
+                  errors.description === vt.isRequired
+                    ? "form-error--visible"
+                    : ""
+                }`}
+              >
+                Description is required
+              </p>
+            </div>
+            <div className={"control-group"}>
+              <label className={"sub-heading"}>Link:</label>
+              <input
+                className={"control"}
+                type="text"
+                onChange={handleTextChange}
+                name="link"
+                value={link}
+              />
+              <p className={"form-error"}>&nbsp;</p>
+            </div>
           </div>
-          <div className={"control-group"}>
-            <label className={"sub-heading"}>Description:</label>
-            <textarea
-              className={"control"}
-              onChange={handleTextChange}
-              name="description"
-              value={description}
-            />
-            <p
-              className={`form-error ${
-                errors.description === vt.isRequired
-                  ? "form-error--visible"
-                  : ""
-              }`}
-            >
-              Description is required
-            </p>
+          <div className={"admin-post-form__subjects"}>
+            <div className={"control-group"}>
+              <label className={"sub-heading"}>Subjects:</label>
+              <SubjectNodeCheckbox
+                data={subjectTreeSrvc.root}
+                checkedSubjects={checkedSubjects}
+                handleSubjectChange={handleSubjectChange}
+              />
+              <p
+                className={`form-error ${
+                  errors.subjects === vt.arrayNotEmpty
+                    ? "form-error--visible"
+                    : ""
+                }`}
+              >
+                Please select at least one subject
+              </p>
+            </div>
           </div>
-          <div className={"control-group"}>
-            <label className={"sub-heading"}>Link:</label>
-            <input
-              className={"control"}
-              type="text"
-              onChange={handleTextChange}
-              name="link"
-              value={link}
-            />
+          <div className={"admin-post-form__footer"}>
+            <NavLink className={"btn btn-secondary"} to={"/admin/post"}>
+              Cancel
+            </NavLink>
+            <button className={"btn btn-primary"} type="submit">
+              {submitBtnText}
+            </button>
           </div>
-
-          <div className={"control-group"}>
-            <label className={"sub-heading"}>Subjects:</label>
-            <SubjectNodeCheckbox
-              data={subjectTreeSrvc.root}
-              checkedSubjects={checkedSubjects}
-              handleSubjectChange={handleSubjectChange}
-            />
-            <p
-              className={`form-error ${
-                errors.subjects === vt.arrayNotEmpty
-                  ? "form-error--visible"
-                  : ""
-              }`}
-            >
-              Please select at least one subject
-            </p>
-          </div>
-
-          <NavLink className={"btn btn-secondary"} to={"/admin/post"}>
-            Cancel
-          </NavLink>
-          <button className={"btn btn-primary"} type="submit">
-            {submitBtnText}
-          </button>
         </form>
       </div>
     );
