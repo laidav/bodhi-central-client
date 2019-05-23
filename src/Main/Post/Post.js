@@ -47,6 +47,7 @@ class Post extends Component {
                   src={getYoutubeEmbedUrl(post.link)}
                   title="video"
                   frameBorder="0"
+                  allowFullScreen
                 />
               </div>
               <div className={"post__description"}>{post.description}</div>
