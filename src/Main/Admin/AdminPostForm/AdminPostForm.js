@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import postResource from "services/resources/postResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
+import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import { NavLink, Redirect } from "react-router-dom";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
@@ -18,7 +19,8 @@ class AdminPostForm extends Component {
       checkedSubjects: new Map(),
       redirectBack: false,
       errors: {},
-      loadingPost: false
+      loadingPost: false,
+      showDeleteWarning: false
     };
 
     for (let key in staticSubjects) {
@@ -133,6 +135,22 @@ class AdminPostForm extends Component {
     }
   };
 
+  openDeleteWarning = () => {
+    this.setState({ showDeleteWarning: true });
+  };
+
+  hideDeleteWarning = () => {
+    this.setState({ showDeleteWarning: false });
+  };
+
+  deletePost = () => {
+    const { id: postId } = this.props.match.params;
+
+    postResource.deletePost({ postId }).then(() => {
+      this.setState({ redirectBack: true });
+    });
+  };
+
   getEditPostRequest(params) {
     params.postId = this.props.match.params.id;
     return postResource.editPost(params);
@@ -151,10 +169,25 @@ class AdminPostForm extends Component {
       return <div>loading post</div>;
     }
 
-    const { handleSubmit, handleTextChange, handleSubjectChange } = this;
+    const {
+      handleSubmit,
+      handleTextChange,
+      handleSubjectChange,
+      deletePost,
+      hideDeleteWarning,
+      openDeleteWarning
+    } = this;
+
     const submitBtnText = this.props.match.params.id ? "Save Post" : "Add Post";
     const pageTitle = this.props.match.params.id ? "Edit Post" : "Add Post";
-    const { title, description, link, checkedSubjects, errors } = this.state;
+    const {
+      title,
+      description,
+      link,
+      checkedSubjects,
+      errors,
+      showDeleteWarning
+    } = this.state;
 
     return (
       <div className={"admin-post-form"}>
@@ -231,6 +264,13 @@ class AdminPostForm extends Component {
             </div>
           </div>
           <div className={"admin-post-form__footer"}>
+            <button
+              className={"btn btn-inverted-gray"}
+              type={"button"}
+              onClick={openDeleteWarning}
+            >
+              Delete
+            </button>
             <NavLink className={"btn btn-secondary"} to={"/admin/post"}>
               Cancel
             </NavLink>
@@ -239,6 +279,13 @@ class AdminPostForm extends Component {
             </button>
           </div>
         </form>
+        {showDeleteWarning && (
+          <DeleteWarning
+            warningText={"Are you sure you want to delete this post?"}
+            hideDeleteWarning={hideDeleteWarning}
+            handleDelete={deletePost}
+          />
+        )}
       </div>
     );
   }

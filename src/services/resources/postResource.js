@@ -29,6 +29,12 @@ const postResource = {
       url: `${this.url}/${postId}`,
       data
     });
+  },
+  deletePost({ postId }) {
+    return axios({
+      method: "delete",
+      url: `${this.url}/${postId}`
+    });
   }
 };
 
