@@ -6,12 +6,22 @@ const DeleteWarning = ({ warningText, hideDeleteWarning, handleDelete }) => {
     <div className={"delete-warning"}>
       <div className={"delete-warning__dialog border"}>
         <p>{warningText}</p>
-        <button onClick={hideDeleteWarning} className={"btn"}>
-          Cancel
-        </button>
-        <button onClick={handleDelete} className={"btn"}>
-          Delete
-        </button>
+        <div className={"delete-warning__footer"}>
+          <button
+            type={"button"}
+            onClick={hideDeleteWarning}
+            className={"btn btn-inverted-gray"}
+          >
+            Cancel
+          </button>
+          <button
+            type={"button"}
+            onClick={handleDelete}
+            className={"btn btn-danger"}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

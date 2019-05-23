@@ -63,6 +63,16 @@
   }
 }
 
+.btn-inverted-gray {
+  border: 1px solid $primary-border-clr;
+  color: $gray-text-clr;
+}
+
+.btn-danger {
+  background-color: $error-red;
+  color: $white;
+}
+
 .sub-heading {
   font-family: $poppins-bold;
   font-size: $medium;

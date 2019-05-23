@@ -253,9 +253,13 @@ class PracticeFormModal extends Component {
             )}
             <div className={"practice-form-modal__action-btns"}>
               {selectedPractice && (
-                <a onClick={openDeleteWarning} className={"btn"}>
+                <button
+                  onClick={openDeleteWarning}
+                  className={"btn btn-inverted-gray"}
+                  type={"button"}
+                >
                   Delete
-                </a>
+                </button>
               )}
               <button
                 className={"btn btn-secondary"}
