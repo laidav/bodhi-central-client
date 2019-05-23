@@ -1,6 +1,9 @@
 @import "styles/_mixins.scss";
 
 .practice-form-modal {
+  position: relative;
+  padding: 1rem;
+
   &__title {
     font-family: $poppins-bold;
     font-size: $large;

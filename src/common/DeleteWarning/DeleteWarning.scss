@@ -1,0 +1,18 @@
+@import "styles/_mixins.scss";
+
+.delete-warning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: $light-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__dialog {
+    background-color: $white;
+    padding: 1rem;
+  }
+}

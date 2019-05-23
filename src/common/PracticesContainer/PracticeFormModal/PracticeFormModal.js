@@ -6,6 +6,7 @@ import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
 import { subjects as staticSubjects } from "services/constantsSrvc";
 import { NavLink } from "react-router-dom";
+import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 
 class PracticeFormModal extends Component {
   state = this.initState();
@@ -17,7 +18,8 @@ class PracticeFormModal extends Component {
       teaching_point: selectedPractice ? selectedPractice.teaching_point : "",
       application: selectedPractice ? selectedPractice.application : "",
       checkedSubjects: new Map(),
-      errors: {}
+      errors: {},
+      showDeleteWarning: false
     };
 
     const subjects = selectedPractice
@@ -101,6 +103,24 @@ class PracticeFormModal extends Component {
     }
   };
 
+  openDeleteWarning = () => {
+    this.setState({ showDeleteWarning: true });
+  };
+
+  hideDeleteWarning = () => {
+    this.setState({ showDeleteWarning: false });
+  };
+
+  deletePractice = () => {
+    const { selectedPractice, hidePracticeForm } = this.props;
+
+    practiceResource
+      .deletePractice({ practiceId: selectedPractice.id })
+      .then(() => {
+        hidePracticeForm();
+      });
+  };
+
   getEditPracticeRequest(params) {
     const { selectedPractice } = this.props;
 
@@ -128,14 +148,30 @@ class PracticeFormModal extends Component {
   }
 
   render() {
-    const { handleSubmit, handleTextChange, handleSubjectChange } = this;
+    const {
+      handleSubmit,
+      handleTextChange,
+      handleSubjectChange,
+      openDeleteWarning,
+      hideDeleteWarning,
+      deletePractice
+    } = this;
+
     const {
       hidePracticeForm,
       selectedPractice,
       action,
       postFromSinglePost
     } = this.props;
-    const { teaching_point, application, checkedSubjects, errors } = this.state;
+
+    const {
+      teaching_point,
+      application,
+      checkedSubjects,
+      errors,
+      showDeleteWarning
+    } = this.state;
+
     const title = action === "Edit" ? "Edit Practice" : "Add Practice";
     const submitBtnText = action === "Edit" ? "Save Practice" : "Add Practice";
 
@@ -216,6 +252,11 @@ class PracticeFormModal extends Component {
               </NavLink>
             )}
             <div className={"practice-form-modal__action-btns"}>
+              {selectedPractice && (
+                <a onClick={openDeleteWarning} className={"btn"}>
+                  Delete
+                </a>
+              )}
               <button
                 className={"btn btn-secondary"}
                 onClick={hidePracticeForm}
@@ -228,6 +269,13 @@ class PracticeFormModal extends Component {
             </div>
           </div>
         </form>
+        {showDeleteWarning && (
+          <DeleteWarning
+            warningText={"Are you sure you want to delete this practice?"}
+            hideDeleteWarning={hideDeleteWarning}
+            handleDelete={deletePractice}
+          />
+        )}
       </div>
     );
   }

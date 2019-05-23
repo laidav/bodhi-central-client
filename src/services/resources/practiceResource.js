@@ -26,6 +26,12 @@ const practiceResource = {
       url: `${this.url}/${practiceId}`,
       data
     });
+  },
+  deletePractice({ practiceId }) {
+    return axios({
+      method: "delete",
+      url: `${this.url}/${practiceId}`
+    });
   }
 };
 
