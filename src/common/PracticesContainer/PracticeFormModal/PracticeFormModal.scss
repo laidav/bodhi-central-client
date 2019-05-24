@@ -55,6 +55,7 @@
     margin-bottom: 1rem;
     font-size: $medium;
     color: $gray-text-clr;
+    text-decoration: underline;
 
     @include lg-screen {
       margin-bottom: 0;
