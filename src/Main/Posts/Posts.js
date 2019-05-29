@@ -26,24 +26,18 @@ class Posts extends Component {
               <SubjectTab
                 isActive={activeSubjectTab === Constants.subjects.WISDOM}
                 clickHandler={this.selectSubject}
-                value={Constants.subjects.WISDOM}
-              >
-                Wisdom
-              </SubjectTab>
+                subject={Constants.subjects.WISDOM}
+              />
               <SubjectTab
                 isActive={activeSubjectTab === Constants.subjects.ETHICS}
                 clickHandler={this.selectSubject}
-                value={Constants.subjects.ETHICS}
-              >
-                Ethics
-              </SubjectTab>
+                subject={Constants.subjects.ETHICS}
+              />
               <SubjectTab
                 isActive={activeSubjectTab === Constants.subjects.MEDITATION}
                 clickHandler={this.selectSubject}
-                value={Constants.subjects.MEDITATION}
-              >
-                Meditation
-              </SubjectTab>
+                subject={Constants.subjects.MEDITATION}
+              />
             </ul>
           </div>
           <div className={"posts__content"}>
