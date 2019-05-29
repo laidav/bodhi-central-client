@@ -7,15 +7,15 @@ import * as Constants from "services/constantsSrvc";
 
 class Posts extends Component {
   state = {
-    activeTab: Constants.subjects.WISDOM
+    activeSubjectTab: Constants.subjects.WISDOM
   };
 
   selectSubject = subject => {
-    this.setState({ activeTab: subject });
+    this.setState({ activeSubjectTab: subject });
   };
 
   render() {
-    const { activeTab } = this.state;
+    const { activeSubjectTab } = this.state;
     const { match } = this.props;
 
     return (
@@ -24,21 +24,21 @@ class Posts extends Component {
           <div className={"posts__nav"}>
             <ul>
               <SubjectTab
-                isActive={activeTab === Constants.subjects.WISDOM}
+                isActive={activeSubjectTab === Constants.subjects.WISDOM}
                 clickHandler={this.selectSubject}
                 value={Constants.subjects.WISDOM}
               >
                 Wisdom
               </SubjectTab>
               <SubjectTab
-                isActive={activeTab === Constants.subjects.ETHICS}
+                isActive={activeSubjectTab === Constants.subjects.ETHICS}
                 clickHandler={this.selectSubject}
                 value={Constants.subjects.ETHICS}
               >
                 Ethics
               </SubjectTab>
               <SubjectTab
-                isActive={activeTab === Constants.subjects.MEDITATION}
+                isActive={activeSubjectTab === Constants.subjects.MEDITATION}
                 clickHandler={this.selectSubject}
                 value={Constants.subjects.MEDITATION}
               >
@@ -50,21 +50,7 @@ class Posts extends Component {
             <div className={"posts__content-inner"}>
               <div className={"transition-border"} />
               <div className={"transition-border-hider"} />
-              <PostsContainer
-                isActive={activeTab === Constants.subjects.WISDOM}
-                subject={Constants.subjects.WISDOM}
-                match={{ match }}
-              />
-              <PostsContainer
-                isActive={activeTab === Constants.subjects.ETHICS}
-                subject={Constants.subjects.ETHICS}
-                match={{ match }}
-              />
-              <PostsContainer
-                isActive={activeTab === Constants.subjects.MEDITATION}
-                subject={Constants.subjects.MEDITATION}
-                match={{ match }}
-              />
+              <PostsContainer subject={activeSubjectTab} match={{ match }} />
             </div>
           </div>
         </div>

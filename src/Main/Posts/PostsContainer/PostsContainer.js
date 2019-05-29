@@ -36,14 +36,10 @@ class PostsContainer extends Component {
 
   render() {
     const { loading, posts } = this.state;
-    const { isActive, match } = this.props;
+    const { match } = this.props;
 
     return (
-      <div
-        className={`posts-container${
-          isActive ? " posts-container--active" : ""
-        }`}
-      >
+      <div className={"posts-container"}>
         {loading && <div>Loading</div>}
         {!loading && (
           <List
@@ -56,6 +52,14 @@ class PostsContainer extends Component {
         )}
       </div>
     );
+  }
+
+  componentDidUpdate(prevProps) {
+    const { subject } = this.props;
+
+    if (prevProps.subject !== subject) {
+      this.getPosts({ subject_id: subject });
+    }
   }
 }
 
