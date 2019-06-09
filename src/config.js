@@ -1,6 +1,5 @@
-const config = {};
-
-config.domain =
-  process.env.API_URL || `http://${window.location.hostname}:3000`;
+const config = {
+  domain: process.env.REACT_APP_BODHICENTRAL_API_URL
+};
 
 export default config;
