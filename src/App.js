@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(process.env);
     if (this.state.loading) {
       return <div>Loading</div>;
     }
