@@ -1,10 +1,10 @@
 import * as Constants from "../constantsSrvc";
-import axios from "axios";
+import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 
 const practiceResource = {
   url: Constants.API_V1 + "/practice",
   getPractices({ postId, subjects }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "get",
       url: this.url,
       params: {
@@ -14,21 +14,21 @@ const practiceResource = {
     });
   },
   addPractice({ data }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "post",
       url: this.url,
       data
     });
   },
   editPractice({ practiceId, data }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "put",
       url: `${this.url}/${practiceId}`,
       data
     });
   },
   deletePractice({ practiceId }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "delete",
       url: `${this.url}/${practiceId}`
     });

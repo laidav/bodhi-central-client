@@ -1,37 +1,37 @@
 import * as Constants from "../constantsSrvc";
-import axios from "axios";
+import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 
 const postResource = {
   url: Constants.API_V1 + "/post",
   getPosts(params) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "get",
       url: this.url,
       params: params
     });
   },
   getSinglePost(postId) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "get",
       url: `${this.url}/${postId}`
     });
   },
   addPost({ data }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "post",
       url: this.url,
       data
     });
   },
   editPost({ postId, data }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "put",
       url: `${this.url}/${postId}`,
       data
     });
   },
   deletePost({ postId }) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "delete",
       url: `${this.url}/${postId}`
     });

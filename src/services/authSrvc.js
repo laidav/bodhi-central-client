@@ -1,5 +1,5 @@
 import authResource from "./resources/authResource";
-import axios from "axios";
+import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 
 const authSrvc = {
   isAuthenticated: false,
@@ -8,7 +8,7 @@ const authSrvc = {
       authResource.getToken(email, password).then(
         response => {
           this.isAuthenticated = true;
-          axios.defaults.headers.common["Authorization"] =
+          bodhiCentralApiSrvc.defaults.headers.common["Authorization"] =
             "Basic " + btoa(response.data.token + ":");
           localStorage.setItem("bl_token", response.data.token);
           resolve(response);
@@ -32,7 +32,7 @@ const authSrvc = {
       if (token) {
         authResource.verifyToken(token).then(
           () => {
-            axios.defaults.headers.common["Authorization"] =
+            bodhiCentralApiSrvc.defaults.headers.common["Authorization"] =
               "Basic " + btoa(token + ":");
             ctx.isAuthenticated = true;
             resolve(token);

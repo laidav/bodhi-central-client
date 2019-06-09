@@ -1,16 +1,16 @@
 import * as Constants from "../constantsSrvc";
-import axios from "axios";
+import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 
 const authResource = {
   getToken(username, password) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "get",
       url: Constants.API_V1 + "/token",
       auth: { username, password }
     });
   },
   verifyToken(token) {
-    return axios({
+    return bodhiCentralApiSrvc({
       method: "get",
       url: Constants.API_V1 + "/verify-token",
       auth: { username: token }
