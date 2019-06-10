@@ -34,8 +34,9 @@ const authSrvc = {
           ({ data }) => {
             bodhiCentralApiSrvc.defaults.headers.common["Authorization"] =
               "Basic " + btoa(token + ":");
-            ctx.isAuthenticated = true;
+
             if (data.error && data.error === 200) {
+              ctx.isAuthenticated = true;
               resolve(token);
             } else {
               //in prod a bad token still returns an HTTP 200 so have to check response
