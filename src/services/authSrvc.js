@@ -31,11 +31,16 @@ const authSrvc = {
     const promise = new Promise((resolve, reject) => {
       if (token) {
         authResource.verifyToken(token).then(
-          () => {
+          ({ data }) => {
             bodhiCentralApiSrvc.defaults.headers.common["Authorization"] =
               "Basic " + btoa(token + ":");
             ctx.isAuthenticated = true;
-            resolve(token);
+            if (data.error && data.error === 200) {
+              resolve(token);
+            } else {
+              //in prod a bad token still returns an HTTP 200 so have to check response
+              reject();
+            }
           },
           error => {
             reject(error);
