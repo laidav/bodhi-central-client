@@ -8,8 +8,12 @@
   width: 100%;
   background: $light-bg;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+
+  @include sm-screen {
+    align-items: center;
+  }
 
   &__dialog {
     background-color: $white;

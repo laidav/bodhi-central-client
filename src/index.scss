@@ -101,6 +101,11 @@ ul {
   &__Content {
     &--after-open {
       max-height: 70%;
+      width: 90% !important;
+
+      @include sm-screen {
+        width: 70% !important;
+      }
 
       @include lg-screen {
         max-height: none;

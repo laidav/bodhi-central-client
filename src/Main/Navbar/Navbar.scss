@@ -8,14 +8,19 @@
 
   &__logo {
     font-family: $poppins-semi-bold;
-    font-size: 27px;
     color: $primary-clr;
     text-decoration: none;
+    font-size: $small;
+
+    @include md-screen {
+      font-size: $large;
+    }
   }
 
   ul {
     display: flex;
-    width: 33%;
+    justify-content: flex-end;
+    width: 50%;
     margin-left: auto;
   }
 

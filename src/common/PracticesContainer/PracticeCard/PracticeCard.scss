@@ -68,11 +68,14 @@ $icon-size: 36px;
   }
 
   &__edit {
-    visibility: hidden;
     font-size: $small;
     margin-left: auto;
-    opacity: 0;
     transition: $fade;
+
+    @include md-screen {
+      visibility: hidden;
+      opacity: 0;
+    }
   }
 
   &__footer {
