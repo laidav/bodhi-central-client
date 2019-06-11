@@ -264,6 +264,7 @@ class PracticeFormModal extends Component {
               <button
                 className={"btn btn-secondary"}
                 onClick={hidePracticeForm}
+                type={"button"}
               >
                 Cancel
               </button>
