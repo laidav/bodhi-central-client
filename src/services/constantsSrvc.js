@@ -57,3 +57,7 @@ export const subjectsList = [
   { id: 10, first_child_id: 8, right_sibling_id: 9, name: "Ethics" },
   { id: 11, first_child_id: 4, right_sibling_id: 10, name: "Wisdom" }
 ];
+
+export const actionConstants = {
+  TOGGLE_SUBJECT_FILTER: "TOGGLE_SUBJECT_FILTER"
+};
