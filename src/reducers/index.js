@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import practiceExplorerSubjectFilters from "./practiceExplorerSubjectFilters";
+import practiceExplorerCheckedSubjects from "./practiceExplorerCheckedSubjects";
 
 const rootReducer = combineReducers({
-  practiceExplorerSubjectFilters
+  practiceExplorerCheckedSubjects
 });
 
 export default rootReducer;

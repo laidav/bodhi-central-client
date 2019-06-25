@@ -8,7 +8,7 @@ import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import "./PracticeExplorer.scss";
 
 const mapStateToProps = state => ({
-  checkedSubjects: state.practiceExplorerSubjectFilters
+  checkedSubjects: state.practiceExplorerCheckedSubjects
 });
 
 const mapDispatchToProps = dispatch => ({
