@@ -34,3 +34,14 @@ export const checkedIdsFromSubjectMap = subjectMap => {
     .filter(([subjectId, checked]) => checked)
     .map(item => item[0]);
 };
+
+export const arrayUnion = (arr1, arr2) => {
+  const result = arr1.concat(arr2);
+
+  for (let i = 0; i < result.length; ++i) {
+    for (let j = i + 1; j < result.length; ++j) {
+      if (result[i] === result[j]) result.splice(j--, 1);
+    }
+  }
+  return result;
+};
