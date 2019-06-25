@@ -28,3 +28,9 @@ export const getYoutubeEmbedUrl = url => {
 
   return "//www.youtube.com/embed/" + getId(url);
 };
+
+export const checkedIdsFromSubjectMap = subjectMap => {
+  return Array.from(subjectMap)
+    .filter(([subjectId, checked]) => checked)
+    .map(item => item[0]);
+};

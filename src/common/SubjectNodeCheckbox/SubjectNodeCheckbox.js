@@ -9,6 +9,11 @@ class SubjectNodeCheckbox extends Component {
     return !compareMaps(this.props.checkedSubjects, nextProps.checkedSubjects);
   }
 
+  handleOnChange = () => {
+    const { handleSubjectChange, data: subjectNode } = this.props;
+    handleSubjectChange(subjectNode);
+  };
+
   render() {
     const {
       data: subjectNode,
@@ -25,7 +30,7 @@ class SubjectNodeCheckbox extends Component {
         <label className={"checkbox"}>
           <input
             type="checkbox"
-            onChange={handleSubjectChange}
+            onChange={this.handleOnChange}
             checked={checkedSubjects.get(subjectNode.id)}
             name={subjectNode.id}
           />

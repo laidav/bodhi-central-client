@@ -1,6 +1,6 @@
-import { actionConstants } from "/services/constantsSrvc";
+import { actionConstants } from "services/constantsSrvc";
 
-const toggleSubjectFilter = subjectId => ({
+export const toggleSubjectFilter = subject => ({
   type: actionConstants.TOGGLE_SUBJECT_FILTER,
-  subjectId
+  subject
 });
