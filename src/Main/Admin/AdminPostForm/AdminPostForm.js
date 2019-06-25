@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import postResource from "services/resources/postResource";
-import { subjects as staticSubjects } from "services/constantsSrvc";
+import {
+  subjects as staticSubjects,
+  actionConstants
+} from "services/constantsSrvc";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import { NavLink, Redirect } from "react-router-dom";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
+import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
 import "./AdminPostForm.scss";
 
 class AdminPostForm extends Component {
@@ -66,15 +70,17 @@ class AdminPostForm extends Component {
     });
   };
 
-  handleSubjectChange = e => {
-    const { name, checked } = e.target;
-
-    this.setState(prevState => {
-      const checkedSubjects = new Map(prevState.checkedSubjects);
-      checkedSubjects.set(parseInt(name), checked);
-
-      return { checkedSubjects };
-    });
+  handleSubjectChange = subject => {
+    const action = { type: actionConstants.TOGGLE_SUBJECT_FILTER, subject };
+    const reducer = prevState => {
+      return {
+        checkedSubjects: checkedSubjectsReducer(
+          prevState.checkedSubjects,
+          action
+        )
+      };
+    };
+    this.setState(reducer);
   };
 
   handleSubmit = e => {
