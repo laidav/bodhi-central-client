@@ -30,9 +30,7 @@ class PracticesContainer extends Component {
     }
 
     if (checkedSubjects) {
-      params.subjects = Array.from(checkedSubjects)
-        .filter(([subjectId, checked]) => checked)
-        .map(item => item[0]);
+      params.subjects = checkedIdsFromSubjectMap(checkedSubjects);
     }
 
     this.getPractices(params);
@@ -79,9 +77,7 @@ class PracticesContainer extends Component {
       checkedSubjects &&
       !compareMaps(checkedSubjects, prevProps.checkedSubjects)
     ) {
-      const subjects = Array.from(checkedSubjects)
-        .filter(([subjectId, checked]) => checked)
-        .map(item => item[0]);
+      const subjects = checkedIdsFromSubjectMap(checkedSubjects);
 
       this.getPractices({ subjects });
     }
