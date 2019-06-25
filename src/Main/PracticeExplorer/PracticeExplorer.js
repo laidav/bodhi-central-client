@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubjectChange: subjectId => dispatch(toggleSubjectFilter(subjectId))
+  handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject))
 });
 
 const PracticeExplorer = ({ checkedSubjects, handleSubjectChange, match }) => {
