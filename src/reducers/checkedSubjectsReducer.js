@@ -9,7 +9,7 @@ for (let key in staticSubjects) {
   initialState.set(staticSubjects[key], false);
 }
 
-const practiceExplorerCheckedSubjects = (state = initialState, action) => {
+const checkedSubjectsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionConstants.TOGGLE_SUBJECT_FILTER:
       const newState = new Map(state);
@@ -23,4 +23,4 @@ const practiceExplorerCheckedSubjects = (state = initialState, action) => {
   }
 };
 
-export default practiceExplorerCheckedSubjects;
+export default checkedSubjectsReducer;

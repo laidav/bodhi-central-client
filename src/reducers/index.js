@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import practiceExplorerCheckedSubjects from "./practiceExplorerCheckedSubjects";
+import checkedSubjectsReducer from "./checkedSubjectsReducer";
 
 const rootReducer = combineReducers({
-  practiceExplorerCheckedSubjects
+  practiceExplorerCheckedSubjects: checkedSubjectsReducer
 });
 
 export default rootReducer;

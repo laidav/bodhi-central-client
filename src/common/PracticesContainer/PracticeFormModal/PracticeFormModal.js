@@ -4,9 +4,13 @@ import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox"
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
-import { subjects as staticSubjects } from "services/constantsSrvc";
+import {
+  subjects as staticSubjects,
+  actionConstants
+} from "services/constantsSrvc";
 import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
+import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
 
 class PracticeFormModal extends Component {
   state = this.initState();
@@ -42,15 +46,17 @@ class PracticeFormModal extends Component {
     });
   };
 
-  handleSubjectChange = e => {
-    const { name, checked } = e.target;
-
-    this.setState(prevState => {
-      const checkedSubjects = new Map(prevState.checkedSubjects);
-      checkedSubjects.set(parseInt(name), checked);
-
-      return { checkedSubjects };
-    });
+  handleSubjectChange = subject => {
+    const action = { type: actionConstants.TOGGLE_SUBJECT_FILTER, subject };
+    const reducer = prevState => {
+      return {
+        checkedSubjects: checkedSubjectsReducer(
+          prevState.checkedSubjects,
+          action
+        )
+      };
+    };
+    this.setState(reducer);
   };
 
   handleSubmit = e => {
