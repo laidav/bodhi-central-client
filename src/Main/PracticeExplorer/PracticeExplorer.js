@@ -1,23 +1,53 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleSubjectFilter } from "actions";
+import { toggleSubjectFilter, getExplorerPractices } from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
+import { compareMaps } from "services/helpersSrvc";
 
 import "./PracticeExplorer.scss";
 
 const mapStateToProps = state => ({
-  checkedSubjects: state.practiceExplorerCheckedSubjects
+  checkedSubjects: state.practiceExplorerCheckedSubjects,
+  pagination: state.pagination.practiceExplorer
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject))
+  handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject)),
+  getExplorerPractices: getExplorerPractices,
+  dispatch
 });
 
 class PracticeExplorer extends Component {
+  componentWillMount() {
+    this.getPractices(this.props.checkedSubjects);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { checkedSubjects } = this.props;
+
+    if (
+      checkedSubjects &&
+      !compareMaps(checkedSubjects, prevProps.checkedSubjects)
+    ) {
+      console.log("fire again");
+    }
+  }
+
+  getPractices = subjects => {
+    const { dispatch, getExplorerPractices, checkedSubjects } = this.props;
+    dispatch(getExplorerPractices(checkedSubjects));
+  };
+
   render() {
-    const { checkedSubjects, handleSubjectChange, match } = this.props;
+    const {
+      checkedSubjects,
+      handleSubjectChange,
+      match,
+      pagination
+    } = this.props;
+
     return (
       <div className={"practice-explorer"}>
         <div className={"practice-explorer__side-bar"}>
@@ -34,7 +64,11 @@ class PracticeExplorer extends Component {
           </div>
         </div>
         <div className={"practice-explorer__content"}>
-          <PracticesContainer match={match} checkedSubjects={checkedSubjects} />
+          <PracticesContainer
+            match={match}
+            checkedSubjects={checkedSubjects}
+            pagination={pagination}
+          />
         </div>
       </div>
     );
