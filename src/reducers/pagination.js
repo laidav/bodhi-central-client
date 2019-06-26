@@ -9,7 +9,7 @@ const paginate = ({ types }) => {
     isFetching: false,
     has_next: undefined,
     page: 0,
-    practice_ids: []
+    ids: []
   };
 
   return (state = initialState, action) => {
@@ -24,7 +24,7 @@ const paginate = ({ types }) => {
           isFetching: false,
           has_next: action.has_next,
           page: state.page + 1,
-          practice_ids: arrayUnion(state.practice_ids, action.practice_ids)
+          ids: arrayUnion(state.ids, action.ids)
         };
       case failureType:
         return {

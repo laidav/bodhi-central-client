@@ -20,7 +20,7 @@ export const getExplorerPractices = checkedSubjects => {
           type: actionConstants.PRACTICE_EXPLORER_SUCCESS,
           practices: response.data.practices,
           has_next: response.data.has_next,
-          practice_ids: response.data.practices.map(practice => practice.id)
+          ids: response.data.practices.map(practice => practice.id)
         });
       });
   };

@@ -49,7 +49,8 @@ class PracticesContainer extends Component {
     const { showPracticeForm, selectedPractice } = this.state;
     const { postFromSinglePost, match, pagination, allPractices } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
-    const practices = pagination.practice_ids.map(
+
+    const practices = pagination.ids.map(
       practiceId => allPractices[practiceId]
     );
 
