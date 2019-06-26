@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { toggleSubjectFilter } from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
@@ -15,26 +15,31 @@ const mapDispatchToProps = dispatch => ({
   handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject))
 });
 
-const PracticeExplorer = ({ checkedSubjects, handleSubjectChange, match }) => {
-  return (
-    <div className={"practice-explorer"}>
-      <div className={"practice-explorer__side-bar"}>
-        <h1 className={"practice-explorer__title page-title"}>Your practice</h1>
-        <div className={"practice-explorer__filters control-group border"}>
-          <label className={"sub-heading"}>Subjects</label>
-          <SubjectNodeCheckbox
-            data={subjectTreeSrvc.root}
-            checkedSubjects={checkedSubjects}
-            handleSubjectChange={handleSubjectChange}
-          />
+class PracticeExplorer extends Component {
+  render() {
+    const { checkedSubjects, handleSubjectChange, match } = this.props;
+    return (
+      <div className={"practice-explorer"}>
+        <div className={"practice-explorer__side-bar"}>
+          <h1 className={"practice-explorer__title page-title"}>
+            Your practice
+          </h1>
+          <div className={"practice-explorer__filters control-group border"}>
+            <label className={"sub-heading"}>Subjects</label>
+            <SubjectNodeCheckbox
+              data={subjectTreeSrvc.root}
+              checkedSubjects={checkedSubjects}
+              handleSubjectChange={handleSubjectChange}
+            />
+          </div>
+        </div>
+        <div className={"practice-explorer__content"}>
+          <PracticesContainer match={match} checkedSubjects={checkedSubjects} />
         </div>
       </div>
-      <div className={"practice-explorer__content"}>
-        <PracticesContainer match={match} checkedSubjects={checkedSubjects} />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default connect(
   mapStateToProps,
