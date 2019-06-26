@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./PracticesContainer.scss";
 import List from "common/List/List";
 import Modal from "react-modal";
@@ -10,6 +11,11 @@ import { Switch, Route } from "react-router-dom";
 
 Modal.defaultStyles.overlay.backgroundColor = reactModal.overlayBg;
 Modal.setAppElement("#root");
+
+const mapStateToProps = state => ({
+  allPractices: state.entities.practices,
+  pagination: state.pagination.practiceExplorer
+});
 
 class PracticesContainer extends Component {
   state = {
@@ -41,8 +47,12 @@ class PracticesContainer extends Component {
     }
 
     const { showPracticeForm, selectedPractice } = this.state;
-    const { postFromSinglePost, match, pagination } = this.props;
+    const { postFromSinglePost, match, pagination, allPractices } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
+    const practices = pagination.practice_ids.map(
+      practiceId => allPractices[practiceId]
+    );
+
     const onPracticeExplorer = match && match.path === "/practices";
     const modalStyles = {
       content: {
@@ -80,7 +90,7 @@ class PracticesContainer extends Component {
             onClick={handleAddPracticeClick}
           />
         </div>
-        {pagination.practice_ids.length > 0 && (
+        {practices.length > 0 && (
           <div className={"practices-container__content"}>
             <div className={"practices-container__content-inner"}>
               <div className={"transition-border"} />
@@ -93,7 +103,7 @@ class PracticesContainer extends Component {
                 }`}
                 component={PracticeCard}
                 uniqueKey="id"
-                list={pagination.practice_ids}
+                list={practices}
                 listItemProps={{ openPracticeForm }}
               />
             </div>
@@ -116,4 +126,4 @@ class PracticesContainer extends Component {
   }
 }
 
-export default PracticesContainer;
+export default connect(mapStateToProps)(PracticesContainer);
