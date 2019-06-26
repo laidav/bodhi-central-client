@@ -9,8 +9,7 @@ export const toggleSubjectFilter = subject => ({
 export const getExplorerPractices = subjects => {
   return dispatch => {
     dispatch({
-      type: actionConstants.PRACTICE_EXPLORER_REQUEST,
-      subjects
+      type: actionConstants.PRACTICE_EXPLORER_REQUEST
     });
 
     return practiceResource.getPractices({ subjects }).then(response => {
