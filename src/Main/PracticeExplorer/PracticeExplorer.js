@@ -50,12 +50,7 @@ class PracticeExplorer extends Component {
   };
 
   render() {
-    const {
-      checkedSubjects,
-      handleSubjectChange,
-      match,
-      pagination
-    } = this.props;
+    const { checkedSubjects, handleSubjectChange, match } = this.props;
 
     const { getPractices } = this;
 
@@ -79,7 +74,6 @@ class PracticeExplorer extends Component {
             match={match}
             checkedSubjects={checkedSubjects}
             getPractices={getPractices}
-            pagination={pagination}
           />
         </div>
       </div>

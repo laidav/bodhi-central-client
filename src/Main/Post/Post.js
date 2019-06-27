@@ -16,7 +16,7 @@ const paginatePracticesReducer = paginateReducer({
   types: {
     requestType: actionConstants.PRACTICE_REQUEST,
     refreshRequestType: actionConstants.PRACTICE_REFRESH_REQUEST,
-    successType: actionConstants.PRACTICE_SUCCESS,
+    successType: actionConstants.POST_PRACTICE_SUCCESS,
     failureType: actionConstants.PRACTICE_FAILURE
   }
 });
@@ -71,13 +71,16 @@ class Post extends Component {
           ...prevState,
           practicesMap: practicesReducer(
             prevState.practicesMap,
-            practiceSuccessResponse(actionConstants.PRACTICE_SUCCESS, response)
+            practiceSuccessResponse(
+              actionConstants.POST_PRACTICE_SUCCESS,
+              response
+            )
           ),
           pagination: {
             practices: paginatePracticesReducer(
               prevState.pagination.practices,
               practiceSuccessResponse(
-                actionConstants.PRACTICE_SUCCESS,
+                actionConstants.POST_PRACTICE_SUCCESS,
                 response
               )
             )
@@ -93,8 +96,6 @@ class Post extends Component {
     const practices = practicesPagination.ids.map(
       practiceId => practicesMap[practiceId]
     );
-
-    console.log(practices);
 
     const { getPractices } = this;
 

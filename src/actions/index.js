@@ -14,20 +14,16 @@ export const practiceSuccessResponse = (actionType, response) => ({
   ids: response.data.practices.map(practice => practice.id)
 });
 
-const fetchPractices = (checkedSubjects, page, dispatch) => {
-  return practiceResource
-    .getPractices({
-      subjects: checkedIdsFromSubjectMap(checkedSubjects),
-      page
-    })
-    .then(response => {
-      dispatch(
-        practiceSuccessResponse(
-          actionConstants.PRACTICE_EXPLORER_SUCCESS,
-          response
-        )
-      );
-    });
+const fetchPractices = (checkedSubjects, page, dispatch, actionType) => {
+  const params = { page };
+
+  if (checkedSubjects) {
+    params.subjects = checkedIdsFromSubjectMap(checkedSubjects);
+  }
+
+  return practiceResource.getPractices(params).then(response => {
+    dispatch(practiceSuccessResponse(actionType, response));
+  });
 };
 
 export const getExplorerPractices = (checkedSubjects, page) => {
@@ -36,7 +32,12 @@ export const getExplorerPractices = (checkedSubjects, page) => {
       type: actionConstants.PRACTICE_EXPLORER_REQUEST
     });
 
-    return fetchPractices(checkedSubjects, page, dispatch);
+    return fetchPractices(
+      checkedSubjects,
+      page,
+      dispatch,
+      actionConstants.PRACTICE_EXPLORER_SUCCESS
+    );
   };
 };
 
@@ -46,6 +47,26 @@ export const refreshExplorerPractices = checkedSubjects => {
       type: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST
     });
 
-    return fetchPractices(checkedSubjects, 1, dispatch);
+    return fetchPractices(
+      checkedSubjects,
+      1,
+      dispatch,
+      actionConstants.PRACTICE_EXPLORER_SUCCESS
+    );
+  };
+};
+
+export const getPostsPractices = page => {
+  return dispatch => {
+    dispatch({
+      type: actionConstants.POSTS_PRACTICE_REQUEST
+    });
+
+    return fetchPractices(
+      undefined,
+      page,
+      dispatch,
+      actionConstants.POSTS_PRACTICE_SUCCESS
+    );
   };
 };

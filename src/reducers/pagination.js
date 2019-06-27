@@ -50,6 +50,14 @@ const pagination = combineReducers({
       successType: actionConstants.PRACTICE_EXPLORER_SUCCESS,
       failureType: actionConstants.PRACTICE_EXPLORER_FAILURE
     }
+  }),
+  postsPractices: paginateReducer({
+    types: {
+      requestType: actionConstants.POSTS_PRACTICE_REQUEST,
+      refreshRequestType: actionConstants.POSTS_PRACTICE_REFRESH_REQUEST,
+      successType: actionConstants.POSTS_PRACTICE_SUCCESS,
+      failureType: actionConstants.POSTS_PRACTICE_FAILURE
+    }
   })
 });
 
