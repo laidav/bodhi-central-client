@@ -144,6 +144,7 @@ class Post extends Component {
             pagination={practicesPagination}
             practices={practices}
             getPractices={getPractices}
+            postFromSinglePost={post}
           />
         </div>
       </div>
