@@ -52,7 +52,7 @@ class Posts extends Component {
       this.setState(prevState => ({
         ...prevState,
         practicesMap: practicesReducer(
-          prevState.practices,
+          prevState.practicesMap,
           practiceSuccessResponse(
             Constants.actionConstants.PRACTICE_SUCCESS,
             response
