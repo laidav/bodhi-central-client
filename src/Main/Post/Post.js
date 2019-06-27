@@ -1,17 +1,39 @@
 import React, { Component } from "react";
 import "./Post.scss";
 import postResource from "services/resources/postResource";
+import practiceResource from "services/resources/practiceResource";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import List from "common/List/List";
 import SubjectTag from "common/SubjectTag/SubjectTag";
 import moment from "moment";
-import { dateFormats } from "services/constantsSrvc";
+import { dateFormats, actionConstants } from "services/constantsSrvc";
 import { getYoutubeEmbedUrl } from "services/helpersSrvc";
+import { paginateReducer } from "reducers/pagination";
+import { practicesReducer } from "reducers/entities";
+import { practiceSuccessResponse } from "actions";
+
+const paginatePracticesReducer = paginateReducer({
+  types: {
+    requestType: actionConstants.PRACTICE_REQUEST,
+    refreshRequestType: actionConstants.PRACTICE_REFRESH_REQUEST,
+    successType: actionConstants.PRACTICE_SUCCESS,
+    failureType: actionConstants.PRACTICE_FAILURE
+  }
+});
 
 class Post extends Component {
   state = {
     post: null,
-    loading: true
+    loading: true,
+    practicesMap: {},
+    pagination: {
+      practices: {
+        isFetching: false,
+        has_next: undefined,
+        page: 1,
+        ids: []
+      }
+    }
   };
 
   componentWillMount() {
@@ -26,10 +48,55 @@ class Post extends Component {
         this.setState({ loading: false });
       }
     );
+
+    this.getPractices();
   }
 
+  getPractices = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      pagination: {
+        practices: practicesReducer(prevState.pagination.practices, {
+          type: actionConstants.PRACTICE_REQUEST
+        })
+      }
+    }));
+
+    const { page } = this.state.pagination.practices;
+
+    practiceResource
+      .getPractices({ page, postId: this.props.match.params.id })
+      .then(response => {
+        this.setState(prevState => ({
+          ...prevState,
+          practicesMap: practicesReducer(
+            prevState.practicesMap,
+            practiceSuccessResponse(actionConstants.PRACTICE_SUCCESS, response)
+          ),
+          pagination: {
+            practices: paginatePracticesReducer(
+              prevState.pagination.practices,
+              practiceSuccessResponse(
+                actionConstants.PRACTICE_SUCCESS,
+                response
+              )
+            )
+          }
+        }));
+      });
+  };
+
   render() {
-    const { post, loading } = this.state;
+    const { post, loading, pagination, practicesMap } = this.state;
+    const practicesPagination = pagination.practices;
+
+    const practices = practicesPagination.ids.map(
+      practiceId => practicesMap[practiceId]
+    );
+
+    console.log(practices);
+
+    const { getPractices } = this;
 
     if (loading) {
       return <div>loading</div>;
@@ -72,7 +139,11 @@ class Post extends Component {
           </div>
         </div>
         <div className={"post__side-bar"}>
-          {post && <PracticesContainer postFromSinglePost={post} />}
+          <PracticesContainer
+            pagination={practicesPagination}
+            practices={practices}
+            getPractices={getPractices}
+          />
         </div>
       </div>
     );
