@@ -44,15 +44,11 @@ class PracticesContainer extends Component {
     const {
       postFromSinglePost,
       match,
-      pagination,
-      allPractices,
-      getPractices
+      practices,
+      getPractices,
+      pagination
     } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
-
-    const practices = pagination.ids.map(
-      practiceId => allPractices[practiceId]
-    );
 
     const onPracticeExplorer = match && match.path === "/practices";
     const modalStyles = {
