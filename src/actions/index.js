@@ -33,7 +33,7 @@ export const getExplorerPractices = (checkedSubjects, page) => {
   };
 };
 
-export const getRefreshExplorerPractices = checkedSubjects => {
+export const refreshExplorerPractices = checkedSubjects => {
   return dispatch => {
     dispatch({
       type: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST

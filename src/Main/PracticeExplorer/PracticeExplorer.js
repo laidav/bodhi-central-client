@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   toggleSubjectFilter,
   getExplorerPractices,
-  getRefreshExplorerPractices
+  refreshExplorerPractices
 } from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
@@ -21,8 +21,8 @@ const mapDispatchToProps = dispatch => ({
   handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject)),
   getExplorerPractices: (checkedSubjects, page) =>
     dispatch(getExplorerPractices(checkedSubjects, page)),
-  getRefreshExplorerPractices: checkedSubjects =>
-    dispatch(getRefreshExplorerPractices(checkedSubjects))
+  refreshExplorerPractices: checkedSubjects =>
+    dispatch(refreshExplorerPractices(checkedSubjects))
 });
 
 class PracticeExplorer extends Component {
@@ -33,13 +33,13 @@ class PracticeExplorer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { checkedSubjects, getRefreshExplorerPractices } = this.props;
+    const { checkedSubjects, refreshExplorerPractices } = this.props;
 
     if (
       checkedSubjects &&
       !compareMaps(checkedSubjects, prevProps.checkedSubjects)
     ) {
-      getRefreshExplorerPractices(checkedSubjects);
+      refreshExplorerPractices(checkedSubjects);
     }
   }
 
