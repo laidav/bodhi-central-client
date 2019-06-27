@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { actionConstants } from "services/constantsSrvc";
 import { arrayUnion } from "services/helpersSrvc";
 
-const paginate = ({ types }) => {
+export const paginateReducer = ({ types }) => {
   const { requestType, refreshRequestType, successType, failureType } = types;
 
   const initialState = {
@@ -43,7 +43,7 @@ const paginate = ({ types }) => {
 };
 
 const pagination = combineReducers({
-  practiceExplorer: paginate({
+  practiceExplorer: paginateReducer({
     types: {
       requestType: actionConstants.PRACTICE_EXPLORER_REQUEST,
       refreshRequestType: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST,

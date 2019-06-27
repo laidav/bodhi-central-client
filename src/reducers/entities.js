@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 import { actionConstants } from "services/constantsSrvc";
 
-const practices = (state = {}, action) => {
+export const practicesReducer = (state = {}, action) => {
   switch (action.type) {
+    case actionConstants.PRACTICE_SUCCESS:
     case actionConstants.PRACTICE_EXPLORER_SUCCESS:
       const practiceMap = {};
       action.practices.forEach(practice => {
@@ -16,7 +17,7 @@ const practices = (state = {}, action) => {
 };
 
 const entities = combineReducers({
-  practices
+  practices: practicesReducer
 });
 
 export default entities;

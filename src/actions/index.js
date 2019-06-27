@@ -7,6 +7,13 @@ export const toggleSubjectFilter = subject => ({
   subject
 });
 
+export const practiceSuccessResponse = (actionType, response) => ({
+  type: actionType,
+  practices: response.data.practices,
+  has_next: response.data.has_next,
+  ids: response.data.practices.map(practice => practice.id)
+});
+
 const fetchPractices = (checkedSubjects, page, dispatch) => {
   return practiceResource
     .getPractices({
@@ -14,12 +21,12 @@ const fetchPractices = (checkedSubjects, page, dispatch) => {
       page
     })
     .then(response => {
-      dispatch({
-        type: actionConstants.PRACTICE_EXPLORER_SUCCESS,
-        practices: response.data.practices,
-        has_next: response.data.has_next,
-        ids: response.data.practices.map(practice => practice.id)
-      });
+      dispatch(
+        practiceSuccessResponse(
+          actionConstants.PRACTICE_EXPLORER_SUCCESS,
+          response
+        )
+      );
     });
 };
 

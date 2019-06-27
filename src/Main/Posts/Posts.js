@@ -1,13 +1,74 @@
 import React, { Component } from "react";
 import "./Posts.scss";
+import practiceResource from "services/resources/practiceResource";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import PostsContainer from "./PostsContainer/PostsContainer";
 import SubjectTab from "./SubjectTab/SubjectTab";
 import * as Constants from "services/constantsSrvc";
+import { paginateReducer } from "reducers/pagination";
+import { practicesReducer } from "reducers/entities";
+import { practiceSuccessResponse } from "actions";
+
+const paginatePracticesReducer = paginateReducer({
+  types: {
+    requestType: Constants.actionConstants.PRACTICE_REQUEST,
+    refreshRequestType: Constants.actionConstants.PRACTICE_REFRESH_REQUEST,
+    successType: Constants.actionConstants.PRACTICE_SUCCESS,
+    failureType: Constants.actionConstants.PRACTICE_FAILURE
+  }
+});
 
 class Posts extends Component {
   state = {
-    activeSubjectTab: Constants.subjects.WISDOM
+    activeSubjectTab: Constants.subjects.WISDOM,
+    practicesMap: {},
+    pagination: {
+      practices: {
+        isFetching: false,
+        has_next: undefined,
+        page: 1,
+        ids: []
+      }
+    }
+  };
+
+  componentWillMount() {
+    this.getPractices();
+  }
+
+  getPractices = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      pagination: {
+        practices: practicesReducer(prevState.pagination.practices, {
+          type: Constants.actionConstants.PRACTICE_REQUEST
+        })
+      }
+    }));
+
+    const { page } = this.state.pagination.practices;
+
+    practiceResource.getPractices({ page }).then(response => {
+      this.setState(prevState => ({
+        ...prevState,
+        practicesMap: practicesReducer(
+          prevState.practices,
+          practiceSuccessResponse(
+            Constants.actionConstants.PRACTICE_SUCCESS,
+            response
+          )
+        ),
+        pagination: {
+          practices: paginatePracticesReducer(
+            prevState.pagination.practices,
+            practiceSuccessResponse(
+              Constants.actionConstants.PRACTICE_SUCCESS,
+              response
+            )
+          )
+        }
+      }));
+    });
   };
 
   selectSubject = subject => {
@@ -15,8 +76,14 @@ class Posts extends Component {
   };
 
   render() {
-    const { activeSubjectTab } = this.state;
+    const { activeSubjectTab, pagination, practicesMap } = this.state;
+    const practicesPagination = pagination.practices;
     const { match } = this.props;
+    const practices = practicesPagination.ids.map(
+      practiceId => practicesMap[practiceId]
+    );
+
+    const { getPractices } = this;
 
     return (
       <div className={"posts"}>
@@ -49,7 +116,11 @@ class Posts extends Component {
           </div>
         </div>
         <div className={"posts__side-bar"}>
-          <PracticesContainer />
+          <PracticesContainer
+            pagination={practicesPagination}
+            practices={practices}
+            getPractices={getPractices}
+          />
         </div>
       </div>
     );
