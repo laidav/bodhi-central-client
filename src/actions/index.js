@@ -7,14 +7,17 @@ export const toggleSubjectFilter = subject => ({
   subject
 });
 
-export const getExplorerPractices = checkedSubjects => {
+export const getExplorerPractices = (checkedSubjects, page) => {
   return dispatch => {
     dispatch({
       type: actionConstants.PRACTICE_EXPLORER_REQUEST
     });
 
     return practiceResource
-      .getPractices({ subjects: checkedIdsFromSubjectMap(checkedSubjects) })
+      .getPractices({
+        subjects: checkedIdsFromSubjectMap(checkedSubjects),
+        page
+      })
       .then(response => {
         dispatch({
           type: actionConstants.PRACTICE_EXPLORER_SUCCESS,

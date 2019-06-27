@@ -8,7 +8,7 @@ const paginate = ({ types }) => {
   const initialState = {
     isFetching: false,
     has_next: undefined,
-    page: 0,
+    page: 1,
     ids: []
   };
 

@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 
 class PracticeExplorer extends Component {
   componentWillMount() {
-    this.getPractices(this.props.checkedSubjects);
+    this.getPractices();
   }
 
   componentDidUpdate(prevProps) {
@@ -35,9 +35,16 @@ class PracticeExplorer extends Component {
     }
   }
 
-  getPractices = subjects => {
-    const { dispatch, getExplorerPractices, checkedSubjects } = this.props;
-    dispatch(getExplorerPractices(checkedSubjects));
+  getPractices = () => {
+    const {
+      dispatch,
+      getExplorerPractices,
+      checkedSubjects,
+      pagination
+    } = this.props;
+
+    console.log(pagination, "in Component");
+    dispatch(getExplorerPractices(checkedSubjects, pagination.page));
   };
 
   render() {
@@ -47,6 +54,8 @@ class PracticeExplorer extends Component {
       match,
       pagination
     } = this.props;
+
+    const { getPractices } = this;
 
     return (
       <div className={"practice-explorer"}>
@@ -67,6 +76,7 @@ class PracticeExplorer extends Component {
           <PracticesContainer
             match={match}
             checkedSubjects={checkedSubjects}
+            getPractices={getPractices}
             pagination={pagination}
           />
         </div>

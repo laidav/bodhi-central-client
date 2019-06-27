@@ -47,7 +47,13 @@ class PracticesContainer extends Component {
     }
 
     const { showPracticeForm, selectedPractice } = this.state;
-    const { postFromSinglePost, match, pagination, allPractices } = this.props;
+    const {
+      postFromSinglePost,
+      match,
+      pagination,
+      allPractices,
+      getPractices
+    } = this.props;
     const { openPracticeForm, hidePracticeForm, handleAddPracticeClick } = this;
 
     const practices = pagination.ids.map(
@@ -91,25 +97,26 @@ class PracticesContainer extends Component {
             onClick={handleAddPracticeClick}
           />
         </div>
-        {practices.length > 0 && (
-          <div className={"practices-container__content"}>
-            <div className={"practices-container__content-inner"}>
-              <div className={"transition-border"} />
-              <div className={"transition-border-hider"} />
-              <List
-                className={`practices-container__practice-cards ${
-                  onPracticeExplorer
-                    ? "practices-container__practice-cards--grid"
-                    : ""
-                }`}
-                component={PracticeCard}
-                uniqueKey="id"
-                list={practices}
-                listItemProps={{ openPracticeForm }}
-              />
-            </div>
+        <div className={"practices-container__content"}>
+          <div className={"practices-container__content-inner"}>
+            <div className={"transition-border"} />
+            <div className={"transition-border-hider"} />
+            <List
+              className={`practices-container__practice-cards ${
+                onPracticeExplorer
+                  ? "practices-container__practice-cards--grid"
+                  : ""
+              }`}
+              component={PracticeCard}
+              uniqueKey="id"
+              list={practices}
+              listItemProps={{ openPracticeForm }}
+            />
+            {pagination.has_next && (
+              <span onClick={getPractices}>Load More</span>
+            )}
           </div>
-        )}
+        </div>
         <Modal
           isOpen={showPracticeForm}
           onRequestClose={hidePracticeForm}
