@@ -7,7 +7,7 @@ import {
 } from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
-import PracticesContainer from "common/PracticesContainer/PracticesContainer";
+import ExplorerPracticesContainer from "./ExplorerPracticeContainer/ExplorerPracticeContainer";
 import { compareMaps } from "services/helpersSrvc";
 
 import "./PracticeExplorer.scss";
@@ -75,7 +75,7 @@ class PracticeExplorer extends Component {
           </div>
         </div>
         <div className={"practice-explorer__content"}>
-          <PracticesContainer
+          <ExplorerPracticesContainer
             match={match}
             checkedSubjects={checkedSubjects}
             getPractices={getPractices}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import "./PracticesContainer.scss";
 import List from "common/List/List";
 import Modal from "react-modal";
@@ -11,11 +10,6 @@ import { Switch, Route } from "react-router-dom";
 
 Modal.defaultStyles.overlay.backgroundColor = reactModal.overlayBg;
 Modal.setAppElement("#root");
-
-const mapStateToProps = state => ({
-  allPractices: state.entities.practices,
-  pagination: state.pagination.practiceExplorer
-});
 
 class PracticesContainer extends Component {
   state = {
@@ -134,4 +128,4 @@ class PracticesContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(PracticesContainer);
+export default PracticesContainer;
