@@ -21,7 +21,9 @@ const mapDispatchToProps = dispatch => ({
 
 class PracticeExplorer extends Component {
   componentWillMount() {
-    this.getPractices();
+    if (!this.props.pagination.ids.length) {
+      this.getPractices();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -43,7 +45,6 @@ class PracticeExplorer extends Component {
       pagination
     } = this.props;
 
-    console.log(pagination, "in Component");
     dispatch(getExplorerPractices(checkedSubjects, pagination.page));
   };
 

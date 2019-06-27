@@ -4,7 +4,6 @@ import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 const practiceResource = {
   url: Constants.API_V1 + "/practice",
   getPractices({ postId, subjects, page }) {
-    console.log(page, "in resource");
     return bodhiCentralApiSrvc({
       method: "get",
       url: this.url,
