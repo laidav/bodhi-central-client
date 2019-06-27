@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleSubjectFilter, getExplorerPractices } from "actions";
+import {
+  toggleSubjectFilter,
+  getExplorerPractices,
+  getRefreshExplorerPractices
+} from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
@@ -15,8 +19,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleSubjectChange: subject => dispatch(toggleSubjectFilter(subject)),
-  getExplorerPractices: getExplorerPractices,
-  dispatch
+  getExplorerPractices: (checkedSubjects, page) =>
+    dispatch(getExplorerPractices(checkedSubjects, page)),
+  getRefreshExplorerPractices: checkedSubjects =>
+    dispatch(getRefreshExplorerPractices(checkedSubjects))
 });
 
 class PracticeExplorer extends Component {
@@ -27,25 +33,20 @@ class PracticeExplorer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { checkedSubjects } = this.props;
+    const { checkedSubjects, getRefreshExplorerPractices } = this.props;
 
     if (
       checkedSubjects &&
       !compareMaps(checkedSubjects, prevProps.checkedSubjects)
     ) {
-      console.log("fire again");
+      getRefreshExplorerPractices(checkedSubjects);
     }
   }
 
   getPractices = () => {
-    const {
-      dispatch,
-      getExplorerPractices,
-      checkedSubjects,
-      pagination
-    } = this.props;
+    const { getExplorerPractices, checkedSubjects, pagination } = this.props;
 
-    dispatch(getExplorerPractices(checkedSubjects, pagination.page));
+    getExplorerPractices(checkedSubjects, pagination.page);
   };
 
   render() {

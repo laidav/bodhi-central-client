@@ -3,7 +3,7 @@ import { actionConstants } from "services/constantsSrvc";
 import { arrayUnion } from "services/helpersSrvc";
 
 const paginate = ({ types }) => {
-  const { requestType, successType, failureType } = types;
+  const { requestType, refreshRequestType, successType, failureType } = types;
 
   const initialState = {
     isFetching: false,
@@ -17,6 +17,11 @@ const paginate = ({ types }) => {
       case requestType:
         return {
           ...state,
+          isFetching: true
+        };
+      case refreshRequestType:
+        return {
+          ...initialState,
           isFetching: true
         };
       case successType:
@@ -41,6 +46,7 @@ const pagination = combineReducers({
   practiceExplorer: paginate({
     types: {
       requestType: actionConstants.PRACTICE_EXPLORER_REQUEST,
+      refreshRequestType: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST,
       successType: actionConstants.PRACTICE_EXPLORER_SUCCESS,
       failureType: actionConstants.PRACTICE_EXPLORER_FAILURE
     }
