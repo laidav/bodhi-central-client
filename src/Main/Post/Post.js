@@ -42,7 +42,7 @@ class Post extends Component {
       }
     );
 
-    if (!pagination[postId]) {
+    if (!pagination[postId] || !pagination[postId].ids.length) {
       this.getPractices();
     }
   }
