@@ -7,14 +7,17 @@ import {
 } from "actions";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
-import ExplorerPracticesContainer from "./ExplorerPracticeContainer/ExplorerPracticeContainer";
+import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import { compareMaps } from "services/helpersSrvc";
 
 import "./PracticeExplorer.scss";
 
 const mapStateToProps = state => ({
   checkedSubjects: state.practiceExplorerCheckedSubjects,
-  pagination: state.pagination.practiceExplorer
+  pagination: state.pagination.practiceExplorer,
+  practices: state.pagination.practiceExplorer.ids.map(
+    practiceId => state.entities.practices[practiceId]
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -50,7 +53,13 @@ class PracticeExplorer extends Component {
   };
 
   render() {
-    const { checkedSubjects, handleSubjectChange, match } = this.props;
+    const {
+      checkedSubjects,
+      handleSubjectChange,
+      match,
+      pagination,
+      practices
+    } = this.props;
 
     const { getPractices } = this;
 
@@ -70,10 +79,12 @@ class PracticeExplorer extends Component {
           </div>
         </div>
         <div className={"practice-explorer__content"}>
-          <ExplorerPracticesContainer
+          <PracticesContainer
             match={match}
             checkedSubjects={checkedSubjects}
             getPractices={getPractices}
+            pagination={pagination}
+            practices={practices}
           />
         </div>
       </div>
