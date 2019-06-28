@@ -42,6 +42,28 @@ export const paginateReducer = ({ types }) => {
   };
 };
 
+const singlePostPaginateReducer = paginateReducer({
+  types: {
+    requestType: actionConstants.POST_PRACTICE_REQUEST,
+    refreshRequestType: actionConstants.POST_PRACTICE_REFRESH_REQUEST,
+    successType: actionConstants.POST_PRACTICE_SUCCESS,
+    failureType: actionConstants.POST_PRACTICE_FAILURE
+  }
+});
+
+const singlePostPractices = (state = {}, action) => {
+  switch (action.type) {
+    case actionConstants.POST_PRACTICE_REQUEST:
+    case actionConstants.POST_PRACTICE_SUCCESS:
+      return {
+        ...state,
+        [action.postId]: singlePostPaginateReducer(state[action.postId], action)
+      };
+    default:
+      return state;
+  }
+};
+
 const pagination = combineReducers({
   practiceExplorer: paginateReducer({
     types: {
@@ -58,7 +80,8 @@ const pagination = combineReducers({
       successType: actionConstants.POSTS_PRACTICE_SUCCESS,
       failureType: actionConstants.POSTS_PRACTICE_FAILURE
     }
-  })
+  }),
+  singlePostPractices
 });
 
 export default pagination;

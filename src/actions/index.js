@@ -7,22 +7,29 @@ export const toggleSubjectFilter = subject => ({
   subject
 });
 
-export const practiceSuccessResponse = (actionType, response) => ({
+export const practiceSuccessResponse = (actionType, response, postId) => ({
   type: actionType,
   practices: response.data.practices,
   has_next: response.data.has_next,
-  ids: response.data.practices.map(practice => practice.id)
+  ids: response.data.practices.map(practice => practice.id),
+  postId
 });
 
-const fetchPractices = (checkedSubjects, page, dispatch, actionType) => {
-  const params = { page };
+const fetchPractices = (
+  checkedSubjects,
+  page,
+  dispatch,
+  actionType,
+  postId
+) => {
+  const params = { page, postId };
 
   if (checkedSubjects) {
     params.subjects = checkedIdsFromSubjectMap(checkedSubjects);
   }
 
   return practiceResource.getPractices(params).then(response => {
-    dispatch(practiceSuccessResponse(actionType, response));
+    dispatch(practiceSuccessResponse(actionType, response, postId));
   });
 };
 
@@ -67,6 +74,22 @@ export const getPostsPractices = page => {
       page,
       dispatch,
       actionConstants.POSTS_PRACTICE_SUCCESS
+    );
+  };
+};
+
+export const getSinglePostPractices = (page, postId) => {
+  return dispatch => {
+    dispatch({
+      type: actionConstants.POST_PRACTICE_REQUEST
+    });
+
+    return fetchPractices(
+      undefined,
+      page,
+      dispatch,
+      actionConstants.POST_PRACTICE_SUCCESS,
+      postId
     );
   };
 };
