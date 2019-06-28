@@ -6,7 +6,7 @@ import "./SubjectNodeCheckbox.scss";
 
 class SubjectNodeCheckbox extends Component {
   shouldComponentUpdate(nextProps) {
-    return !compareMaps(this.props.checkedSubjects, nextProps.checkedSubjects);
+    return this.props.checkedSubjects !== nextProps.checkedSubjects;
   }
 
   handleOnChange = () => {
