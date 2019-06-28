@@ -58,8 +58,8 @@ class Post extends Component {
     const { post, loading } = this.state;
     const { pagination, allPractices, match } = this.props;
     const postId = match.params.id;
-    const practicesPagination = pagination[postId];
-    const practiceIds = practicesPagination ? practicesPagination.ids : [];
+    const paginationByPostId = pagination[postId];
+    const practiceIds = paginationByPostId ? paginationByPostId.ids : [];
     const practices = practiceIds.map(practiceId => allPractices[practiceId]);
 
     const { getPractices } = this;
@@ -107,7 +107,7 @@ class Post extends Component {
         <div className={"post__side-bar"}>
           {pagination[postId] && (
             <PracticesContainer
-              pagination={practicesPagination}
+              pagination={paginationByPostId}
               practices={practices}
               getPractices={getPractices}
               postFromSinglePost={post}
