@@ -2,15 +2,19 @@ import { combineReducers } from "redux";
 import { actionConstants } from "services/constantsSrvc";
 
 export const practicesReducer = (state = {}, action) => {
+  const practiceMap = {};
+
   switch (action.type) {
     case actionConstants.POST_PRACTICE_SUCCESS:
     case actionConstants.POSTS_PRACTICE_SUCCESS:
     case actionConstants.PRACTICE_EXPLORER_SUCCESS:
-      const practiceMap = {};
       action.practices.forEach(practice => {
         practiceMap[practice.id] = practice;
       });
 
+      return Object.assign({}, state, practiceMap);
+    case actionConstants.PRACTICE_ADDED:
+      practiceMap[action.practice.id] = action.practice;
       return Object.assign({}, state, practiceMap);
     default:
       return state;

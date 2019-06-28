@@ -7,6 +7,11 @@ export const toggleSubjectFilter = subject => ({
   subject
 });
 
+export const practiceAdded = response => ({
+  type: actionConstants.PRACTICE_ADDED,
+  practice: response.data
+});
+
 export const practiceSuccessResponse = (actionType, response, postId) => ({
   type: actionType,
   practices: response.data.practices,

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
+import { connect } from "react-redux";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
@@ -11,6 +12,11 @@ import {
 import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
+import { practiceAdded } from "actions";
+
+const mapDispatchToProps = dispatch => ({
+  dispatchPracticeAdded: response => dispatch(practiceAdded(response))
+});
 
 class PracticeFormModal extends Component {
   state = this.initState();
@@ -63,6 +69,7 @@ class PracticeFormModal extends Component {
     e.preventDefault();
 
     const { teaching_point, application } = this.state;
+    const { dispatchPracticeAdded } = this.props;
 
     let subjects = [];
 
@@ -94,14 +101,20 @@ class PracticeFormModal extends Component {
         data: { teaching_point, application, subjects }
       };
 
-      const resource =
-        action === "Edit"
-          ? this.getEditPracticeRequest(params)
-          : this.getAddPracticeRequest(params);
+      let resource, successDispatch;
+
+      if (action === "Edit") {
+        resource = this.getEditPracticeRequest(params);
+        successDispatch = undefined;
+      } else {
+        resource = this.getAddPracticeRequest(params);
+        successDispatch = dispatchPracticeAdded;
+      }
 
       resource
-        .then(() => {
+        .then(response => {
           hidePracticeForm();
+          successDispatch(response);
         })
         .catch(error => {
           console.log(error);
@@ -292,4 +305,7 @@ class PracticeFormModal extends Component {
   }
 }
 
-export default PracticeFormModal;
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(PracticeFormModal);
