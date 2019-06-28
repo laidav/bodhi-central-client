@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import List from "common/List/List";
-import { compareMaps } from "services/helpersSrvc";
 import "./SubjectNodeCheckbox.scss";
 
 class SubjectNodeCheckbox extends Component {

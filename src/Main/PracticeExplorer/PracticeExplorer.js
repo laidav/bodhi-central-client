@@ -8,7 +8,6 @@ import {
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
-import { compareMaps } from "services/helpersSrvc";
 
 import "./PracticeExplorer.scss";
 
@@ -38,10 +37,7 @@ class PracticeExplorer extends Component {
   componentDidUpdate(prevProps) {
     const { checkedSubjects, refreshExplorerPractices } = this.props;
 
-    if (
-      checkedSubjects &&
-      !compareMaps(checkedSubjects, prevProps.checkedSubjects)
-    ) {
+    if (checkedSubjects && checkedSubjects !== prevProps.checkedSubjects) {
       refreshExplorerPractices(checkedSubjects);
     }
   }
