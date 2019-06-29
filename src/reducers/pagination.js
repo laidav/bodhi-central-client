@@ -58,7 +58,8 @@ const practiceExplorer = paginateReducer({
     requestType: actionConstants.PRACTICE_EXPLORER_REQUEST,
     refreshRequestType: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST,
     successType: actionConstants.PRACTICE_EXPLORER_SUCCESS,
-    failureType: actionConstants.PRACTICE_EXPLORER_FAILURE
+    failureType: actionConstants.PRACTICE_EXPLORER_FAILURE,
+    itemAddedType: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER
   }
 });
 

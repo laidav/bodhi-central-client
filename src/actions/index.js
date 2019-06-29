@@ -12,6 +12,11 @@ export const practiceAdded = response => ({
   practice: response.data
 });
 
+export const practiceAddedUpdatePracticeExplorer = practice => ({
+  type: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER,
+  practice
+});
+
 export const practiceSuccessResponse = (actionType, response, postId) => ({
   type: actionType,
   practices: response.data.practices,

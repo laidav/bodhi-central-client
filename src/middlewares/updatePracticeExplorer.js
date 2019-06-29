@@ -1,10 +1,12 @@
 import { actionConstants } from "services/constantsSrvc";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { checkedIdsFromSubjectMap } from "services/helpersSrvc";
+import { practiceAddedUpdatePracticeExplorer } from "actions";
 
 const updatePracticeExplorer = store => next => action => {
   let result = next(action);
   const { practiceExplorerCheckedSubjects, pagination } = store.getState();
+  const { practice } = action;
 
   const noCheckedSubjectsAndHasPractices =
     !checkedIdsFromSubjectMap(practiceExplorerCheckedSubjects).length &&
@@ -15,10 +17,13 @@ const updatePracticeExplorer = store => next => action => {
     (noCheckedSubjectsAndHasPractices ||
       subjectTreeSrvc.checkedSubjectsHasPractice(
         practiceExplorerCheckedSubjects,
-        action.practice
+        practice
       ))
   ) {
-    console.log("update practice explorer");
+    // Applying settimeout so applyMiddleWare can complete on store before calling dispatch again
+    setTimeout(() =>
+      store.dispatch(practiceAddedUpdatePracticeExplorer(practice), 0)
+    );
   }
   return result;
 };
