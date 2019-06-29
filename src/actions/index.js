@@ -86,7 +86,8 @@ export const getPostsPractices = page => {
 export const getSinglePostPractices = (page, postId) => {
   return dispatch => {
     dispatch({
-      type: actionConstants.POST_PRACTICE_REQUEST
+      type: actionConstants.POST_PRACTICE_REQUEST,
+      postId
     });
 
     return fetchPractices(
