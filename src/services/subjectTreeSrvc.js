@@ -1,5 +1,6 @@
 import { subjectsList } from "services/constantsSrvc";
 import SubjectNode from "models/SubjectNode";
+import { checkedIdsFromSubjectMap } from "services/helpersSrvc";
 
 class SubjectTree {
   constructor(subjectsList) {
@@ -94,6 +95,32 @@ class SubjectTree {
     };
 
     return this.dfsTraversal(depthSearch, this.root);
+  }
+
+  checkedSubjectsHasPractice(checkedSubjects, practice) {
+    const checkedSubjectIds = checkedIdsFromSubjectMap(checkedSubjects);
+    const practiceSubjectIds = practice.subjects.map(subject => subject.id);
+
+    const hasPracticeSubjectSearch = {
+      compare: node => {
+        if (node !== null && practiceSubjectIds.indexOf(node.id) > -1) {
+          hasPracticeSubjectSearch.searchResults = true;
+          hasPracticeSubjectSearch.searchDone = true;
+        }
+      },
+      searchDone: false,
+      searchResults: false
+    };
+
+    for (let i = 0; i < checkedSubjectIds.length; i++) {
+      let subjectNode = this.nodeMapper.get(checkedSubjectIds[i]);
+
+      if (this.dfsTraversal(hasPracticeSubjectSearch, subjectNode)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
 
