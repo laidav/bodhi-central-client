@@ -63,7 +63,7 @@ export const getExplorerPractices = (checkedSubjects, page) => {
   };
 };
 
-export const practiceExplorerRefreshRequest = () => ({
+const practiceExplorerRefreshRequest = () => ({
   type: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST
 });
 

@@ -3,7 +3,7 @@ import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { checkedIdsFromSubjectMap } from "services/helpersSrvc";
 import {
   practiceAddedUpdatePracticeExplorer,
-  practiceExplorerRefreshRequest
+  refreshExplorerPractices
 } from "actions";
 
 const updatePracticeExplorer = store => next => action => {
@@ -32,7 +32,13 @@ const updatePracticeExplorer = store => next => action => {
       }
       break;
     case actionConstants.PRACTICE_EDITED:
-      setTimeout(() => store.dispatch(practiceExplorerRefreshRequest, 0));
+      setTimeout(() => {
+        const { practiceExplorerCheckedSubjects } = store.getState();
+        store.dispatch(
+          refreshExplorerPractices(practiceExplorerCheckedSubjects),
+          0
+        );
+      });
       break;
     default:
   }
