@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./Post.scss";
 import postResource from "services/resources/postResource";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
@@ -7,6 +8,17 @@ import SubjectTag from "common/SubjectTag/SubjectTag";
 import moment from "moment";
 import { dateFormats } from "services/constantsSrvc";
 import { getYoutubeEmbedUrl } from "services/helpersSrvc";
+import { getSinglePostPractices } from "actions";
+
+const mapStateToProps = state => ({
+  pagination: state.pagination.singlePostPractices,
+  allPractices: state.entities.practices
+});
+
+const mapDispatchToProps = dispatch => ({
+  getSinglePostPractices: (page, postId) =>
+    dispatch(getSinglePostPractices(page, postId))
+});
 
 class Post extends Component {
   state = {
@@ -15,7 +27,10 @@ class Post extends Component {
   };
 
   componentWillMount() {
-    postResource.getSinglePost(this.props.match.params.id).then(
+    const { match, pagination } = this.props;
+    const postId = match.params.id;
+
+    postResource.getSinglePost(postId).then(
       response => {
         this.setState({
           post: response.data,
@@ -26,10 +41,28 @@ class Post extends Component {
         this.setState({ loading: false });
       }
     );
+
+    if (!pagination[postId] || !pagination[postId].ids.length) {
+      this.getPractices();
+    }
   }
+
+  getPractices = () => {
+    const { getSinglePostPractices, pagination, match } = this.props;
+    const postId = match.params.id;
+    const page = pagination[postId] ? pagination[postId].page : 1;
+    getSinglePostPractices(page, postId);
+  };
 
   render() {
     const { post, loading } = this.state;
+    const { pagination, allPractices, match } = this.props;
+    const postId = match.params.id;
+    const paginationByPostId = pagination[postId];
+    const practiceIds = paginationByPostId ? paginationByPostId.ids : [];
+    const practices = practiceIds.map(practiceId => allPractices[practiceId]);
+
+    const { getPractices } = this;
 
     if (loading) {
       return <div>loading</div>;
@@ -72,11 +105,21 @@ class Post extends Component {
           </div>
         </div>
         <div className={"post__side-bar"}>
-          {post && <PracticesContainer postFromSinglePost={post} />}
+          {pagination[postId] && (
+            <PracticesContainer
+              pagination={paginationByPostId}
+              practices={practices}
+              getPractices={getPractices}
+              postFromSinglePost={post}
+            />
+          )}
         </div>
       </div>
     );
   }
 }
 
-export default Post;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);

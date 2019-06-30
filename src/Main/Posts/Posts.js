@@ -1,13 +1,37 @@
 import React, { Component } from "react";
 import "./Posts.scss";
+import { connect } from "react-redux";
+import { getPostsPractices } from "actions";
 import PracticesContainer from "common/PracticesContainer/PracticesContainer";
 import PostsContainer from "./PostsContainer/PostsContainer";
 import SubjectTab from "./SubjectTab/SubjectTab";
 import * as Constants from "services/constantsSrvc";
 
+const mapStateToProps = state => ({
+  pagination: state.pagination.postsPractices,
+  practices: state.pagination.postsPractices.ids.map(
+    practiceId => state.entities.practices[practiceId]
+  )
+});
+
+const mapDispatchToProps = dispatch => ({
+  getPostsPractices: page => dispatch(getPostsPractices(page))
+});
+
 class Posts extends Component {
   state = {
     activeSubjectTab: Constants.subjects.WISDOM
+  };
+
+  componentWillMount() {
+    if (!this.props.pagination.ids.length) {
+      this.getPractices();
+    }
+  }
+
+  getPractices = () => {
+    const { getPostsPractices, pagination } = this.props;
+    getPostsPractices(pagination.page);
   };
 
   selectSubject = subject => {
@@ -16,7 +40,8 @@ class Posts extends Component {
 
   render() {
     const { activeSubjectTab } = this.state;
-    const { match } = this.props;
+    const { match, practices, pagination } = this.props;
+    const { getPractices } = this;
 
     return (
       <div className={"posts"}>
@@ -49,11 +74,18 @@ class Posts extends Component {
           </div>
         </div>
         <div className={"posts__side-bar"}>
-          <PracticesContainer />
+          <PracticesContainer
+            getPractices={getPractices}
+            practices={practices}
+            pagination={pagination}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default Posts;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Posts);

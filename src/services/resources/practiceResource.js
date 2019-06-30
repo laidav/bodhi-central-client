@@ -3,13 +3,14 @@ import bodhiCentralApiSrvc from "services/bodhiCentralApiSrvc";
 
 const practiceResource = {
   url: Constants.API_V1 + "/practice",
-  getPractices({ postId, subjects }) {
+  getPractices({ postId, subjects, page }) {
     return bodhiCentralApiSrvc({
       method: "get",
       url: this.url,
       params: {
         post_id: postId,
-        subject_id: subjects
+        subject_id: subjects,
+        page
       }
     });
   },

@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import List from "common/List/List";
-import { compareMaps } from "services/helpersSrvc";
 import "./SubjectNodeCheckbox.scss";
 
 class SubjectNodeCheckbox extends Component {
   shouldComponentUpdate(nextProps) {
-    return !compareMaps(this.props.checkedSubjects, nextProps.checkedSubjects);
+    return this.props.checkedSubjects !== nextProps.checkedSubjects;
   }
+
+  handleOnChange = () => {
+    const { handleSubjectChange, data: subjectNode } = this.props;
+    handleSubjectChange(subjectNode);
+  };
 
   render() {
     const {
@@ -25,7 +29,7 @@ class SubjectNodeCheckbox extends Component {
         <label className={"checkbox"}>
           <input
             type="checkbox"
-            onChange={handleSubjectChange}
+            onChange={this.handleOnChange}
             checked={checkedSubjects.get(subjectNode.id)}
             name={subjectNode.id}
           />

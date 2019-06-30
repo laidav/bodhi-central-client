@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import "./PracticeFormModal.scss";
+import { connect } from "react-redux";
 import SubjectNodeCheckbox from "common/SubjectNodeCheckbox/SubjectNodeCheckbox";
 import subjectTreeSrvc from "services/subjectTreeSrvc";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import practiceResource from "services/resources/practiceResource";
-import { subjects as staticSubjects } from "services/constantsSrvc";
+import {
+  subjects as staticSubjects,
+  actionConstants
+} from "services/constantsSrvc";
 import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
+import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
+import { practiceAdded, practiceEdited, practiceDeleted } from "actions";
+
+const mapDispatchToProps = dispatch => ({
+  dispatchPracticeAdded: response => dispatch(practiceAdded(response)),
+  dispatchPracticeEdited: practice => dispatch(practiceEdited(practice)),
+  dispatchPracticeDeleted: practice => dispatch(practiceDeleted(practice))
+});
 
 class PracticeFormModal extends Component {
   state = this.initState();
@@ -42,21 +54,24 @@ class PracticeFormModal extends Component {
     });
   };
 
-  handleSubjectChange = e => {
-    const { name, checked } = e.target;
-
-    this.setState(prevState => {
-      const checkedSubjects = new Map(prevState.checkedSubjects);
-      checkedSubjects.set(parseInt(name), checked);
-
-      return { checkedSubjects };
-    });
+  handleSubjectChange = subject => {
+    const action = { type: actionConstants.TOGGLE_SUBJECT_FILTER, subject };
+    const reducer = prevState => {
+      return {
+        checkedSubjects: checkedSubjectsReducer(
+          prevState.checkedSubjects,
+          action
+        )
+      };
+    };
+    this.setState(reducer);
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
     const { teaching_point, application } = this.state;
+    const { dispatchPracticeAdded, dispatchPracticeEdited } = this.props;
 
     let subjects = [];
 
@@ -88,14 +103,20 @@ class PracticeFormModal extends Component {
         data: { teaching_point, application, subjects }
       };
 
-      const resource =
-        action === "Edit"
-          ? this.getEditPracticeRequest(params)
-          : this.getAddPracticeRequest(params);
+      let resource, successDispatch;
+
+      if (action === "Edit") {
+        resource = this.getEditPracticeRequest(params);
+        successDispatch = dispatchPracticeEdited;
+      } else {
+        resource = this.getAddPracticeRequest(params);
+        successDispatch = dispatchPracticeAdded;
+      }
 
       resource
-        .then(() => {
+        .then(result => {
           hidePracticeForm();
+          successDispatch(result);
         })
         .catch(error => {
           console.log(error);
@@ -112,12 +133,17 @@ class PracticeFormModal extends Component {
   };
 
   deletePractice = () => {
-    const { selectedPractice, hidePracticeForm } = this.props;
+    const {
+      selectedPractice,
+      hidePracticeForm,
+      dispatchPracticeDeleted
+    } = this.props;
 
     practiceResource
       .deletePractice({ practiceId: selectedPractice.id })
       .then(() => {
         hidePracticeForm();
+        dispatchPracticeDeleted(selectedPractice);
       });
   };
 
@@ -132,7 +158,7 @@ class PracticeFormModal extends Component {
       });
     }
 
-    return practiceResource.editPractice(params);
+    return practiceResource.editPractice(params).then(response => params);
   }
 
   getAddPracticeRequest(params) {
@@ -286,4 +312,7 @@ class PracticeFormModal extends Component {
   }
 }
 
-export default PracticeFormModal;
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(PracticeFormModal);
