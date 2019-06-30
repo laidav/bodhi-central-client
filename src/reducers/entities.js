@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { actionConstants } from "services/constantsSrvc";
+import subjectTreeSrvc from "services/subjectTreeSrvc";
 
 export const practicesReducer = (state = {}, action) => {
   const practiceMap = {};
@@ -16,6 +17,20 @@ export const practicesReducer = (state = {}, action) => {
     case actionConstants.PRACTICE_ADDED:
       practiceMap[action.practice.id] = action.practice;
       return Object.assign({}, state, practiceMap);
+    case actionConstants.PRACTICE_EDITED:
+      const { practiceId, data } = action.practiceParams;
+
+      const newPractice = {
+        ...state[practiceId],
+        ...data,
+        subjects: data.subjects.map(subjectId =>
+          subjectTreeSrvc.nodeMapper.get(subjectId)
+        )
+      };
+      return {
+        ...state,
+        [practiceId]: newPractice
+      };
     default:
       return state;
   }

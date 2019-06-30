@@ -12,6 +12,11 @@ export const practiceAdded = response => ({
   practice: response.data
 });
 
+export const practiceEdited = practiceParams => ({
+  type: actionConstants.PRACTICE_EDITED,
+  practiceParams
+});
+
 export const practiceAddedUpdatePracticeExplorer = practice => ({
   type: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER,
   practice
@@ -58,11 +63,13 @@ export const getExplorerPractices = (checkedSubjects, page) => {
   };
 };
 
+export const practiceExplorerRefreshRequest = () => ({
+  type: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST
+});
+
 export const refreshExplorerPractices = checkedSubjects => {
   return dispatch => {
-    dispatch({
-      type: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST
-    });
+    dispatch(practiceExplorerRefreshRequest());
 
     return fetchPractices(
       checkedSubjects,

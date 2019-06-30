@@ -12,10 +12,11 @@ import {
 import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
-import { practiceAdded } from "actions";
+import { practiceAdded, practiceEdited } from "actions";
 
 const mapDispatchToProps = dispatch => ({
-  dispatchPracticeAdded: response => dispatch(practiceAdded(response))
+  dispatchPracticeAdded: response => dispatch(practiceAdded(response)),
+  dispatchPracticeEdited: practice => dispatch(practiceEdited(practice))
 });
 
 class PracticeFormModal extends Component {
@@ -69,7 +70,7 @@ class PracticeFormModal extends Component {
     e.preventDefault();
 
     const { teaching_point, application } = this.state;
-    const { dispatchPracticeAdded } = this.props;
+    const { dispatchPracticeAdded, dispatchPracticeEdited } = this.props;
 
     let subjects = [];
 
@@ -105,16 +106,16 @@ class PracticeFormModal extends Component {
 
       if (action === "Edit") {
         resource = this.getEditPracticeRequest(params);
-        successDispatch = undefined;
+        successDispatch = dispatchPracticeEdited;
       } else {
         resource = this.getAddPracticeRequest(params);
         successDispatch = dispatchPracticeAdded;
       }
 
       resource
-        .then(response => {
+        .then(result => {
           hidePracticeForm();
-          successDispatch(response);
+          successDispatch(result);
         })
         .catch(error => {
           console.log(error);
@@ -151,7 +152,7 @@ class PracticeFormModal extends Component {
       });
     }
 
-    return practiceResource.editPractice(params);
+    return practiceResource.editPractice(params).then(response => params);
   }
 
   getAddPracticeRequest(params) {
