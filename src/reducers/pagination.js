@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { actionConstants } from "services/constantsSrvc";
+import { actionConstants, entities } from "services/constantsSrvc";
 import { arrayUnion } from "services/helpersSrvc";
 
-export const paginateReducer = ({ types }) => {
+export const paginateReducer = ({ types, entity }) => {
   const {
     requestType,
     refreshRequestType,
@@ -46,12 +46,12 @@ export const paginateReducer = ({ types }) => {
       case itemAddedType:
         return {
           ...state,
-          ids: [action.practice.id].concat(state.ids)
+          ids: [action[entity].id].concat(state.ids)
         };
       case itemDeletedType:
         return {
           ...state,
-          ids: state.ids.filter(id => id !== action.practice.id)
+          ids: state.ids.filter(id => id !== action[entity].id)
         };
       default:
         return state;
@@ -67,7 +67,8 @@ const practiceExplorer = paginateReducer({
     failureType: actionConstants.PRACTICE_EXPLORER_FAILURE,
     itemAddedType: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER,
     itemDeletedType: actionConstants.PRACTICE_DELETED
-  }
+  },
+  entity: entities.PRACTICE
 });
 
 const postsPractices = paginateReducer({
@@ -78,7 +79,8 @@ const postsPractices = paginateReducer({
     failureType: actionConstants.POSTS_PRACTICE_FAILURE,
     itemAddedType: actionConstants.PRACTICE_ADDED,
     itemDeletedType: actionConstants.PRACTICE_DELETED
-  }
+  },
+  entity: entities.PRACTICE
 });
 
 const singlePostPaginateReducer = paginateReducer({
@@ -89,7 +91,8 @@ const singlePostPaginateReducer = paginateReducer({
     failureType: actionConstants.POST_PRACTICE_FAILURE,
     itemAddedType: actionConstants.PRACTICE_ADDED,
     itemDeletedType: actionConstants.PRACTICE_DELETED
-  }
+  },
+  entity: entities.PRACTICE
 });
 
 const singlePostPractices = (state = {}, action) => {

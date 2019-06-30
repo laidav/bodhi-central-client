@@ -77,3 +77,8 @@ export const actionConstants = {
   PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER:
     "PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER"
 };
+
+export const entities = {
+  PRACTICE: "practice",
+  POST: "post"
+};
