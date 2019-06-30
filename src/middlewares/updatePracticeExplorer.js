@@ -25,7 +25,7 @@ const updatePracticeExplorer = store => next => action => {
           practice
         )
       ) {
-        // Applying setTimeout so applyMiddleWare can complete on store before calling dispatch again
+        // Applying setTimeout so applyMiddleWare can complete on store before calling dispatch again for consistency
         setTimeout(() =>
           store.dispatch(practiceAddedUpdatePracticeExplorer(practice), 0)
         );
