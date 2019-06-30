@@ -17,6 +17,11 @@ export const practiceEdited = practiceParams => ({
   practiceParams
 });
 
+export const practiceDeleted = practice => ({
+  type: actionConstants.PRACTICE_DELETED,
+  practice
+});
+
 export const practiceAddedUpdatePracticeExplorer = practice => ({
   type: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER,
   practice

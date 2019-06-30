@@ -31,6 +31,12 @@ export const practicesReducer = (state = {}, action) => {
         ...state,
         [practiceId]: newPractice
       };
+    case actionConstants.PRACTICE_DELETED:
+      const newState = { ...state };
+
+      delete newState[action.practiceId];
+
+      return newState;
     default:
       return state;
   }

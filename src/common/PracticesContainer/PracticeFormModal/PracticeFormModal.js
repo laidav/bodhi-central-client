@@ -12,11 +12,12 @@ import {
 import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
-import { practiceAdded, practiceEdited } from "actions";
+import { practiceAdded, practiceEdited, practiceDeleted } from "actions";
 
 const mapDispatchToProps = dispatch => ({
   dispatchPracticeAdded: response => dispatch(practiceAdded(response)),
-  dispatchPracticeEdited: practice => dispatch(practiceEdited(practice))
+  dispatchPracticeEdited: practice => dispatch(practiceEdited(practice)),
+  dispatchPracticeDeleted: practice => dispatch(practiceDeleted(practice))
 });
 
 class PracticeFormModal extends Component {
@@ -132,12 +133,17 @@ class PracticeFormModal extends Component {
   };
 
   deletePractice = () => {
-    const { selectedPractice, hidePracticeForm } = this.props;
+    const {
+      selectedPractice,
+      hidePracticeForm,
+      dispatchPracticeDeleted
+    } = this.props;
 
     practiceResource
       .deletePractice({ practiceId: selectedPractice.id })
       .then(() => {
         hidePracticeForm();
+        dispatchPracticeDeleted(selectedPractice);
       });
   };
 

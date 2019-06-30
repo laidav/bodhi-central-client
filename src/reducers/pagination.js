@@ -8,7 +8,8 @@ export const paginateReducer = ({ types }) => {
     refreshRequestType,
     successType,
     failureType,
-    itemAddedType
+    itemAddedType,
+    itemDeletedType
   } = types;
 
   const initialState = {
@@ -47,6 +48,11 @@ export const paginateReducer = ({ types }) => {
           ...state,
           ids: [action.practice.id].concat(state.ids)
         };
+      case itemDeletedType:
+        return {
+          ...state,
+          ids: state.ids.filter(id => id !== action.practice.id)
+        };
       default:
         return state;
     }
@@ -59,7 +65,8 @@ const practiceExplorer = paginateReducer({
     refreshRequestType: actionConstants.PRACTICE_EXPLORER_REFRESH_REQUEST,
     successType: actionConstants.PRACTICE_EXPLORER_SUCCESS,
     failureType: actionConstants.PRACTICE_EXPLORER_FAILURE,
-    itemAddedType: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER
+    itemAddedType: actionConstants.PRACTICE_ADDED_UPDATE_PRACTICE_EXPLORER,
+    itemDeletedType: actionConstants.PRACTICE_DELETED
   }
 });
 
@@ -69,7 +76,8 @@ const postsPractices = paginateReducer({
     refreshRequestType: actionConstants.POSTS_PRACTICE_REFRESH_REQUEST,
     successType: actionConstants.POSTS_PRACTICE_SUCCESS,
     failureType: actionConstants.POSTS_PRACTICE_FAILURE,
-    itemAddedType: actionConstants.PRACTICE_ADDED
+    itemAddedType: actionConstants.PRACTICE_ADDED,
+    itemDeletedType: actionConstants.PRACTICE_DELETED
   }
 });
 
@@ -79,7 +87,8 @@ const singlePostPaginateReducer = paginateReducer({
     refreshRequestType: actionConstants.POST_PRACTICE_REFRESH_REQUEST,
     successType: actionConstants.POST_PRACTICE_SUCCESS,
     failureType: actionConstants.POST_PRACTICE_FAILURE,
-    itemAddedType: actionConstants.PRACTICE_ADDED
+    itemAddedType: actionConstants.PRACTICE_ADDED,
+    itemDeletedType: actionConstants.PRACTICE_DELETED
   }
 });
 
@@ -92,6 +101,7 @@ const singlePostPractices = (state = {}, action) => {
         [action.postId]: singlePostPaginateReducer(state[action.postId], action)
       };
     case actionConstants.PRACTICE_ADDED:
+    case actionConstants.PRACTICE_DELETED:
       if (action.practice.post) {
         const postId = action.practice.post.id;
 
