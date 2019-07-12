@@ -45,32 +45,29 @@ class LoginForm extends Component {
     }
 
     return (
-      <form className={"login-form border"} onSubmit={this.handleSubmit}>
+      <form className={"login-form"} onSubmit={this.handleSubmit}>
+        <div className={"login-form__title"}>Login:</div>
         <div className={"control-group"}>
-          <label className={"sub-heading"} htmlFor="login-email">
-            Email:
-          </label>
           <input
-            className={"control"}
+            className={"control large"}
             id="login-email"
             type="text"
             name="email"
             onChange={this.handleChange}
             value={this.state.email}
+            placeholder={"Email"}
           />
           <p className={"form-error"}>&nbsp;</p>
         </div>
         <div className={"control-group"}>
-          <label className={"sub-heading"} htmlFor="login-password">
-            Password
-          </label>
           <input
-            className={"control"}
+            className={"control large"}
             id="login-password"
             type="password"
             name="password"
             onChange={this.handleChange}
             value={this.state.password}
+            placeholder={"Password"}
           />
           <p className={"form-error"}>&nbsp;</p>
         </div>

@@ -5,7 +5,7 @@
   height: 100vh;
 
   &__company-title {
-    font-size: $large;
+    font-size: $x-large;
     font-family: $poppins-bold;
   }
 
@@ -20,6 +20,12 @@
     p {
       margin: 0;
     }
+  }
+
+  &__form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__logo {
