@@ -1,0 +1,35 @@
+@import "styles/_mixins.scss";
+
+.auth {
+  background-color: $white;
+  height: 100vh;
+
+  &__company-title {
+    font-size: $large;
+    font-family: $poppins-bold;
+  }
+
+  &__hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__logo {
+    height: 200px;
+    width: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__welcome-msg {
+    font-family: $poppins-medium;
+  }
+}
