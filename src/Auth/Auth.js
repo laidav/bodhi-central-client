@@ -7,20 +7,22 @@ import BCLogo from "assets/bc-logo.svg";
 
 const Auth = () => (
   <div className={"auth"}>
-    <div className={"auth__hero-container"}>
-      <div
-        className={"auth__logo"}
-        style={{ backgroundImage: `url(${BCLogo})` }}
-      />
-      <p className={"auth__welcome-msg"}>Welcome To</p>
-      <p className={"auth__company-title"}>BodhiCentral</p>
-      <p>Learn the Dhamma and record your practice here!</p>
-    </div>
-    <div className={"auth__form-container"}>
-      <Switch>
-        <Route path={"/login"} component={LoginForm} />
-        <Route path={"/sign-up"} component={SignUpForm} />
-      </Switch>
+    <div className={"auth__content container"}>
+      <div className={"auth__hero-container"}>
+        <div
+          className={"auth__logo"}
+          style={{ backgroundImage: `url(${BCLogo})` }}
+        />
+        <p className={"auth__welcome-msg"}>Welcome To</p>
+        <p className={"auth__company-title"}>BodhiCentral</p>
+        <p>Learn the Dhamma and record your practice here!</p>
+      </div>
+      <div className={"auth__form-container"}>
+        <Switch>
+          <Route path={"/login"} component={LoginForm} />
+          <Route path={"/sign-up"} component={SignUpForm} />
+        </Switch>
+      </div>
     </div>
   </div>
 );

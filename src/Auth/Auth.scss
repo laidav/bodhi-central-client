@@ -4,6 +4,15 @@
   background-color: $white;
   height: 100vh;
 
+  &__content {
+    height: 100%;
+
+    @include md-screen {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+  }
+
   &__company-title {
     font-size: $x-large;
     font-family: $poppins-bold;
@@ -17,6 +26,10 @@
     text-align: center;
     padding: 2rem;
 
+    @include md-screen {
+      grid-column: 1/2;
+    }
+
     p {
       margin: 0;
     }
@@ -26,6 +39,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include md-screen {
+      grid-column: 2/3;
+    }
   }
 
   &__logo {
