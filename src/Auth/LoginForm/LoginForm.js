@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import authSrvc from "../../services/authSrvc";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import "./LoginForm.scss";
 
 import "./LoginForm.scss";
@@ -75,7 +75,10 @@ class LoginForm extends Component {
         <button className={"btn btn-primary"} type="submit">
           Sign In!
         </button>
-        {errorMsg}
+        <p className={"login-form__sign-up"}>
+          New to BodhiCentral?{" "}
+          <NavLink to={"/sign-up"}>Create an account.</NavLink>
+        </p>
       </form>
     );
   }

@@ -9,6 +9,15 @@
     width: 400px;
   }
 
+  &__sign-up {
+    font-size: $medium;
+
+    a {
+      color: $primary-text-clr;
+      text-decoration: underline;
+    }
+  }
+
   &__title {
     font-family: $poppins-bold;
     font-size: $x-large;
@@ -16,7 +25,8 @@
   }
 
   button {
-    margin-top: 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
   }
 
   .control {
