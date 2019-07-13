@@ -47,7 +47,11 @@ class LoginForm extends Component {
         this.setState(this.state);
       },
       error => {
-        this.setState({ error: true });
+        this.setState({
+          errors: {
+            invalidCredentials: vt.invalidCredentials
+          }
+        });
       }
     );
   };
@@ -79,7 +83,7 @@ class LoginForm extends Component {
               errors.email === vt.isRequired ? "form-error--visible" : ""
             }`}
           >
-            Email is Required
+            Email is required
           </p>
         </div>
         <div className={"control-group large"}>
@@ -92,7 +96,13 @@ class LoginForm extends Component {
             value={password}
             placeholder={"Password"}
           />
-          <p className={"form-error"}>&nbsp;</p>
+          <p
+            className={`form-error ${
+              errors.password === vt.isRequired ? "form-error--visible" : ""
+            }`}
+          >
+            Password is required
+          </p>
         </div>
 
         <button className={"btn btn-primary"} type="submit">
@@ -102,6 +112,13 @@ class LoginForm extends Component {
           New to BodhiCentral?{" "}
           <NavLink to={"/sign-up"}>Create an account.</NavLink>
         </p>
+        {errors.invalidCredentials === vt.invalidCredentials && (
+          <div className={"control-group"}>
+            <p className={"form-error form-error--visible"}>
+              Those credentials are invalid
+            </p>
+          </div>
+        )}
       </form>
     );
   }

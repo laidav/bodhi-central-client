@@ -1,6 +1,7 @@
 export const validationTypes = {
   isRequired: "isRequired",
-  arrayNotEmpty: "arrayNotEmpty"
+  arrayNotEmpty: "arrayNotEmpty",
+  invalidCredentials: "invalidCredentials"
 };
 
 export class validatorSrvc {
