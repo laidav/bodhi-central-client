@@ -220,15 +220,13 @@ class PracticeFormModal extends Component {
                 onChange={handleTextChange}
                 value={teaching_point}
               />
-              <p
-                className={`form-error ${
-                  errors.teaching_point === vt.isRequired
-                    ? "form-error--visible"
-                    : ""
-                }`}
-              >
-                Teaching point is required
-              </p>
+              {errors.teaching_point && (
+                <p className={"form-error"}>
+                  {errors.teaching_point === vt.isRequired && (
+                    <span>Teaching point is required</span>
+                  )}
+                </p>
+              )}
             </div>
             <div className={"control-group"}>
               <label className={"sub-heading"} htmlFor="application">
@@ -241,7 +239,6 @@ class PracticeFormModal extends Component {
                 onChange={handleTextChange}
                 value={application}
               />
-              <p className={"form-error"}>&nbsp</p>
             </div>
           </div>
           <div className={"practice-form-modal__subjects"}>
@@ -254,15 +251,13 @@ class PracticeFormModal extends Component {
                   handleSubjectChange={handleSubjectChange}
                 />
               </div>
-              <p
-                className={`form-error ${
-                  errors.subjects === vt.arrayNotEmpty
-                    ? "form-error--visible"
-                    : ""
-                }`}
-              >
-                Please select at least one subject
-              </p>
+              {errors.subjects && (
+                <p className={"form-error"}>
+                  {errors.subjects === vt.arrayNotEmpty && (
+                    <span>Please select at least one subject</span>
+                  )}
+                </p>
+              )}
             </div>
           </div>
           <div className={"practice-form-modal__footer"}>
