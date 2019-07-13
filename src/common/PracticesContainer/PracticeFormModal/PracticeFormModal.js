@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import DeleteWarning from "common/DeleteWarning/DeleteWarning";
 import checkedSubjectsReducer from "reducers/checkedSubjectsReducer";
 import { practiceAdded, practiceEdited, practiceDeleted } from "actions";
+import { checkedIdsFromSubjectMap } from "services/helpersSrvc";
 
 const mapDispatchToProps = dispatch => ({
   dispatchPracticeAdded: response => dispatch(practiceAdded(response)),
@@ -70,16 +71,10 @@ class PracticeFormModal extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { teaching_point, application } = this.state;
+    const { teaching_point, application, checkedSubjects } = this.state;
     const { dispatchPracticeAdded, dispatchPracticeEdited } = this.props;
 
-    let subjects = [];
-
-    for (const [key, value] of this.state.checkedSubjects) {
-      if (value) {
-        subjects.push(key);
-      }
-    }
+    let subjects = checkedIdsFromSubjectMap(checkedSubjects);
 
     const validationItems = {
       teaching_point: {

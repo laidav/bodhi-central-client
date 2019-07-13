@@ -14,9 +14,15 @@ export const getYoutubeEmbedUrl = url => {
 };
 
 export const checkedIdsFromSubjectMap = subjectMap => {
-  return Array.from(subjectMap)
-    .filter(([subjectId, checked]) => checked)
-    .map(item => item[0]);
+  const subjects = [];
+
+  for (const [key, value] of subjectMap) {
+    if (value) {
+      subjects.push(key);
+    }
+  }
+
+  return subjects;
 };
 
 export const arrayUnion = (arr1, arr2) => {
