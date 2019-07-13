@@ -247,11 +247,13 @@ class PracticeFormModal extends Component {
           <div className={"practice-form-modal__subjects"}>
             <div className={"control-group"}>
               <label className={"sub-heading"}>Subjects</label>
-              <SubjectNodeCheckbox
-                data={subjectTreeSrvc.root}
-                checkedSubjects={checkedSubjects}
-                handleSubjectChange={handleSubjectChange}
-              />
+              <div className={"control"}>
+                <SubjectNodeCheckbox
+                  data={subjectTreeSrvc.root}
+                  checkedSubjects={checkedSubjects}
+                  handleSubjectChange={handleSubjectChange}
+                />
+              </div>
               <p
                 className={`form-error ${
                   errors.subjects === vt.arrayNotEmpty
@@ -272,7 +274,7 @@ class PracticeFormModal extends Component {
                 Post: {originPost.title}
               </NavLink>
             )}
-            <div className={"practice-form-modal__action-btns"}>
+            <div className={"practice-form-modal__footer"}>
               {selectedPractice && (
                 <button
                   onClick={openDeleteWarning}

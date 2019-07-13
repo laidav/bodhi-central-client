@@ -212,13 +212,13 @@ class AdminPostForm extends Component {
                 name="title"
                 value={title}
               />
-              <p
-                className={`form-error ${
-                  errors.title === vt.isRequired ? "form-error--visible" : ""
-                }`}
-              >
-                Title is required
-              </p>
+              {errors.title && (
+                <p className={"form-error"}>
+                  {errors.title === vt.isRequired && (
+                    <span>Title is required</span>
+                  )}
+                </p>
+              )}
             </div>
             <div className={"control-group"}>
               <label className={"sub-heading"}>Description:</label>
@@ -228,15 +228,13 @@ class AdminPostForm extends Component {
                 name="description"
                 value={description}
               />
-              <p
-                className={`form-error ${
-                  errors.description === vt.isRequired
-                    ? "form-error--visible"
-                    : ""
-                }`}
-              >
-                Description is required
-              </p>
+              {errors.description && (
+                <p className={"form-error"}>
+                  {errors.description === vt.isRequired && (
+                    <span>Description is required</span>
+                  )}
+                </p>
+              )}
             </div>
             <div className={"control-group"}>
               <label className={"sub-heading"}>Link:</label>
@@ -247,26 +245,25 @@ class AdminPostForm extends Component {
                 name="link"
                 value={link}
               />
-              <p className={"form-error"}>&nbsp;</p>
             </div>
           </div>
           <div className={"admin-post-form__subjects"}>
             <div className={"control-group"}>
               <label className={"sub-heading"}>Subjects:</label>
-              <SubjectNodeCheckbox
-                data={subjectTreeSrvc.root}
-                checkedSubjects={checkedSubjects}
-                handleSubjectChange={handleSubjectChange}
-              />
-              <p
-                className={`form-error ${
-                  errors.subjects === vt.arrayNotEmpty
-                    ? "form-error--visible"
-                    : ""
-                }`}
-              >
-                Please select at least one subject
-              </p>
+              <div className={"control"}>
+                <SubjectNodeCheckbox
+                  data={subjectTreeSrvc.root}
+                  checkedSubjects={checkedSubjects}
+                  handleSubjectChange={handleSubjectChange}
+                />
+              </div>
+              {errors.subjects && (
+                <p className={"form-error"}>
+                  {errors.subjects === vt.arrayNotEmpty && (
+                    <span>Please select at least one subject</span>
+                  )}
+                </p>
+              )}
             </div>
           </div>
           <div className={"admin-post-form__footer"}>
