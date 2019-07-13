@@ -82,6 +82,18 @@
   display: flex;
   flex-direction: column;
 
+  &.large {
+    .control {
+      font-size: $large;
+      padding: 0.5rem 1rem;
+    }
+
+    .form-error {
+      position: relative;
+      top: -5px;
+    }
+  }
+
   label {
     margin-bottom: 0.5rem;
   }
@@ -93,11 +105,6 @@
     font-family: $poppins-light;
     color: $primary-text-clr;
     font-size: $base;
-
-    &.large {
-      font-size: $large;
-      padding: 0.5rem 1rem;
-    }
 
     &::placeholder {
       color: $gray-text-clr;

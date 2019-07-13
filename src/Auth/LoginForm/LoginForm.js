@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import authSrvc from "../../services/authSrvc";
 import { Redirect, NavLink } from "react-router-dom";
+import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
 import "./LoginForm.scss";
 
 import "./LoginForm.scss";
@@ -9,7 +10,7 @@ class LoginForm extends Component {
   state = {
     email: "",
     password: "",
-    error: false
+    errors: {}
   };
 
   handleChange = e => {
@@ -20,6 +21,26 @@ class LoginForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    const { email, password } = this.state;
+
+    const validationItems = {
+      email: {
+        value: email,
+        validators: [vt.isRequired]
+      },
+      password: {
+        value: password,
+        validators: [vt.isRequired]
+      }
+    };
+
+    const errors = validatorSrvc.validateItems(validationItems);
+
+    if (Object.keys(errors).length) {
+      this.setState({ errors });
+      return;
+    }
 
     authSrvc.signIn(this.state).then(
       response => {
@@ -33,40 +54,42 @@ class LoginForm extends Component {
 
   render() {
     const isAuthenticated = authSrvc.isAuthenticated;
+    const { email, password, errors } = this.state;
+    const { handleChange, handleSubmit } = this;
 
     if (isAuthenticated) {
       return <Redirect to="/" />;
     }
 
-    let errorMsg;
-
-    if (this.state.error) {
-      errorMsg = <p>There was an error logging in</p>;
-    }
-
     return (
-      <form className={"login-form"} onSubmit={this.handleSubmit}>
+      <form className={"login-form"} onSubmit={handleSubmit}>
         <div className={"login-form__title"}>Login:</div>
-        <div className={"control-group"}>
+        <div className={"control-group large"}>
           <input
-            className={"control large"}
+            className={"control"}
             id="login-email"
             type="text"
             name="email"
-            onChange={this.handleChange}
-            value={this.state.email}
+            onChange={handleChange}
+            value={email}
             placeholder={"Email"}
           />
-          <p className={"form-error"}>&nbsp;</p>
+          <p
+            className={`form-error ${
+              errors.email === vt.isRequired ? "form-error--visible" : ""
+            }`}
+          >
+            Email is Required
+          </p>
         </div>
-        <div className={"control-group"}>
+        <div className={"control-group large"}>
           <input
             className={"control large"}
             id="login-password"
             type="password"
             name="password"
-            onChange={this.handleChange}
-            value={this.state.password}
+            onChange={handleChange}
+            value={password}
             placeholder={"Password"}
           />
           <p className={"form-error"}>&nbsp;</p>
