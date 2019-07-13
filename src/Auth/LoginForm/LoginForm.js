@@ -27,7 +27,7 @@ class LoginForm extends Component {
     const validationItems = {
       email: {
         value: email,
-        validators: [vt.isRequired]
+        validators: [vt.isRequired, vt.isValidEmail]
       },
       password: {
         value: password,
@@ -80,10 +80,13 @@ class LoginForm extends Component {
           />
           <p
             className={`form-error ${
-              errors.email === vt.isRequired ? "form-error--visible" : ""
+              errors.email ? "form-error--visible" : ""
             }`}
           >
-            Email is required
+            {errors.email === vt.isRequired && <span>Email is required</span>}
+            {errors.email === vt.isValidEmail && (
+              <span>Email format is invalid</span>
+            )}
           </p>
         </div>
         <div className={"control-group large"}>
@@ -98,10 +101,12 @@ class LoginForm extends Component {
           />
           <p
             className={`form-error ${
-              errors.password === vt.isRequired ? "form-error--visible" : ""
+              errors.password ? "form-error--visible" : ""
             }`}
           >
-            Password is required
+            {errors.password === vt.isRequired && (
+              <span>Password is required</span>
+            )}
           </p>
         </div>
 

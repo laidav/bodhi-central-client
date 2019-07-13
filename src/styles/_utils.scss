@@ -81,16 +81,19 @@
 .control-group {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   &.large {
     .control {
       font-size: $large;
       padding: 0.5rem 1rem;
+      margin-bottom: 1.75rem;
     }
 
     .form-error {
-      position: relative;
-      top: -5px;
+      position: absolute;
+      bottom: 3px;
+      right: 0;
     }
   }
 
