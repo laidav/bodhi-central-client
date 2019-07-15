@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./Auth.scss";
 import SignUpForm from "./SignUpForm/SignUpForm";
-import LoginForm from "./LoginForm/LoginForm";
+import SignInForm from "./SignInForm/SignInForm";
 import BCLogo from "assets/bc-logo.svg";
 
 const Auth = () => (
@@ -19,7 +19,7 @@ const Auth = () => (
       </div>
       <div className={"auth__form-container"}>
         <Switch>
-          <Route path={"/login"} component={LoginForm} />
+          <Route path={"/login"} component={SignInForm} />
           <Route path={"/sign-up"} component={SignUpForm} />
         </Switch>
       </div>

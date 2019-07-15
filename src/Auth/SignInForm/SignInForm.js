@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import authSrvc from "services/authSrvc";
 import { Redirect, NavLink } from "react-router-dom";
 import { validationTypes as vt, validatorSrvc } from "services/validatorSrvc";
-import "./LoginForm.scss";
+import "./SignInForm.scss";
 
-import "./LoginForm.scss";
+import "./SignInForm.scss";
 
-class LoginForm extends Component {
+class SignInForm extends Component {
   state = {
     email: "",
     password: "",
@@ -123,4 +123,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default SignInForm;
