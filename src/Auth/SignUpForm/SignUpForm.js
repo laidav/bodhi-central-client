@@ -11,7 +11,7 @@ class SignUpForm extends Component {
     password: "",
     password2: "",
     errors: {},
-    redirect: false
+    successRedirect: false
   };
 
   handleChange = e => {
@@ -62,7 +62,7 @@ class SignUpForm extends Component {
 
     authResource.signUp(params).then(
       response => {
-        this.setState({ redirect: true });
+        this.setState({ successRedirect: true });
       },
       error => {
         this.setState({
@@ -81,12 +81,12 @@ class SignUpForm extends Component {
       password,
       password2,
       errors,
-      redirect
+      successRedirect
     } = this.state;
 
     const { handleChange, handleSubmit } = this;
 
-    if (redirect) {
+    if (successRedirect) {
       return <Redirect to="/" />;
     }
 
