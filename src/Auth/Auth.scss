@@ -1,7 +1,6 @@
 @import "styles/_mixins.scss";
 
 .auth {
-  background-color: $white;
   height: 100vh;
 
   &__content {
@@ -60,5 +59,38 @@
 
   &__welcome-msg {
     font-family: $poppins-medium;
+  }
+
+  &__form {
+    padding: 1rem;
+    width: 100%;
+
+    @include sm-screen {
+      width: 400px;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .control {
+      max-width: 100%;
+    }
+  }
+
+  &__signup-login-toggle {
+    font-size: $medium;
+
+    a {
+      color: $primary-text-clr;
+      text-decoration: underline;
+    }
+  }
+
+  &__form-title {
+    font-family: $poppins-bold;
+    font-size: $x-large;
+    align-self: flex-start;
+    margin-bottom: 1rem;
   }
 }

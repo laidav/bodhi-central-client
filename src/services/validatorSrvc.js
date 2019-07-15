@@ -2,7 +2,8 @@ export const validationTypes = {
   isRequired: "isRequired",
   arrayNotEmpty: "arrayNotEmpty",
   invalidCredentials: "invalidCredentials",
-  isValidEmail: "isValidEmail"
+  isValidEmail: "isValidEmail",
+  isValidUsername: "isValidUsername"
 };
 
 export class validatorSrvc {
@@ -42,7 +43,13 @@ export class validatorSrvc {
   }
 
   static isValidEmail(value) {
-    const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return pattern.test(value);
+  }
+
+  static isValidUsername(value) {
+    const pattern = /^[A-Za-z][A-Za-z0-9_.]*$/;
 
     return pattern.test(value);
   }

@@ -15,6 +15,13 @@ const authResource = {
       url: Constants.API_V1 + "/verify-token",
       auth: { username: token }
     });
+  },
+  signUp({ data }) {
+    return bodhiCentralApiSrvc({
+      method: "post",
+      url: Constants.API_V1 + "/sign-up",
+      data
+    });
   }
 };
 

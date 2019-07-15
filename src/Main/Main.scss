@@ -6,6 +6,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: $primary-bg-clr;
 
   &__nav {
     grid-row: 1/2;
