@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./Auth.scss";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import SignInForm from "./SignInForm/SignInForm";
+import SignUpSuccess from "./SignUpSuccess/SignUpSuccess";
 import BCLogo from "assets/bc-logo.svg";
 
 const Auth = () => (
@@ -19,8 +20,9 @@ const Auth = () => (
       </div>
       <div className={"auth__form-container"}>
         <Switch>
-          <Route path={"/login"} component={SignInForm} />
+          <Route path={"/sign-in"} component={SignInForm} />
           <Route path={"/sign-up"} component={SignUpForm} />
+          <Route path={"/sign-up-success"} component={SignUpSuccess} />
         </Switch>
       </div>
     </div>

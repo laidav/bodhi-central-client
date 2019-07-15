@@ -87,7 +87,7 @@ class SignUpForm extends Component {
     const { handleChange, handleSubmit } = this;
 
     if (successRedirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/sign-up-success" />;
     }
 
     return (
@@ -170,7 +170,7 @@ class SignUpForm extends Component {
           Sign up!
         </button>
         <p className={"auth__signup-login-toggle"}>
-          Already a member? <NavLink to={"/login"}>Login.</NavLink>
+          Already a member? <NavLink to={"/sign-in"}>Sign in.</NavLink>
         </p>
         {errors.invalidCredentials === vt.invalidCredentials && (
           <div className={"control-group"}>

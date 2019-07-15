@@ -31,7 +31,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path={["/login", "/sign-up"]} component={Auth} />
+          <Route
+            path={["/sign-in", "/sign-up", "/sign-up-success"]}
+            component={Auth}
+          />
           <Route path="/" component={Main} />
         </Switch>
       </BrowserRouter>
